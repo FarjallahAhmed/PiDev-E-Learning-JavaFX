@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<TabPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.FXMLDocumentController">
+   <tabs>
+      <Tab text="activite">
+         <content>
+            <AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="791.0">
+                <children>
+                    <Label fx:id="label" layoutX="23.0" layoutY="153.0" minHeight="16" minWidth="41.0" prefHeight="17.0" prefWidth="41.0" text="sujet" />
+                  <Label layoutX="23.0" layoutY="106.0" text="nom" />
+                  <Label layoutX="23.0" layoutY="198.0" text="description" />
+                  <Label layoutX="21.0" layoutY="252.0" text="date de creation" />
+                  <TextField fx:id="nomA" layoutX="134.0" layoutY="102.0" />
+                  <TextField fx:id="sujetA" layoutX="134.0" layoutY="149.0" />
+                  <TextField fx:id="descriptionA" layoutX="134.0" layoutY="194.0" />
+                  <DatePicker fx:id="dateA" layoutX="134.0" layoutY="248.0" />
+                  <Button fx:id="ajouterA" layoutX="43.0" layoutY="325.0" mnemonicParsing="false" onAction="#ajouterActivite" text="Ajouter" />
+                  <Button fx:id="updateA" layoutX="134.0" layoutY="325.0" mnemonicParsing="false" onAction="#updateActivite" text="Update" />
+                  <TableView fx:id="tableview" layoutX="342.0" layoutY="24.0" onMouseClicked="#deleteActivite" prefHeight="259.0" prefWidth="429.0">
+                     <columns>
+                        <TableColumn fx:id="idtable" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="nomtable" prefWidth="75.0" text="nom" />
+                        <TableColumn fx:id="sujettable" prefWidth="75.0" text="sujet" />
+                        <TableColumn fx:id="descriptiontable" prefWidth="75.0" text="description" />
+                        <TableColumn fx:id="datetable" prefWidth="113.0" text="date creation" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="idUpdate" layoutX="507.0" layoutY="325.0" mnemonicParsing="false" onAction="#afficherUpdateItem" prefHeight="25.0" prefWidth="78.0" text="ID" />
+                  <TextField fx:id="idUp" layoutX="613.0" layoutY="325.0" prefHeight="25.0" prefWidth="78.0" />
+                </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="projet">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="25.0" layoutY="48.0" text="Nom" />
+                  <Label layoutX="25.0" layoutY="91.0" text="Sujet" />
+                  <Label layoutX="25.0" layoutY="129.0" text="Description" />
+                  <Label layoutX="25.0" layoutY="166.0" text="Date Creation" />
+                  <Label layoutX="25.0" layoutY="202.0" text="Nombre Max" />
+                  <Label layoutX="25.0" layoutY="241.0" text="Heure de rencontre" />
+                  <TextField fx:id="nomA" layoutX="169.0" layoutY="44.0" />
+                  <TextField fx:id="sujetA" layoutX="169.0" layoutY="87.0" />
+                  <TextField fx:id="descriptionA" layoutX="169.0" layoutY="134.0" />
+                  <TextField fx:id="nbrP" layoutX="169.0" layoutY="207.0" />
+                  <TextField fx:id="hP" layoutX="169.0" layoutY="246.0" />
+                  <DatePicker fx:id="dateA" layoutX="157.0" layoutY="171.0" />
+                  <Button fx:id="bAjouter" layoutX="256.0" layoutY="304.0" mnemonicParsing="false" onAction="#ajouterProjet" text="Ajouter" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>

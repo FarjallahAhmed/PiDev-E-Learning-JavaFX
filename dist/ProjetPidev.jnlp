@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProjetPidev.jnlp">
+  <information>
+    <title>ProjetPidev</title>
+    <vendor>AMINE N</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ProjetPidev.jar" size="25889" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.23.jar" size="2415211" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="projetpidev.ProjetPidev"  name="ProjetPidev" />
+  <update check="always"/>
+</jnlp>

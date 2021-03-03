@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.FXMLDocumentController">
+   <children>
+      <DatePicker fx:id="datec" layoutX="9.0" layoutY="108.0" />
+      <TextField fx:id="tfprix" layoutX="14.0" layoutY="176.0" />
+      <TextField fx:id="tfetat" layoutX="14.0" layoutY="247.0" />
+      <Label layoutX="15.0" layoutY="82.0" text="dateCommande" />
+      <Label layoutX="15.0" layoutY="147.0" text="prix" />
+      <Label layoutX="15.0" layoutY="215.0" text="etat" />
+      <Button layoutX="15.0" layoutY="298.0" mnemonicParsing="false" onAction="#AjouterCommande" text="Ajouter" />
+      <Button layoutX="451.0" layoutY="310.0" mnemonicParsing="false" onAction="#AfficherCommande" text="Afficher" />
+      <TableView fx:id="tablec" layoutX="259.0" layoutY="56.0" onMouseClicked="#selectionner" prefHeight="248.0" prefWidth="441.0">
+        <columns>
+          <TableColumn fx:id="idt" prefWidth="87.0" text="id" />
+          <TableColumn fx:id="datet" minWidth="0.0" prefWidth="138.0" text="date" />
+            <TableColumn fx:id="prixt" minWidth="0.0" prefWidth="113.0" text="prix" />
+            <TableColumn fx:id="etatt" prefWidth="102.0" text="etat" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idsup" layoutX="370.0" layoutY="371.0" prefHeight="25.0" prefWidth="55.0" />
+      <Button layoutX="454.0" layoutY="371.0" mnemonicParsing="false" onAction="#SupprimerCommande" text="Supprimer" />
+      <Button layoutX="89.0" layoutY="298.0" mnemonicParsing="false" onAction="#ModifierCommande" text="Modifier" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="-78.0" layoutY="-71.0" prefHeight="498.0" prefWidth="901.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <opaqueInsets>
+            <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
+         </opaqueInsets>
+         <children>
+            <Label prefHeight="18.0" prefWidth="206.0" text="Formulaire Inscription Participant :">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <GridPane fx:id="gridAffiche" prefHeight="444.0" prefWidth="742.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.79998779296875" minWidth="10.0" prefWidth="300.79998779296875" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="299.20001220703125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="299.20001220703125" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="tfIdSelected" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                  <Label prefHeight="18.0" prefWidth="66.0" text="Nom">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="tfNom" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin></TextField>
+                  <Label prefHeight="18.0" prefWidth="85.0" text="Prenom" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="tfPrenom" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin></TextField>
+                  <DatePicker fx:id="dateDeNaissance" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding></DatePicker>
+                  <TextField fx:id="tfCin" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin></TextField>
+                  <Label text="Date De Naissance" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="60.0" text="CIN" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Email" GridPane.rowIndex="4">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Login" GridPane.rowIndex="5">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Password" GridPane.rowIndex="6">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <PasswordField fx:id="tfPassword" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </PasswordField>
+                  <TextField fx:id="tfLogin" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfEmail" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="tfNum" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Numero Telephone" GridPane.rowIndex="7">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="18.0" prefWidth="187.0" text="Portefolio" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="CV" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Specialite" GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Justificatif" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="tfInteresse" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="confirmer" mnemonicParsing="false" onAction="#confirmerModification" prefHeight="26.0" prefWidth="136.0" text="Confirmer" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                  <Button fx:id="annuler" mnemonicParsing="false" prefHeight="26.0" prefWidth="129.0" text="Annuler" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="170.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <TableView fx:id="tableAffiche" layoutY="485.0" prefHeight="112.0" prefWidth="902.0">
+        <columns>
+          <TableColumn fx:id="cId" prefWidth="56.799989342689514" text="C1" />
+          <TableColumn fx:id="cNom" prefWidth="52.79998779296875" text="C2" />
+            <TableColumn fx:id="cPrenom" prefWidth="68.79998016357422" text="C3" />
+            <TableColumn fx:id="cDate" prefWidth="74.4000244140625" text="C4" />
+            <TableColumn fx:id="cCin" prefWidth="68.79998779296875" text="C5" />
+            <TableColumn fx:id="cEmail" prefWidth="68.79998779296875" text="C6" />
+            <TableColumn fx:id="cLogin" prefWidth="81.5999755859375" text="C7" />
+            <TableColumn fx:id="cPwd" prefWidth="72.00003051757812" text="C8" />
+            <TableColumn fx:id="cNum" prefWidth="73.5999755859375" text="C9" />
+            <TableColumn fx:id="cNiveau" prefWidth="68.00006103515625" text="C10" />
+            <TableColumn fx:id="cCertificat" prefWidth="65.60009765625" text="C11" />
+            <TableColumn fx:id="cInteresse" prefWidth="74.4000244140625" text="C12" />
+            <TableColumn fx:id="cNombre" prefWidth="75.0" text="C13" />
+        </columns>
+      </TableView>
+      <Button fx:id="bDelete" layoutX="693.0" layoutY="612.0" mnemonicParsing="false" onAction="#supprimerParticipant" prefHeight="26.0" prefWidth="194.0" text="Supprimer La Ligne Selectionnée" />
+      <Button fx:id="add" layoutX="14.0" layoutY="612.0" mnemonicParsing="false" onAction="#ajouterParticipant" prefHeight="26.0" prefWidth="213.0" text="ADD" />
+      <Button fx:id="afficher" layoutX="250.0" layoutY="611.0" mnemonicParsing="false" onAction="#afficherParticipant" prefHeight="26.0" prefWidth="215.0" text="Afficher" />
+      <Button layoutX="477.0" layoutY="612.0" mnemonicParsing="false" onAction="#afficherModifyInformation" prefHeight="26.0" prefWidth="206.0" text="Modifier La Ligne Selectionnée" />
+   </children>
+</AnchorPane>

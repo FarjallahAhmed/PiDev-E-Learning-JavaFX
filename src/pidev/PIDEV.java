@@ -21,7 +21,9 @@ public class PIDEV extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml")); 
         Scene scene = new Scene(root);
+      //   scene.getStylesheets().add("bootstrap.css");
         stage.setScene(scene);
+       
         stage.show();
     }
 

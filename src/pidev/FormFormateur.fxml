@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="653.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.FormFormateurController">
    <children>
-      <VBox layoutX="-78.0" layoutY="-71.0" prefHeight="498.0" prefWidth="901.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="stage" layoutX="-78.0" layoutY="-71.0" prefHeight="498.0" prefWidth="901.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
             <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
          </opaqueInsets>
@@ -149,7 +149,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="tfInteresse" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                  <TextField fx:id="tfspecialite" GridPane.columnIndex="1" GridPane.rowIndex="10">
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
@@ -160,6 +160,35 @@
                         <Insets left="170.0" />
                      </GridPane.margin>
                   </Button>
+                  <Button fx:id="uCv" mnemonicParsing="false" onAction="#uploadCv" prefHeight="26.0" prefWidth="64.0" text="Ajouter CV" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin></Button>
+                  <Label fx:id="labelupload" prefHeight="18.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="uPf" mnemonicParsing="false" onAction="#uploadPf" prefHeight="26.0" prefWidth="64.0" text="Ajouter CV" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="uJ" mnemonicParsing="false" onAction="#uploadJ" prefHeight="26.0" prefWidth="64.0" text="Ajouter CV" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label fx:id="labelPf" prefHeight="18.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="labelJ" prefHeight="18.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
             </GridPane>
          </children>

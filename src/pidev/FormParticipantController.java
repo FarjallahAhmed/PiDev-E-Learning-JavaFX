@@ -8,6 +8,7 @@ package pidev;
 import Etities.Participants;
 import Etities.Utilisateurs;
 import Service.ServiceParticipant;
+import Utils.Mask;
 import static java.lang.String.format;
 import static java.lang.String.format;
 import java.net.URL;
@@ -33,14 +34,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import static jdk.nashorn.internal.runtime.Debug.id;
 
@@ -117,6 +123,14 @@ public class FormParticipantController implements Initializable {
     private Button annuler;
     @FXML
     private TextField tfIdSelected;
+    @FXML
+    private Label labelemail;
+    @FXML
+    private HBox hbox;
+    @FXML
+    private Label alertEmail;
+    @FXML
+    private Label alertCin;
    
         
     
@@ -159,7 +173,19 @@ public class FormParticipantController implements Initializable {
         cInteresse.setCellValueFactory(new PropertyValueFactory<>("interssePar"));
         cNombre.setCellValueFactory(new PropertyValueFactory<>("NombreDeFormation"));
         
-        tfCin.setTextFormatter(formatter);
+      //  tfCin.setTextFormatter(formatter);
+      
+        Mask.noSymbolsAndNumbers(tfNom);
+        Mask.noSymbolsAndNumbers(tfPrenom);
+        Mask.noSymbolsAndNumbers(tfNiveau);
+        Mask.noSymbols(tfLogin);
+        Mask.noLetters(tfNum);
+        Mask.noLetters(tfNombre);
+        Mask.noLetters(tfCin);
+        Mask.noLetters(tfCertificat);
+        Verificationlistners();
+        alertEmail.setVisible(false);
+        alertCin.setVisible(false);
     }    
 
     @FXML
@@ -182,22 +208,22 @@ public class FormParticipantController implements Initializable {
         p.setInterssePar(tfInteresse.getText());
         p.setNombreDeFormation(Integer.parseInt(tfNombre.getText()));
         
-        if (sp.AjouterUtilisateur(p))
+        if (Mask.isEmail(tfEmail))
         {
-            
+           sp.AjouterUtilisateur(p);
             alert.setTitle("Ajout Participant");
             alert.setHeaderText(null);
             alert.setContentText("Ajouté Avec Succes!");
             alert.showAndWait();
         }
         else
-            
+        {
             alert.setTitle("Ajout Participant");
             alert.setHeaderText("Ajout Participant");
             alert.setContentText("Participant n'a pas ete ajouté!");
 
             alert.showAndWait();
-        
+        }
        
         
         
@@ -280,6 +306,52 @@ public class FormParticipantController implements Initializable {
         p.setNombreDeFormation(Integer.parseInt(tfNombre.getText()));
         
         sp.ModifierUtilisateur(p);
+    }
+
+    @FXML
+    private void verifieremail(DragEvent event) {
+    }
+
+
+    private void Verificationlistners()
+    {
+        
+        tfEmail.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+        
+            if (Mask.isEmail(tfEmail))
+            {
+                System.out.println("true");
+                alertEmail.setVisible(false);
+                
+                
+            }
+            else
+            {
+                System.out.println("false");  
+                alertEmail.setVisible(true);
+                alertEmail.setText("Email Invalid");
+            }
+        }));
+        
+        
+        tfCin.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+        
+            if (tfCin.getText().length()==8)
+            {
+                System.out.println("true");
+                alertCin.setVisible(false);
+                
+                
+            }
+            else
+            {
+                System.out.println("false");  
+                alertCin.setVisible(true);
+                alertCin.setText("Cin Invalid");
+            }
+        }));
+
+
     }
 
 

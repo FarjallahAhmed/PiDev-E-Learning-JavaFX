@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="PIDEV.jar" size="21516" download="eager" />
+    <jar href="PIDEV.jar" size="38223" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.23.jar" size="2415211" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="pidev.PIDEV"  name="PIDEV" />

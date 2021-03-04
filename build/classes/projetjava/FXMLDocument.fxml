@@ -65,18 +65,23 @@
                   <Label layoutX="100.0" layoutY="206.0" text="Pourcentage" />
                   <DatePicker fx:id="dateDP" layoutX="179.0" layoutY="115.0" />
                   <DatePicker fx:id="dateDF" layoutX="180.0" layoutY="156.0" />
-                  <TextField fx:id="type" layoutX="177.0" layoutY="67.0" />
+                  <TextField fx:id="typeP" layoutX="177.0" layoutY="67.0" />
                   <Button fx:id="addP" layoutX="191.0" layoutY="260.0" mnemonicParsing="false" onAction="#addPromotion" text="Add" />
-                  <Button fx:id="updateP" layoutX="269.0" layoutY="261.0" mnemonicParsing="false" text="Update" />
-                  <TableView fx:id="tableViewP" layoutX="503.0" layoutY="31.0" prefHeight="276.0" prefWidth="725.0">
+                  <Button fx:id="updateP" layoutX="269.0" layoutY="261.0" mnemonicParsing="false" onAction="#confirmUpdatePromotion" text="Update" />
+                  <TableView fx:id="tableViewP" layoutX="546.0" layoutY="30.0" onMousePressed="#deletePromotion" prefHeight="277.0" prefWidth="682.0">
                     <columns>
                       <TableColumn prefWidth="75.0" />
                       <TableColumn prefWidth="75.0" />
+                        <TableColumn fx:id="idTP" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="tpeTP" prefWidth="75.0" text="type" />
+                        <TableColumn fx:id="dateTPD" prefWidth="75.0" text="date debut" />
+                        <TableColumn fx:id="dateTPF" prefWidth="75.0" text="date fin" />
+                        <TableColumn fx:id="pourcentageTP" prefWidth="75.0" text="pourcentage" />
                     </columns>
                   </TableView>
                   <TextField fx:id="pourc" layoutX="180.0" layoutY="200.0" />
                   <TextField fx:id="idupP" layoutX="1094.0" layoutY="370.0" prefHeight="26.0" prefWidth="41.0" />
-                  <Button fx:id="updatePbtn" layoutX="1018.0" layoutY="368.0" mnemonicParsing="false" text="id " />
+                  <Button fx:id="updatePbtn" layoutX="1018.0" layoutY="368.0" mnemonicParsing="false" onAction="#updatePromotion" text="id " />
                </children></AnchorPane>
         </content>
       </Tab>

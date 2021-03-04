@@ -7,6 +7,7 @@ package projetjava;
 
 import Entity.Promotion;
 import Entity.Workshop;
+import Utils.Mask;
 import implService.implPromotionService;
 import implService.implWorkshopService;
 import java.net.URL;
@@ -38,6 +39,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 /**
@@ -78,6 +80,7 @@ public class FXMLDocumentController implements Initializable {
     private Button Display;
     
     ObservableList<Workshop> listWorkshop;
+    ObservableList<Promotion> listPromotion;
     @FXML
     private Button delete;
     private TextField idDel;
@@ -94,18 +97,41 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button updateP;
     @FXML
-    private TableView<?> tableViewP;
+    private TableView<Promotion> tableViewP;
     @FXML
     private TextField pourc;
     @FXML
     private TextField idupP;
     @FXML
     private Button updatePbtn;
+    @FXML
+    private TableColumn<Promotion, Integer> idTP;
+    @FXML
+    private TableColumn<Promotion, String> tpeTP;
+    @FXML
+    private TableColumn<Promotion, Date> dateTPD;
+    @FXML
+    private TableColumn<Promotion, Date> dateTPF;
+    @FXML
+    private TableColumn<Promotion, Float> pourcentageTP;
+    @FXML
+    private TextField typeP;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         implWorkshopService wService = new implWorkshopService();
+        implPromotionService pService = new implPromotionService();
+        
+        Mask.noSymbolsAndNumbers(type);
+        Mask.noSymbolsAndNumbers(name);
+        Mask.noSymbolsAndNumbers(lieu);
+        
+        Mask.noLetters(pourc);
+        Mask.noLetters(prix);
+        Mask.noLetters(nbPart);
+        
+        
         
         TableColumn<Workshop, Void> colBtn = new TableColumn("Action");
 
@@ -187,16 +213,28 @@ public class FXMLDocumentController implements Initializable {
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         
+        idTP.setCellValueFactory(new PropertyValueFactory<>("id"));
+        dateTPD.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
+        dateTPF.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
+        tpeTP.setCellValueFactory(new PropertyValueFactory<>("type"));
+        pourcentageTP.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        
+        
         try {
             listWorkshop = wService.readAll();
+            listPromotion = pService.readAll();
+            
         } catch (SQLException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
         tableView.setItems(listWorkshop);
+        tableViewP.setItems(listPromotion);
         tableView.getColumns().addAll(idCol,nameCol,dateDCol,dateFCol,hDebut,hFin,lieu,nbParticipant,type,description,prix);
         tableView.getColumns().add(colBtn);
         listWorkshop = FXCollections.observableArrayList();
-    }    
+    }   
+    
+    
 
     @FXML
     private void addWorkshop(ActionEvent event) throws SQLException {
@@ -236,6 +274,19 @@ public class FXMLDocumentController implements Initializable {
         tableView.setItems(listWorkshop);
         System.out.println(listWorkshop);
         
+        
+        
+    }
+    
+    private void displayPromotion() throws SQLException {
+        
+        
+        implPromotionService pService = new implPromotionService();
+        
+        
+        listPromotion = pService.readAll();
+        tableViewP.setItems(listPromotion);
+                
         
         
     }
@@ -306,7 +357,7 @@ public class FXMLDocumentController implements Initializable {
         
         try {
             wService.update(w);
-            this.displayWorkshop(event);
+            this.displayPromotion();
             System.out.println("modifier");
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -319,15 +370,107 @@ public class FXMLDocumentController implements Initializable {
         Promotion p = new Promotion();
         implPromotionService pService = new implPromotionService();
         
-        p.setType(type.getText());
+        p.setType(typeP.getText());
         p.setPrix(Float.parseFloat(pourc.getText()));
         p.setDateDebut(Date.valueOf(dateDP.getValue()));
         p.setDateFin(Date.valueOf(dateDF.getValue()));
         
         pService.ajouter(p);
+        this.displayPromotion();
         
     }
 
+    @FXML
+    private void confirmUpdatePromotion(ActionEvent event) {
+        Promotion p = new Promotion();
+        implPromotionService pService = new implPromotionService();
+        
+        p.setId(Integer.parseInt(idupP.getText()));
+        p.setType(typeP.getText());
+        p.setPrix(Float.parseFloat(pourc.getText()));
+        p.setDateDebut(Date.valueOf(dateDP.getValue()));
+        p.setDateFin(Date.valueOf(dateDF.getValue()));
+        
+        try {
+            pService.update(p);
+            this.displayPromotion();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void updatePromotion(ActionEvent event) throws SQLException {
+        implPromotionService pService = new implPromotionService();
+        Promotion p = new Promotion();
+        
+        p = pService.find(Integer.parseInt(idupP.getText()));
+        typeP.setText(p.getType());
+        dateDP.setValue(LocalDate.parse(String.valueOf(p.getDateDebut())));
+        dateDF.setValue(LocalDate.parse(String.valueOf(p.getDateFin())));
+        pourc.setText(String.valueOf(p.getPrix()));
+        
+    }
+
+    @FXML
+    private void deletePromotion(MouseEvent event) {
+        implPromotionService pService = new implPromotionService();
+        Promotion p = new Promotion();
+        p = tableViewP.getSelectionModel().getSelectedItem();
+        
+        try {
+            pService.delete(p.getId());
+            this.displayPromotion();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
+    
+    /*
+private void Verificationlistners()
+    {
+        
+        tfEmail.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+        
+            if (Mask.isEmail(tfEmail))
+            {
+                System.out.println("true");
+                alertEmail.setVisible(false);
+                
+                
+            }
+            else
+            {
+                System.out.println("false");  
+                alertEmail.setVisible(true);
+                alertEmail.setText("Email Invalid");
+            }
+        }));
+        
+        
+        tfCin.focusedProperty().addListener(((observable, oldValue, newValue) -> {
+        
+            if (tfCin.getText().length()==8)
+            {
+                System.out.println("true");
+                alertCin.setVisible(false);
+                
+                
+            }
+            else
+            {
+                System.out.println("false");  
+                alertCin.setVisible(true);
+                alertCin.setText("Cin Invalid");
+            }
+        }));
+
+
+    }
+*/
 
    
     

@@ -7,6 +7,7 @@ package projet;
 
 import Entity.Activite;
 import Entity.projet;
+import Utils.Mask;
 import implService.impProjet;
 import implService.implActiviteService;
 import java.net.URL;
@@ -72,6 +73,14 @@ public class FXMLDocumentController implements Initializable {
     private TextField hP;
     @FXML
     private Button bAjouter;
+    @FXML
+    private TextField nomP;
+    @FXML
+    private TextField sujetP;
+    @FXML
+    private TextField descriptionP;
+    @FXML
+    private DatePicker dateP;
     
     private void handleButtonAction(ActionEvent event) {
        
@@ -100,7 +109,11 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         this.afficher();
+        Mask.noSymbolsAndNumbers(nomA);
+        Mask.noSymbolsAndNumbers(sujetA);
+        Mask.noSymbolsAndNumbers(descriptionA);
         
+
         
     }    
 
@@ -186,10 +199,10 @@ public class FXMLDocumentController implements Initializable {
         projet a = new projet();
         
         //a.setId_activite(0);
-        a.setNom(nomA.getText());
-        a.setSujet(sujetA.getText());
-        a.setDescription(descriptionA.getText());
-        a.setDate_creation(Date.valueOf(dateA.getValue()));
+        a.setNom(nomP.getText());
+        a.setSujet(sujetP.getText());
+        a.setDescription(descriptionP.getText());
+        a.setDate_creation(Date.valueOf(dateP.getValue()));
         
         a.setHeureRencontre(hP.getText());
         a.setNombreMax(Integer.parseInt(nbrP.getText()));

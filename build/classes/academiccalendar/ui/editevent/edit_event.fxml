@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="681.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="academiccalendar.ui.editevent.EditEventController">
+   <children>
+      <HBox id="header" fx:id="header" prefHeight="35.0" prefWidth="340.0" stylesheets="@../style/materialButtonStyle.css">
+         <children>
+            <Label fx:id="topLabel" prefHeight="25.0" prefWidth="313.0" text="Edit Event">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/drag_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="10.0" layoutY="57.0" prefHeight="484.0" prefWidth="320.0" spacing="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="57.0">
+         <children>
+            <JFXTextField fx:id="title" focusColor="#4d4d4d" labelFloat="true" prefHeight="40.0" prefWidth="337.0" promptText="title">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXTextField>
+            <JFXComboBox fx:id="type" focusColor="#4d4d4d" layoutX="10.0" layoutY="102.0" prefHeight="25.0" prefWidth="166.0" promptText="type" />
+            <JFXDatePicker fx:id="dateED" promptText="Start Date of Event" />
+            <JFXDatePicker fx:id="dateEF" promptText="End Date of Event" />
+            <HBox prefHeight="46.0" prefWidth="320.0">
+               <children>
+                  <JFXTimePicker fx:id="timeED" promptText="Start Time" />
+                  <JFXTimePicker fx:id="timeEF" promptText="End Time" />
+               </children>
+            </HBox>
+            <Label text="NB Participant" />
+            <JFXTextField fx:id="nbP" />
+            <Label onMouseClicked="#exit" prefHeight="37.0" prefWidth="39.0" />
+            <JFXTextArea fx:id="desc" prefHeight="87.0" prefWidth="320.0" promptText="Description" />
+         </children>
+      </VBox>
+      <HBox layoutY="181.0" prefHeight="41.0" prefWidth="340.0" stylesheets="@../style/materialButtonStyle.css" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <JFXButton fx:id="saveButton" onMouseClicked="#save" prefHeight="40.0" prefWidth="138.0" text="Save">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="deleteW" onAction="#deleteEvent" prefHeight="46.0" prefWidth="98.0" text="Delete" />
+            <JFXButton fx:id="cancelButton" onMouseClicked="#cancel" prefHeight="40.0" prefWidth="103.0" text="Cancel">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <JFXTextField fx:id="prix" layoutX="10.0" layoutY="558.0" promptText="Price" />
+   </children>
+</AnchorPane>

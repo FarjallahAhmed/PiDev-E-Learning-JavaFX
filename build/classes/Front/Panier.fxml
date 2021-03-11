@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.PanierController">
+   <children>
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="86.0" prefWidth="1160.0" style="-fx-background-color: #2D75E8;">
+         <children>
+            <Label layoutX="58.0" layoutY="14.0" prefHeight="70.0" prefWidth="437.0" text="Mes Commandes" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="tabcommande" layoutX="57.0" layoutY="187.0" onMouseClicked="#presupp" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../home/css/fullpackstyling.css">
+         <columns>
+            <TableColumn fx:id="coetat" prefWidth="75.0" text="Etat" />
+            <TableColumn fx:id="coidform" prefWidth="75.0" text="id_formation" />
+            <TableColumn fx:id="cobjet" prefWidth="75.0" text="Objet" />
+            <TableColumn fx:id="cobjectif" prefWidth="75.0" text="Objectif" />
+            <TableColumn fx:id="cotype" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="coprix" prefWidth="75.0" text="Prix" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="962.0" layoutY="557.0" text="Prix total:" />
+      <TextField fx:id="txtprix" layoutX="1047.0" layoutY="552.0" prefHeight="25.0" prefWidth="60.0" />
+      <Label layoutX="967.0" layoutY="598.0" text="Articles:" />
+      <TextField fx:id="txtnbarticles" layoutX="1047.0" layoutY="593.0" prefHeight="25.0" prefWidth="60.0" />
+      <Button fx:id="btnsupp" layoutX="124.0" layoutY="570.0" mnemonicParsing="false" onAction="#Supprimer_btn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Delete" textFill="#fcf2f2" />
+      <TextField fx:id="suppanier" layoutX="440.0" layoutY="536.0" visible="false" />
+      <TextField fx:id="tfsearch" layoutX="874.0" layoutY="135.0" onKeyReleased="#SearchKey" promptText="Recherche" />
+      <Button layoutX="56.0" layoutY="132.0" mnemonicParsing="false" onMouseClicked="#tribtn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #0598FF;" text="Trier" textFill="#fcf2f2" />
+      <Button fx:id="btnpasser" layoutX="689.0" layoutY="574.0" mnemonicParsing="false" onAction="#onfinalisercommande" prefHeight="38.0" prefWidth="240.0" style="-fx-background-color: #00FA9A;" text="Finaliser commande" textFill="#fcf2f2" />
+      <JFXButton layoutX="7.0" layoutY="21.0" onAction="#backToDashboard" prefHeight="31.0" prefWidth="98.0" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

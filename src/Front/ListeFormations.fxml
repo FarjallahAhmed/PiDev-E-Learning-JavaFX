@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="655.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.ListeFormationsController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1102.0">
+               <children>
+                  <Pane prefHeight="139.0" prefWidth="1102.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="73.0" layoutY="30.0" text="Students" textFill="WHITE">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="79.0" layoutY="91.0" text="School Mangement " textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <TableView fx:id="tabform" layoutX="20.0" layoutY="192.0" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../home/css/fullpackstyling.css" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="192.0">
+                     <columns>
+                        <TableColumn fx:id="coid" prefWidth="75.0" text="Id" visible="false" />
+                        <TableColumn fx:id="coobject" prefWidth="75.0" text="Objet" />
+                        <TableColumn fx:id="cotype" prefWidth="75.0" text="Type" />
+                        <TableColumn fx:id="coobjectif" prefWidth="75.0" text="Objectif" />
+                        <TableColumn fx:id="conbparticp" prefWidth="75.0" text="nb_participants" />
+                        <TableColumn fx:id="cocouthj" prefWidth="75.0" text="cout_hj" />
+                        <TableColumn fx:id="conbjour" prefWidth="75.0" text="nb_jour" />
+                        <TableColumn fx:id="cocoutfin" prefWidth="75.0" text="cout_fin" />
+                        <TableColumn fx:id="codaterelle" prefWidth="75.0" text="date_reelle" />
+                        <TableColumn fx:id="codateprevu" prefWidth="75.0" text="date_prevu" />
+                        <TableColumn fx:id="copath" prefWidth="75.0" text="path" />
+                        <TableColumn fx:id="cocat" prefWidth="75.0" text="categorie" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <Pane layoutX="20.0" layoutY="159.0" prefHeight="33.0" prefWidth="322.0">
+                     <children>
+                        <TextField fx:id="chercher" onKeyReleased="#SearchKey" prefHeight="25.0" prefWidth="322.0" style="-fx-border-color: #2D75E8;" />
+                        <FontAwesomeIconView fill="#2d75e8" glyphName="SEARCH" layoutX="302.0" layoutY="18.0" />
+                     </children>
+                  </Pane>
+                  <ComboBox fx:id="filtrercombo" layoutX="927.0" layoutY="152.0" onAction="#onfiltrer" prefWidth="150.0" promptText="Filtrer Par" />
+                  <JFXButton layoutX="8.0" layoutY="8.0" onAction="#backDashboard" prefHeight="31.0" prefWidth="98.0" text="Back" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

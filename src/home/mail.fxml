@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.email">
+   <children>
+      <Pane prefHeight="120.0" prefWidth="504.0" style="-fx-background-color: #2D75E8;">
+         <children>
+            <Label layoutX="27.0" layoutY="36.0" prefHeight="70.0" prefWidth="302.0" text="Evoyer Email" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="btnsupp" layoutX="277.0" layoutY="442.0" mnemonicParsing="false" onAction="#Supprimer_btn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Cancel" textFill="#fcf2f2" AnchorPane.bottomAnchor="6.0" />
+      <Button fx:id="btnajouter" layoutX="55.0" layoutY="436.0" mnemonicParsing="false" onAction="#onpasser" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #0598ff;" text="Finaliser" textFill="#fcf2f2" AnchorPane.bottomAnchor="6.0" />
+      <HBox layoutX="55.0" layoutY="173.0" prefHeight="100.0" prefWidth="424.0">
+         <children>
+            <VBox prefHeight="303.0" prefWidth="179.0" spacing="35.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="129.0" text="Adress-mail" />
+                  <Label text="Objet" />
+               </children>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="318.0" prefWidth="205.0" spacing="22.0">
+               <children>
+                  <TextField fx:id="email" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                  <TextField fx:id="objet" promptText="Objet" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <JFXTextArea fx:id="contenu" layoutY="277.0" prefHeight="120.0" prefWidth="504.0" />
+   </children>
+</AnchorPane>

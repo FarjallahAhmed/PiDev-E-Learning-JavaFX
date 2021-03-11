@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Front.ReclamationController">
+   <children>
+      <TabPane layoutX="10.0" layoutY="10.0">
+         <tabs>
+            <Tab text="Reclamation">
+               <content>
+                  <AnchorPane id="AnchorPane" prefHeight="714.0" prefWidth="839.0">
+                     <children>
+                        <Label layoutX="43.0" layoutY="303.0" text="User" />
+                        <TextField fx:id="tfuser" disable="true" layoutX="38.0" layoutY="330.0" prefHeight="28.0" prefWidth="14.0" />
+                        <TextField fx:id="tfobjet" layoutX="40.0" layoutY="416.0" promptText="Objet" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <TextField fx:id="tfmessage" layoutX="40.0" layoutY="493.0" promptText="Message" style="-fx-background-color: trtansparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <Button layoutX="45.0" layoutY="554.0" mnemonicParsing="false" onAction="#ajouter_reclamation" style="-fx-background-color: #0598ff;" text="Ajouter" textFill="WHITE" />
+                        <Button layoutX="724.0" layoutY="609.0" mnemonicParsing="false" onAction="#supprimer_reclamation" style="-fx-background-color: #0598ff;" text="Supprimer" />
+                        <TextField fx:id="idsup" disable="true" layoutX="410.0" layoutY="609.0" />
+                        <Button layoutX="147.0" layoutY="554.0" mnemonicParsing="false" onAction="#modifier_reclamation" style="-fx-background-color: #0598ff;" text="Modifier" textFill="WHITE" />
+                        <ComboBox fx:id="cbUser" layoutX="39.0" layoutY="331.0" prefWidth="150.0" />
+                        <Button fx:id="trj" layoutX="330.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#triiiiiii" style="-fx-background-color: #0598ff;" text="Order by Objet" textFill="WHITE" />
+                        <TableView fx:id="table" layoutX="317.0" layoutY="278.0" onMouseClicked="#selectionner" prefHeight="301.0" prefWidth="508.0">
+                           <columns>
+                              <TableColumn fx:id="idut" prefWidth="75.0" style="-fx-background-color: #0598ff;" text="User" />
+                              <TableColumn fx:id="obt" prefWidth="75.0" style="-fx-background-color: #0598ff;" text="Objet" />
+                              <TableColumn fx:id="msgt" prefWidth="75.0" style="-fx-background-color: #0598ff;" text="message" />
+                              <TableColumn fx:id="idrect" prefWidth="75.0" style="-fx-background-color: #0598ff;" text="id_reclamation" />
+                           </columns>
+                           <columnResizePolicy>
+                             
+                           </columnResizePolicy>
+                        </TableView>
+                        <TextField layoutX="499.0" layoutY="222.0" prefHeight="25.0" prefWidth="322.0" promptText="search" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <FontAwesomeIconView fill="#a29292" glyphName="SEARCH" layoutX="796.0" layoutY="239.0" text="" />
+                        <Pane prefHeight="139.0" prefWidth="1102.0" style="-fx-background-color: #0598ff;">
+                           <children>
+                              <Label layoutX="73.0" layoutY="30.0" text="Reclamation" textFill="WHITE">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="79.0" layoutY="91.0" textFill="WHITE">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Categorie">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="nomC" layoutX="47.0" layoutY="208.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <TextField fx:id="typeC" layoutX="47.0" layoutY="291.0" promptText="Type" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <TextField fx:id="descC" layoutX="47.0" layoutY="391.0" promptText="Description" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <Button fx:id="addC" layoutX="47.0" layoutY="477.0" mnemonicParsing="false" onAction="#ajouter_categorie" style="-fx-background-color: #0598ff;" text="Ajouter" textFill="WHITE" />
+                        <Button fx:id="modifC" layoutX="212.0" layoutY="477.0" mnemonicParsing="false" onAction="#modifier_categorie" style="-fx-background-color: #0598ff;" text="Modifier" textFill="WHITE" />
+                        <Button fx:id="suppC" layoutX="829.0" layoutY="631.0" mnemonicParsing="false" onAction="#supprimer_categorie" style="-fx-background-color: #0598ff;" text="Supprimer" textFill="WHITE" />
+                        <TextField fx:id="idsupp" layoutX="551.0" layoutY="630.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <TextField fx:id="searchC" layoutX="632.0" layoutY="208.0" onKeyReleased="#searchCCkey" prefHeight="26.0" prefWidth="252.0" promptText="search" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+                        <Button fx:id="triiiiccc" layoutX="390.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#triCCCCCC" style="-fx-background-color: #0598ff;" text="Orader by Nom" textFill="WHITE" />
+                        <FontAwesomeIconView fill="#ac8f8f" glyphName="SEARCH" layoutX="758.0" layoutY="45.0" />
+                        <TableView fx:id="tableC" layoutX="357.0" layoutY="267.0" prefHeight="301.0" prefWidth="508.0">
+                           <columns>
+                              <TableColumn fx:id="tabnom" prefWidth="94.39993286132812" style="-fx-background-color: #0598ff;" text="Nom" />
+                              <TableColumn fx:id="tabtype" prefWidth="164.79998779296875" style="-fx-background-color: #0598ff;" text="Type" />
+                              <TableColumn fx:id="tabdesc" prefWidth="180.79998779296875" style="-fx-background-color: #0598ff;" text="Description" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Label text="Reclamation" textFill="WHITE">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="139.0" prefWidth="1102.0" style="-fx-background-color: #0598ff;">
+                           <children>
+                              <Label layoutX="73.0" layoutY="30.0" text="Categorie" textFill="WHITE">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="79.0" layoutY="91.0" textFill="WHITE">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

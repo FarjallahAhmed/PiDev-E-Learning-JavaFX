@@ -412,7 +412,7 @@ public class EditEventController implements Initializable {
                 ||dateED.getValue() == null ||dateEF.getValue() == null
                 ||timeEF.getValue() == null ||timeED.getValue() == null
                 ||prix.getText().isEmpty()||desc.getText().isEmpty()
-                ){
+                ||dateED.getValue().isBefore(dateEF.getValue()){
             Alert alertMessage = new Alert(Alert.AlertType.ERROR);
             alertMessage.setHeaderText(null);
             alertMessage.setContentText("Please fill out all fields");
@@ -432,9 +432,18 @@ public class EditEventController implements Initializable {
         }*/
         
         //If all data is inputted correctly and validated, then add the event:
-        
-
-        String dateD = dateED.getValue().format(myFormat);
+        if(title.getText().isEmpty()|| type.getSelectionModel().isEmpty()
+                ||dateED.getValue() == null ||dateEF.getValue() == null
+                ||timeEF.getValue() == null ||timeED.getValue() == null
+                ||prix.getText().isEmpty()||desc.getText().isEmpty()
+                ||dateED.getValue().isAfter(dateEF.getValue())){
+            Alert alertMessage = new Alert(Alert.AlertType.ERROR);
+            alertMessage.setHeaderText(null);
+            alertMessage.setContentText("Please fill out all fields");
+            alertMessage.showAndWait();
+            return;
+        }else{
+            String dateD = dateED.getValue().format(myFormat);
         String dateF = dateEF.getValue().format(myFormat);
         String titleE = title.getText();
         String typeE = type.getValue();       
@@ -443,7 +452,7 @@ public class EditEventController implements Initializable {
         float prix = Float.parseFloat(this.prix.getText());
         String description = desc.getText();
         int nbparticipant  = 50;
-
+        
         implWorkshopService wService = new implWorkshopService();
         Workshop w = new Workshop(0, titleE,java.sql.Date.valueOf(dateD),java.sql.Date.valueOf(dateF), timeD, timeF, typeE, nbparticipant, typeE, description, prix);
 
@@ -452,12 +461,15 @@ public class EditEventController implements Initializable {
         try {
             wService.update(w);
             mainController.repaintView();
-            System.out.println("sex sex sex");
         } catch (SQLException ex) {
             Logger.getLogger(EditEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+            
+        }
+
+        
     }
 
     @FXML

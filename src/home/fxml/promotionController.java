@@ -28,6 +28,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -97,7 +98,13 @@ public class promotionController implements Initializable{
         
                 implPromotionService pService = new implPromotionService(); 
                 Promotion p =new Promotion();
-                
+                if(dateDP.getValue().isAfter(dateDF.getValue())){
+            Alert alertMessage = new Alert(Alert.AlertType.ERROR);
+            alertMessage.setHeaderText(null);
+            alertMessage.setContentText("Date Verification");
+            alertMessage.showAndWait();
+            return;
+        }else{
                 p.setId(Ajout_formationController.affecterP.getId());
                 p.setPrix(Float.parseFloat(pourc.getText()));
                 p.setDateDebut(Date.valueOf(dateDP.getValue()));
@@ -114,7 +121,9 @@ public class promotionController implements Initializable{
         } catch (SQLException ex) {
             Logger.getLogger(promotionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-                System.out.println(Ajout_formationController.affecterP);
+                System.out.println(Ajout_formationController.affecterP);    
+                }
+                
 
     }
 

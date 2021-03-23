@@ -130,10 +130,10 @@ public class AddEventController implements Initializable {
                 ||dateED.getValue() == null ||dateEF.getValue() == null
                 ||timeEF.getValue() == null ||timeED.getValue() == null
                 ||prix.getText().isEmpty()||desc.getText().isEmpty()
-                ){
+                ||dateED.getValue().isAfter(dateEF.getValue())){
             Alert alertMessage = new Alert(Alert.AlertType.ERROR);
             alertMessage.setHeaderText(null);
-            alertMessage.setContentText("Please fill out all fields");
+            alertMessage.setContentText("Please fill out all fields or Date Verification ");
             alertMessage.showAndWait();
             return;
         }

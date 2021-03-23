@@ -29,7 +29,6 @@ import javafx.stage.StageStyle;
 public class implPromotionService implements workshopService<Promotion>{
     
         private Connection con;
-    
 
     public implPromotionService() {
         con = Connexion.getInstance().getConnexion();
@@ -158,9 +157,12 @@ public class implPromotionService implements workshopService<Promotion>{
         ResultSet rs = ste.executeQuery("select * from promotion");
         while (rs.next()) {                
             int id = rs.getInt(1);
-            String nom = rs.getString(4);
-            Date dateDebut = rs.getDate(2);
-            Date dateFin = rs.getDate(3);
+
+          
+
+            int nom = rs.getInt(2);
+            Date dateDebut = rs.getDate(3);
+            Date dateFin = rs.getDate(4);
             float prix =  rs.getFloat(5);
 
 
@@ -171,37 +173,33 @@ public class implPromotionService implements workshopService<Promotion>{
     }
     
         
-    public ObservableList< ArrayList<String>> readAllPromotion() throws SQLException {
-                 ObservableList< ArrayList<String>> promotions = FXCollections.observableArrayList();
-                 String sql="select f.objet as Objet, f.type, f.cout_hj, f.cout_fin, p.dateDebut, p.dateFin FROM formation f INNER JOIN promotion p ON p.id = f.id";
-        //List<Workshop> workshops = new ArrayList<>();
+
+    public ObservableList<Promotion> readAllPromotion() throws SQLException {
+                 ObservableList< Promotion> promotions = FXCollections.observableArrayList();
+                 String sql="select f.objet , f.type, f.cout_fin, p.prix, p.dateDebut, p.dateFin  FROM formation f INNER JOIN promotion p ON p.id = f.id";
+       
         Statement ste=con.createStatement();
         ResultSet rs = ste.executeQuery(sql);
         while (rs.next()) {                
-            String objet = String.valueOf(rs.getString(1));
-            String type = String.valueOf(rs.getString(2));
-            String cout_h = String.valueOf(rs.getFloat(3));
-            String cout_fin = String.valueOf(rs.getFloat(4));
-            String dateDebut = String.valueOf(rs.getDate(5));
-            String dateFin = String.valueOf(rs.getDate(6));
             
-            ArrayList<String> list = new ArrayList();
-            list.add(objet);
-            list.add(type);
-            list.add(cout_h);
-            list.add(cout_fin);
-            list.add(dateDebut);
-            list.add(dateFin);
                     
             
             
             
             
-            
-            promotions.add(list);
-            //Promotion p = new Promotion(id, nom, dateDebut, dateFin, prix);
-           
+
+            String objet = rs.getString(1);
+            String type = rs.getString(2);
+            Date dateDebut = rs.getDate(5);
+            Date dateFin = rs.getDate(6);
+            float cout_f =  rs.getFloat(3);
+            float prourcentage  =  rs.getFloat(4); 
+
+
+            Promotion p = new Promotion(dateDebut, dateFin, prourcentage, objet, type, cout_f);
+            promotions.add(p);
         }
+    
         return promotions;
     }
     

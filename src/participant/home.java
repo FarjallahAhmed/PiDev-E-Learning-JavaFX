@@ -8,6 +8,7 @@ package participant;
 import Entities.Participants;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+import home.fxml.PromotionsController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -41,11 +42,11 @@ public class home implements Initializable {
     @FXML
     private Button btnUpdate;
     @FXML
-    private Button btnClasses;
-    @FXML
     private Label name;
     @FXML
     private Label type;
+    @FXML
+    private Button btnPro;
 
     /**
      * Initializes the controller class.
@@ -112,6 +113,21 @@ public class home implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/Front/Panier.fxml")); 
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
+    }
+
+    @FXML
+    private void showPromotions(ActionEvent event) {
+          PromotionsController p = new PromotionsController();
+            
+            
+                 //Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/formulaireform.fxml")); 
+                 Scene scene;
+        try {
+            scene = new Scene(p.page());
+            pidevfinal.PidevFinal.parentWindow.setScene(scene);
+        } catch (SQLException ex) {
+            Logger.getLogger(formateur.home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

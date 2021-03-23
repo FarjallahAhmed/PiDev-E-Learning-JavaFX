@@ -64,6 +64,11 @@
                   <FontAwesomeIconView fill="#2d75e8" glyphName="INDENT" size="50" />
                </graphic>
             </Button>
+            <Button fx:id="btnPromo" contentDisplay="TOP" mnemonicParsing="false" onAction="#showPromotion" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="Promotions" GridPane.rowIndex="1">
+               <graphic>
+                  <FontAwesomeIconView fill="#2d75e8" glyphName="PERCENT" size="50" />
+               </graphic>
+            </Button>
          </children>
       </GridPane>
    </children>

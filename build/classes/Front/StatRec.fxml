@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="ap" prefHeight="599.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.StatRecController">
+   <children>
+      <BarChart fx:id="bc" layoutX="36.0" layoutY="84.0" prefHeight="482.0" prefWidth="844.0">
+        <xAxis>
+          <CategoryAxis fx:id="ca" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="na" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button fx:id="btnPDF" layoutX="140.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#btnPDFClicked" prefHeight="26.0" prefWidth="125.0" text="Generate PDF" />
+      <ComboBox fx:id="cbYear" layoutX="632.0" layoutY="46.0" onAction="#cbYearAction" prefWidth="150.0" />
+   </children>
+</AnchorPane>

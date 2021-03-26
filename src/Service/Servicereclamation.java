@@ -44,6 +44,8 @@ public class Servicereclamation implements IServicereclamation{
         cnx=Connexion.getInstance().getConnexion();
     }
     
+    int idUser = UserSession.UserSession.getInstace("", 0, "").getId();
+    
     public void addMessage(Message m) {
         try {
             Statement stm=cnx.createStatement();
@@ -71,7 +73,9 @@ alert.setContentText("Etes vous sur de vouloir ajouter cette reclamation?");
 Optional<ButtonType> result = alert.showAndWait();
 if (result.get() == ButtonType.OK){
     addMessage(r.getMessage());
-    String query="INSERT INTO reclamation(id_user,objet,id_message) VALUES ('"+r.getId_user().getId()+"','"+r.getObjet()+"','"+getMessageByContenu(r.getMessage().getContenu()).getId()+"')";
+    java.util.Date utilDate = new java.util.Date();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+    String query="INSERT INTO reclamation(id_user,objet,id_message,date) VALUES ('"+idUser+"','"+r.getObjet()+"','"+getMessageByContenu(r.getMessage().getContenu()).getId()+"','"+sqlDate+"')";
     stm.executeUpdate(query);
     Alert alert2 = new Alert(AlertType.INFORMATION);
             alert2.setTitle("Ajout");
@@ -175,7 +179,7 @@ if (result.get() == ButtonType.OK){
         try {
              Statement  stm;
              stm= cnx.createStatement();
-             String query="Select * from `reclamation`";
+             String query="Select * from `reclamation` where id_user = '"+idUser+"'";
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -184,6 +188,7 @@ if (result.get() == ButtonType.OK){
                  r.setObjet(rst.getString("objet"));
                  
                  r.setMessage(getMessageById(rst.getInt("id_message")));
+                 r.setDate(rst.getDate("date"));
                  
                  System.out.println(rst.getInt("id_message"));
                  reclamations.add(r);
@@ -204,7 +209,7 @@ public ObservableList<reclamation> search(String input) {
              String query="SELECT reclamation.id_reclamation, reclamation.id_user,"
                      + " reclamation.objet, reclamation.id_message "
                      + "FROM reclamation LEFT JOIN utilisateurs ON reclamation.id_user = utilisateurs.id"
-                     + " where utilisateurs.prenom like '%"+input+"%' "
+                     + " where utilisateurs.id = '"+idUser+"' AND utilisateurs.prenom like '%"+input+"%' "
                      + "or utilisateurs.nom like '%"+input+"%' "
                      + "or reclamation.objet like '%"+input+"%'";
              ResultSet rst=stm.executeQuery(query);
@@ -313,7 +318,7 @@ public ObservableList<reclamation> triASC() {
         try {
              Statement  stm;
              stm= cnx.createStatement();
-             String query="Select * from `reclamation` ORDER BY objet ASC";
+             String query="Select * from `reclamation` where id_user = '"+idUser+"' ORDER BY objet ASC";
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -340,7 +345,7 @@ public ObservableList<reclamation> triDSC() {
         try {
              Statement  stm;
              stm= cnx.createStatement();
-             String query="Select * from `reclamation` ORDER BY objet DESC";
+             String query="Select * from `reclamation` where id_user = '"+idUser+"' ORDER BY objet DESC";
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -407,8 +412,105 @@ public ObservableList<reclamation> triDSC() {
       } catch (MessagingException e) {
          throw new RuntimeException(e);
       }
-
-			
     }
+    public List<reclamation> getAllRec() {
+      List<reclamation>reclamations= new ArrayList<>();
+ 
+        try {
+             Statement  stm;
+             stm= cnx.createStatement();
+             String query="Select * from `reclamation`";
+             ResultSet rst=stm.executeQuery(query);
+             while (rst.next()){
+                 reclamation r=new reclamation();
+                 r.setId_reclamation(rst.getInt("id_reclamation"));
+                 r.setId_user(getUseerById(rst.getInt("id_user")));
+                 r.setObjet(rst.getString("objet"));
+                 
+                 r.setMessage(getMessageById(rst.getInt("id_message")));
+                 r.setDate(rst.getDate("date"));
+                 
+                 System.out.println(rst.getInt("id_message"));
+                 reclamations.add(r);
+                     
+             }
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(Servicereclamation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return reclamations;
+}
+
+    public void archiveRec(int id) {
+       reclamation r=this.getReclamation(id);
+        try {
+            Statement stm=cnx.createStatement();
+            
+             
+    java.util.Date utilDate = new java.util.Date();
+    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+    String query="INSERT INTO archive (id_reclamation,id_user,objet,id_message,date) VALUES ('"+r.getId_reclamation()+"','"+idUser+"','"+r.getObjet()+"','"+getMessageByContenu(r.getMessage().getContenu()).getId()+"','"+sqlDate+"')";
+    stm.executeUpdate(query);
+    
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Servicereclamation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+    
+
+    }
+    
+    public reclamation getReclamation(int id) {
+        reclamation r=new reclamation();
+        try {
+             Statement  stm;
+             stm= cnx.createStatement();
+             String query="Select * from `reclamation` where id_reclamation = '"+id+"'";
+             ResultSet rst=stm.executeQuery(query);
+             while (rst.next()){
+                 r.setId_reclamation(rst.getInt("id_reclamation"));
+                 r.setId_user(getUseerById(rst.getInt("id_user")));
+                 r.setObjet(rst.getString("objet"));
+                 
+                 r.setMessage(getMessageById(rst.getInt("id_message")));
+                 r.setDate(rst.getDate("date"));
+                 
+             }
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(Servicereclamation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return r;
+    }
+
+    public ObservableList<reclamation> archiiiiiiive() {
+        ObservableList<reclamation>reclamations=FXCollections.observableArrayList();
+ 
+        try {
+             Statement  stm;
+             stm= cnx.createStatement();
+             String query="Select * from `archive` where id_user = '"+idUser+"'";
+             ResultSet rst=stm.executeQuery(query);
+             while (rst.next()){
+                 reclamation r=new reclamation();
+                 r.setId_reclamation(rst.getInt("id_reclamation"));
+                 r.setId_user(getUseerById(rst.getInt("id_user")));
+                 r.setObjet(rst.getString("objet"));
+                 
+                 r.setMessage(getMessageById(rst.getInt("id_message")));
+                 r.setDate(rst.getDate("date"));
+                 
+                 System.out.println(rst.getInt("id_message"));
+                 reclamations.add(r);
+                     
+             }
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(Servicereclamation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return reclamations;
+    }
+    
 }
 

@@ -9,6 +9,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import Entities.Promotion;
 import Service.implPromotionService;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.utils.FontAwesomeIconFactory;
 import java.io.FileInputStream;
@@ -49,15 +50,24 @@ import org.controlsfx.glyphfont.FontAwesome;
  */
 public class PromotionsController implements Initializable {
 
-    ObservableList<Promotion> list ;
-    @FXML
-    private AnchorPane promotionpage;
+    public static ObservableList<Promotion> list ;
+
+    public static JFXComboBox<Integer> filtrePourc = new JFXComboBox<>();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        implPromotionService pService = new implPromotionService();
+
+        try {
+            list = pService.readAllPromotion();
+   
+        } catch (SQLException ex) {
+            Logger.getLogger(PromotionsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }    
     
     public static AnchorPane createPromotion(Promotion j,Promotion b) {
@@ -68,6 +78,10 @@ public class PromotionsController implements Initializable {
         JFXButton btnBack = new JFXButton("Back");
         Pane promo = new Pane();
         Label t = new Label("Promotion");
+        Label tfiltre = new Label("Filtrer :");
+        
+        for (int i = 0; i<9;i++)
+            filtrePourc.getItems().add(i*10);
         
         String promolb =  "-fx-underline : true;"
                 +"-fx-font-weight : bold;"
@@ -81,8 +95,12 @@ public class PromotionsController implements Initializable {
         t.setStyle(stylePromo);
         t.setLayoutX(100);
         t.setLayoutY(50);
+        tfiltre.setLayoutX(1000);
+        tfiltre.setLayoutY(150);
+        filtrePourc.setLayoutX(1100);
+        filtrePourc.setLayoutY(150);
         promo.setStyle("-fx-background-color :  #2D75E8;");
-        promo.getChildren().addAll(btnBack,t);
+        promo.getChildren().addAll(btnBack,t,tfiltre,filtrePourc);
         card2.setPrefSize(1250, 650);
         card2.setStyle("-fx-background-color :  white;");
         card2.getChildren().add(promo);
@@ -214,7 +232,7 @@ public class PromotionsController implements Initializable {
        
                 
             }
-         rootf.getChildren().addAll(l6,l7);
+            rootf.getChildren().addAll(l6,l7);
             
         
         
@@ -256,18 +274,56 @@ public class PromotionsController implements Initializable {
     public  VBox page() throws SQLException{
         
         implPromotionService pService = new implPromotionService();
-        list = pService.readAllPromotion();
         Pagination pagination = new Pagination();
-        pagination.setPageCount(list.size());
-        pagination.setCurrentPageIndex(0);
-        pagination.setMaxPageIndicatorCount(3);
         
-        pagination.setPageFactory((pageIndex) -> {
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                try {
+                    if(filtrePourc.getValue()==0){
+                        list = pService.readAllPromotion();
+                        pagination.setPageCount(list.size());
+                        pagination.setCurrentPageIndex(0);
+                        pagination.setMaxPageIndicatorCount(3);
+   
+                    }else{
+                        list = pService.filrePromotionPourcentage(filtrePourc.getValue());
+                        pagination.setPageCount(list.size());
+                        pagination.setCurrentPageIndex(0);
+                        pagination.setMaxPageIndicatorCount(3);
+                        System.out.println("list: "+list);
+                        pagination.setPageFactory((pageIndex) -> {
+                        if(list.size() == 1){
+                            return new VBox(createPromotion(list.get(pageIndex),list.get(pageIndex)));
+
+                        }
+                        return new VBox(createPromotion(list.get(pageIndex),list.get(pageIndex+1)));
+                    });
+                        
+                    }
                     
-      
+                   
+                } catch (SQLException ex) {
+                    Logger.getLogger(PromotionsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println(filtrePourc.getValue());
+                
+            }
+            
+        };
+        
+        
+                //list = pService.filrePromotionPourcentage(60);
+        
+        
+        System.out.println("list: "+list);
+        list = pService.readAllPromotion();
+        filtrePourc.setOnAction(event);
+        pagination.setPageFactory((pageIndex) -> {
+
             return new VBox(createPromotion(list.get(pageIndex),list.get(pageIndex+1)));
         });
-
+        
 //        promotionpage.getChildren().add(pagination);
         VBox vBox = new VBox(pagination);
         

@@ -838,17 +838,13 @@ public class FXMLDocumentController implements Initializable {
         cell = row.createCell(5);
         cell.setCellValue("Heure Fin");
         cell = row.createCell(6);
-        cell.setCellValue("Lieu");
+        cell.setCellValue("nombre participant");
         cell = row.createCell(7);
         cell.setCellValue("Type");
         cell = row.createCell(8);
         cell.setCellValue("Prix");
         
-        // Query to get ALL Events from the selected calendar!!
-        //String getMonthEventsQuery = "SELECT * From EVENTS WHERE CalendarName='" + calendarName + "' ORDER BY EventDate ";   
-        
-        // Store the results here
-       // ResultSet result = databaseHandler.executeQuery(getMonthEventsQuery);
+       
         
          try {
              int counter=2;
@@ -858,22 +854,21 @@ public class FXMLDocumentController implements Initializable {
                 for(int i=0;i<data.size();i++ ){
                     row = sheet.createRow(counter);
                     cell = row.createCell(1);
-                cell.setCellValue(data.get(i).getNomEvent());
-                cell = row.createCell(2);
-                cell.setCellValue(data.get(i).getDateDebut());
-                cell = row.createCell(3);
-                cell.setCellValue(data.get(i).getDateFin());
-                 cell = row.createCell(4);
-                cell.setCellValue(data.get(i).gethDebut());
-                cell = row.createCell(5);
-                cell.setCellValue(data.get(i).gethFin());
-                cell = row.createCell(6);
-                cell.setCellValue(data.get(i).getLieu());
-                 cell = row.createCell(7);
-                cell.setCellValue(data.get(i).getNbParticipant());
-                cell = row.createCell(8);
-                cell.setCellValue(data.get(i).getPrix());
-                
+                    cell.setCellValue(data.get(i).getNomEvent());
+                    cell = row.createCell(2);
+                    cell.setCellValue(data.get(i).getDateDebut().toString());
+                    cell = row.createCell(3);
+                    cell.setCellValue(data.get(i).getDateFin().toString());
+                    cell = row.createCell(4);
+                    cell.setCellValue(data.get(i).gethDebut().toString());
+                    cell = row.createCell(5);
+                    cell.setCellValue(data.get(i).gethFin().toString());
+                    cell = row.createCell(6);
+                    cell.setCellValue(data.get(i).getNbParticipant());
+                    cell = row.createCell(7);
+                    cell.setCellValue(data.get(i).getType());
+                    cell = row.createCell(8);
+                    cell.setCellValue(data.get(i).getPrix());
                     counter++;
                 }
                 
@@ -896,7 +891,7 @@ public class FXMLDocumentController implements Initializable {
          catch(Exception e) {
             e.printStackTrace();
          }  
-       }
+    }
    
     private String getRGB(Color c){
         

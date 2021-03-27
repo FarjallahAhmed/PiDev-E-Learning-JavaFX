@@ -11,13 +11,17 @@ import Entities.categorie;
 import Entities.reclamation;
 import Service.Servicecategorie;
 import Service.Servicereclamation;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -84,6 +90,12 @@ public class ReclamationController implements Initializable {
     private TextField idsupp;
     private TextField search;
     
+     @FXML
+    private Button btnAjouter;
+
+    @FXML
+    private Button btnSupprimer;
+    
     private int id_message;
     
     private void handleButtonAction(ActionEvent event) {
@@ -98,6 +110,12 @@ public class ReclamationController implements Initializable {
           Servicereclamation sr= new Servicereclamation();
           cbUser.getItems().addAll(sr.getAllUsers());
         // TODO
+        if(UserSession.UserSession.getInstace("", 0, "").getType().equals("Admin")) {
+            tfobjet.disableProperty().set(true);
+            tfmessage.disableProperty().set(true);
+            btnAjouter.disableProperty().set(true);
+            btnSupprimer.disableProperty().set(true);
+        }
     }    
 
     @FXML
@@ -147,7 +165,8 @@ sr.ajouter_reclamation(r);
     @FXML
     private void supprimer_reclamation(ActionEvent event) {
         Servicereclamation sr= new Servicereclamation();
-        sr.deleteMessage(id_message);
+        //sr.deleteMessage(id_message);
+        sr.archiveRec(Integer.parseInt(idsup.getText()));
         sr.supprimer_reclamation(Integer.parseInt(idsup.getText()));
          Notifications n = Notifications.create()
                               .title("SUCCESS")
@@ -328,5 +347,35 @@ sr.ajouter_categorie(c);
           tableC.setItems(categories);
     }
 
-   
+   @FXML
+    void statClicked(MouseEvent event) {
+        loadStage("/Front/StatRec.fxml");
+    }
+    
+    private void loadStage(String fxml) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxml));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+          //  stage.getIcons().add(new Image("/home/icons/icon.png"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    void archiveClicked(MouseEvent event) {
+        Servicereclamation sr= new Servicereclamation();
+        ObservableList<reclamation> reclamations;
+        
+            reclamations =sr.archiiiiiiive();
+      
+          idrect.setCellValueFactory(new PropertyValueFactory<reclamation,Integer>("id_reclamation"));
+          idut.setCellValueFactory(new PropertyValueFactory<reclamation,Utilisateurs>("id_user"));
+          obt.setCellValueFactory(new PropertyValueFactory<reclamation,String>("objet"));
+          msgt.setCellValueFactory(new PropertyValueFactory<reclamation,Message>("message"));
+          table.setItems(reclamations);
+    }
 }

@@ -25,10 +25,10 @@
                         <TextField fx:id="tfuser" disable="true" layoutX="327.0" layoutY="330.0" prefHeight="28.0" prefWidth="14.0" />
                         <TextField fx:id="tfobjet" layoutX="45.0" layoutY="344.0" promptText="Objet" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
                         <TextField fx:id="tfmessage" layoutX="45.0" layoutY="441.0" promptText="Message" style="-fx-background-color: trtansparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
-                        <Button layoutX="45.0" layoutY="554.0" mnemonicParsing="false" onAction="#ajouter_reclamation" style="-fx-background-color: #0598ff;" text="Ajouter" textFill="WHITE" />
-                        <Button layoutX="724.0" layoutY="609.0" mnemonicParsing="false" onAction="#supprimer_reclamation" style="-fx-background-color: #0598ff;" text="Supprimer" />
+                        <Button fx:id="btnAjouter" layoutX="45.0" layoutY="554.0" mnemonicParsing="false" onAction="#ajouter_reclamation" style="-fx-background-color: #0598ff;" text="Ajouter" textFill="WHITE" />
+                        <Button fx:id="btnSupprimer" layoutX="724.0" layoutY="609.0" mnemonicParsing="false" onAction="#supprimer_reclamation" style="-fx-background-color: #0598ff;" text="Supprimer" />
                         <TextField fx:id="idsup" disable="true" layoutX="477.0" layoutY="608.0" />
-                        <Button layoutX="146.0" layoutY="554.0" mnemonicParsing="false" onAction="#modifier_reclamation" style="-fx-background-color: #0598ff;" text="Modifier" textFill="WHITE" />
+                        <Button layoutX="357.0" layoutY="531.0" mnemonicParsing="false" onAction="#modifier_reclamation" style="-fx-background-color: #0598ff;" text="Modifier" textFill="WHITE" />
                         <ComboBox fx:id="cbUser" layoutX="333.0" layoutY="331.0" prefWidth="150.0" />
                         <Button fx:id="trj" layoutX="330.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#triiiiiii" style="-fx-background-color: #0598ff;" text="Order by Objet" textFill="WHITE" />
                         <TableView fx:id="table" layoutX="317.0" layoutY="278.0" onMouseClicked="#selectionner" prefHeight="301.0" prefWidth="508.0">
@@ -58,7 +58,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Button layoutX="133.0" layoutY="554.0" mnemonicParsing="false" onMouseClicked="#statClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Statistique" textFill="WHITE" />
+                        <Button layoutX="132.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#statClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Statistique" textFill="WHITE" />
                         <Button layoutX="341.0" layoutY="608.0" mnemonicParsing="false" onMouseClicked="#archiveClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Archive" textFill="WHITE" />
                      </children>
                   </AnchorPane>

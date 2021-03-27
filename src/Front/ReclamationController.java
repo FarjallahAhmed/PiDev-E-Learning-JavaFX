@@ -90,6 +90,12 @@ public class ReclamationController implements Initializable {
     private TextField idsupp;
     private TextField search;
     
+     @FXML
+    private Button btnAjouter;
+
+    @FXML
+    private Button btnSupprimer;
+    
     private int id_message;
     
     private void handleButtonAction(ActionEvent event) {
@@ -104,6 +110,12 @@ public class ReclamationController implements Initializable {
           Servicereclamation sr= new Servicereclamation();
           cbUser.getItems().addAll(sr.getAllUsers());
         // TODO
+        if(UserSession.UserSession.getInstace("", 0, "").getType().equals("Admin")) {
+            tfobjet.disableProperty().set(true);
+            tfmessage.disableProperty().set(true);
+            btnAjouter.disableProperty().set(true);
+            btnSupprimer.disableProperty().set(true);
+        }
     }    
 
     @FXML

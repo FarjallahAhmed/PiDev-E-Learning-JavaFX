@@ -120,7 +120,6 @@ public class StatRecController implements Initializable {
             document.add(new Paragraph("Reclamation: Stats"));
 
             document.add(new Paragraph(new Date().toString()));
-            
             Image img = Image.getInstance("D:\\chart.png");
             document.add(img);
 
@@ -131,7 +130,7 @@ public class StatRecController implements Initializable {
             
             Notifications n = Notifications.create()
                               .title("PDF Chart")
-                              .text("  file path: "+file)
+                              .text("  file path: D:\\TestPDF.pdf")
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(1));
                n.darkStyle();

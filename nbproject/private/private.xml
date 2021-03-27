@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/reclamation.java</file>
-            <file>file:/C:/projetGit3/pidev-e-learning/src/home/fxml/PromotionsController.java</file>
-            <file>file:/C:/projetGit3/pidev-e-learning/src/Utils/Connexion.java</file>
-            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/ReclamationController.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/StatRec.fxml</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/EvaluerController.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/UserSession/UserSession.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Service/ServiceFormateur.java</file>
-            <file>file:/C:/projetGit3/pidev-e-learning/src/Service/ServiceEvaluation.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/Utilisateurs.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/reclamation.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/nbproject/build-impl.xml</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Service/Servicecategorie.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/ReclamationController.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/StatRecController.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Service/Servicereclamation.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Service/ServiceEvaluation.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Utils/Connexion.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/home/fxml/PromotionsController.java</file>
         </group>
     </open-files>
 </project-private>

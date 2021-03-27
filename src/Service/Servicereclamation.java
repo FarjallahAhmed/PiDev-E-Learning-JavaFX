@@ -39,12 +39,20 @@ import javax.mail.internet.MimeMessage;
  */
 public class Servicereclamation implements IServicereclamation{
     Connection cnx;
+    String idUser = ""+UserSession.UserSession.getInstace("", 0, "").getId();
+    String TypeUser = UserSession.UserSession.getInstace("", 0, "").getType();
+
 
     public Servicereclamation() {
         cnx=Connexion.getInstance().getConnexion();
+        /*if (UserSession.UserSession.getInstace("", 0, "").getType().equals("Admin")) {
+            idUser = "%";
+        }
+        System.out.println(idUser+" ----------------------");*/
     }
     
-    int idUser = UserSession.UserSession.getInstace("", 0, "").getId();
+    
+    
     
     public void addMessage(Message m) {
         try {
@@ -180,6 +188,9 @@ if (result.get() == ButtonType.OK){
              Statement  stm;
              stm= cnx.createStatement();
              String query="Select * from `reclamation` where id_user = '"+idUser+"'";
+             if(TypeUser.equals("Admin")) {
+             query="Select * from `reclamation`";
+        }
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -212,6 +223,14 @@ public ObservableList<reclamation> search(String input) {
                      + " where utilisateurs.id = '"+idUser+"' AND utilisateurs.prenom like '%"+input+"%' "
                      + "or utilisateurs.nom like '%"+input+"%' "
                      + "or reclamation.objet like '%"+input+"%'";
+             if(TypeUser.equals("Admin")) {
+             query="SELECT reclamation.id_reclamation, reclamation.id_user,"
+                     + " reclamation.objet, reclamation.id_message "
+                     + "FROM reclamation LEFT JOIN utilisateurs ON reclamation.id_user = utilisateurs.id"
+                     + " where utilisateurs.prenom like '%"+input+"%' "
+                     + "or utilisateurs.nom like '%"+input+"%' "
+                     + "or reclamation.objet like '%"+input+"%'";
+        }
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -319,6 +338,9 @@ public ObservableList<reclamation> triASC() {
              Statement  stm;
              stm= cnx.createStatement();
              String query="Select * from `reclamation` where id_user = '"+idUser+"' ORDER BY objet ASC";
+             if (TypeUser.equals("Admin")){
+                query="Select * from `reclamation` ORDER BY objet ASC";
+             }
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -346,6 +368,9 @@ public ObservableList<reclamation> triDSC() {
              Statement  stm;
              stm= cnx.createStatement();
              String query="Select * from `reclamation` where id_user = '"+idUser+"' ORDER BY objet DESC";
+             if (TypeUser.equals("Admin")){
+                query="Select * from `reclamation` ORDER BY objet DESC";
+             }
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();
@@ -491,6 +516,9 @@ public ObservableList<reclamation> triDSC() {
              Statement  stm;
              stm= cnx.createStatement();
              String query="Select * from `archive` where id_user = '"+idUser+"'";
+             if (TypeUser.equals("Admin")){
+                query="Select * from `archive`";
+             }
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();

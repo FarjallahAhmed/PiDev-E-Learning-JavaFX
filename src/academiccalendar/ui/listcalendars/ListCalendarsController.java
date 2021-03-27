@@ -3,7 +3,6 @@ package academiccalendar.ui.listcalendars;
 
 import Entities.Calendar;
 import academiccalendar.data.model.Model;
-import academiccalendar.database.DBHandler;
 
 import academiccalendar.ui.main.FXMLDocumentController;
 import Service.implCalendarService;
@@ -40,7 +39,7 @@ public class ListCalendarsController implements Initializable {
     
     //--------------------------------------------------------------------
     //---------Database Object -------------------------------------------
-    DBHandler databaseHandler;
+    
     //--------------------------------------------------------------------
     
     // Calendar Table Fields --------------------------------------------
@@ -92,10 +91,7 @@ public class ListCalendarsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        //*** Instantiate DBHandler object *******************
-        databaseHandler = new DBHandler();
-        //****************************************************
-        
+       
         initCol();
         loadData();
         

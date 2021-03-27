@@ -312,10 +312,6 @@ public class PromotionsController implements Initializable {
             
         };
         
-        
-                //list = pService.filrePromotionPourcentage(60);
-        
-        
         System.out.println("list: "+list);
         list = pService.readAllPromotion();
         filtrePourc.setOnAction(event);
@@ -323,8 +319,6 @@ public class PromotionsController implements Initializable {
 
             return new VBox(createPromotion(list.get(pageIndex),list.get(pageIndex+1)));
         });
-        
-//        promotionpage.getChildren().add(pagination);
         VBox vBox = new VBox(pagination);
         
        

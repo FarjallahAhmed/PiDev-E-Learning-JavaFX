@@ -8,6 +8,8 @@ package Service;
 import Services.workshopService;
 import Entities.Workshop;
 import Utils.Connexion;
+import java.io.File;
+import java.io.IOException;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,19 +19,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.stage.StageStyle;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+/**
 /**
  *
  * @author dell
@@ -204,10 +225,11 @@ public class implWorkshopService implements workshopService<Workshop>{
 
     }
     
-    public boolean sendMail(Workshop t) {
+    public boolean sendMail(Workshop t) throws WriterException, IOException {
         
+        qrCode(t);
         // Recipient's email ID needs to be mentioned.
-        
+      
       String to = "highriseshighrises@gmail.com";
 
       // Sender's email ID needs to be mentioned
@@ -235,6 +257,11 @@ public class implWorkshopService implements workshopService<Workshop>{
       try {
 	   // Create a default MimeMessage object.
 	   Message message = new MimeMessage(session);
+           String messageSend = new String();
+           MimeBodyPart messageBodyPart2 = new MimeBodyPart(); 
+           BodyPart messageBodyPart1 = new MimeBodyPart();     
+                    
+
 	
 	   // Set From: header field of the header.
 	   message.setFrom(new InternetAddress(from));
@@ -247,14 +274,23 @@ public class implWorkshopService implements workshopService<Workshop>{
 	   message.setSubject(t.getNomEvent());
 	
 	   // Now set the actual message
-	   message.setText("Hello,between "+t.getDateDebut()+" and"+t.getDateFin()+" there will be an event of "+t.getDescription()
-           +" you can find us in "+ t.getLieu()+" the begin at "+t.gethDebut()+" and end at "+t.gethFin()
-           +" So your are welcome to join us ");
-
+            messageSend ="<h1>"+t.getNomEvent()+ "</h1>"+"Hello,between "+t.getDateDebut()+" and"+t.getDateFin()+" there will be an event of "+t.getDescription()
+            +" you can find us in "+ t.getLieu()+" the begin at "+t.gethDebut()+" and end at "+t.gethFin()
+            +" So your are welcome to join us.  "+"</br> you find below a qr code for your participation ";
+            
+            messageBodyPart1.setContent(messageSend,"text/html");  
+            String filename = "C:\\Users\\dell\\Desktop\\Game\\"+t.getNomEvent()+".png";  
+            DataSource source = new FileDataSource(filename);    
+            messageBodyPart2.setDataHandler(new DataHandler(source)); 
+            messageBodyPart2.setFileName(filename); 
+            Multipart multipart = new MimeMultipart();    
+            multipart.addBodyPart(messageBodyPart1);    
+            multipart.addBodyPart(messageBodyPart2);
+            message.setContent(multipart);
 	   // Send message
-	   Transport.send(message);
+            Transport.send(message);
 
-	   //System.out.println("Sent message successfully....");
+	   System.out.println("Sent message successfully....");
            return true;
       } catch (MessagingException e) {
          throw new RuntimeException(e);
@@ -266,6 +302,46 @@ public class implWorkshopService implements workshopService<Workshop>{
         
         //return false;
 
+    }
+          public static void createQR(String data, String path,
+                                String charset, Map hashMap,
+                                int height, int width)
+        throws WriterException, IOException
+    {
+ 
+        BitMatrix matrix = new MultiFormatWriter().encode(
+            new String(data.getBytes(charset), charset),
+            BarcodeFormat.QR_CODE, width, height);
+ 
+        MatrixToImageWriter.writeToFile(
+            matrix,
+            path.substring(path.lastIndexOf('.') + 1),
+            new File(path));
+    }
+          public static void qrCode(Workshop w) throws WriterException, IOException {
+        // TODO code application logic here
+        
+        // The data that the QR code will contain
+        String data =  w.getNomEvent();
+ 
+        // The path where the image will get saved
+        String path = "C:\\Users\\dell\\Desktop\\Game\\"+data+".png";
+ 
+        // Encoding charset
+        String charset = "UTF-8";
+ 
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap
+            = new HashMap<EncodeHintType,
+                          ErrorCorrectionLevel>();
+ 
+        hashMap.put(EncodeHintType.ERROR_CORRECTION,
+                    ErrorCorrectionLevel.L);
+ 
+        // Create the QR code and save
+        // in the specified folder
+        // as a jpg file
+        createQR(data, path, charset, hashMap, 300, 300);
+        System.out.println("QR Code Generated!!! ");
     }
     
 }

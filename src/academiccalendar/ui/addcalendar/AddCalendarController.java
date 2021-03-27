@@ -6,7 +6,6 @@ package academiccalendar.ui.addcalendar;
 import Entities.Calendar;
 import Entities.Workshop;
 import academiccalendar.data.model.Model;
-import academiccalendar.database.DBHandler;
 import academiccalendar.ui.main.FXMLDocumentController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -39,7 +38,6 @@ public class AddCalendarController implements Initializable {
     
     //--------------------------------------------------------------------
     //---------Database Object -------------------------------------------
-    DBHandler databaseHandler;
     //--------------------------------------------------------------------
 
     // Controllers
@@ -115,7 +113,6 @@ public class AddCalendarController implements Initializable {
                 //********  Inserting the new calendar data into the database  ***********
 
                 //*** Instantiate DBHandler object *******************
-                databaseHandler = new DBHandler();
                 //****************************************************
 
                 // Query that inserts the new calendar into the database

@@ -24,9 +24,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -76,6 +75,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import yeartable.TrackEmployeeController;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -123,6 +123,8 @@ public class FXMLDocumentController implements Initializable {
     private VBox centerArea;
     @FXML
     private Label calendarNameLbl;
+    @FXML
+    private JFXButton GlobalCalendar;
     
     //**************************************************************************
     //**************************************************************************
@@ -1326,6 +1328,31 @@ public class FXMLDocumentController implements Initializable {
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
         
+    }
+
+    @FXML
+    private void showCalendarGlobal(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+               loader.setLocation(getClass().getResource("/yeartable/TrackEmployeeFX.fxml"));
+               VBox rootLayout;
+        try {
+            rootLayout = (VBox) loader.load();
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+               stage.initModality(Modality.APPLICATION_MODAL); 
+
+               // Pass main controller reference to view
+               TrackEmployeeController eventController = loader.getController();
+               eventController.setMainController(this);
+               
+               // Show the scene containing the root layout.
+               Scene scene = new Scene(rootLayout);
+               stage.setScene(scene);
+               stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+    
     }
     
     

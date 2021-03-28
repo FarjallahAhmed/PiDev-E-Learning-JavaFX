@@ -40,7 +40,7 @@
     <jar href="lib\view-8.6.1.jar" size="762277" download="eager" />
     <jar href="lib\xmlbeans-2.6.0.jar" size="2730866" download="eager" />
     <jar href="lib\zxing-1.1.1.jar" size="15772" download="eager" />
-    <jar href="pidevFinal.jar" size="740184" download="eager" />
+    <jar href="pidevFinal.jar" size="753518" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="pidevFinal" >
     <param name="requiredFXVersion" value="8.0+"/>

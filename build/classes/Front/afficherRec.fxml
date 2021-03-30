@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="659.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.AfficherRecController">
+   <children>
+      <VBox fx:id="vboxafficher" layoutX="10.0" layoutY="80.0" prefHeight="573.0" prefWidth="1102.0" />
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="139.0" prefWidth="1102.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <Label layoutX="73.0" layoutY="30.0" text="Liste Reclamation" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="79.0" layoutY="91.0" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TextField fx:id="search" layoutX="58.0" layoutY="162.0" onKeyReleased="#searchKeyReleased" prefHeight="25.0" prefWidth="322.0" promptText="search" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
+      <Button fx:id="trj" layoutX="442.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#triiiiiii" style="-fx-background-color: #0598ff;" text="Order by Objet" textFill="WHITE" />
+   </children>
+</AnchorPane>

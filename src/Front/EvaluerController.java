@@ -120,8 +120,22 @@ public class EvaluerController implements Initializable {
 
     @FXML
     private void on_passerreclamation(ActionEvent event) {
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front/reclamation.fxml"));              
+            Parent root = loader.load();
+            ReclamationController controller = (ReclamationController) loader.getController();
+            controller.closeCategorie();
             
-            loadStage("/Front/reclamation.fxml");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+          //  stage.getIcons().add(new Image("/home/icons/icon.png"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            
+                       
             
     }
     

@@ -5,6 +5,8 @@
  */
 package home;
 
+import Front.ReclamationController;
+import UserSession.UserSession;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,9 +68,31 @@ public class home implements Initializable {
     }
     
     @FXML
-    private void updateButtonClicks(ActionEvent event) throws IOException {
+    private void ReclamationButtonClicks(ActionEvent event) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Front/reclamation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front/reclamation.fxml"));              
+            Parent root = loader.load();
+            ReclamationController controller = (ReclamationController) loader.getController();
+            controller.closeCategorie();
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+          //  stage.getIcons().add(new Image("/home/icons/icon.png"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void CategorieButtonClicks(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Front/reclamation.fxml"));              
+            Parent root = loader.load();
+            ReclamationController controller = (ReclamationController) loader.getController();
+            controller.closeReclamation();
+            
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
           //  stage.getIcons().add(new Image("/home/icons/icon.png"));
@@ -81,6 +105,9 @@ public class home implements Initializable {
 
     @FXML
     private void logOut(ActionEvent event) throws IOException {
+        
+        UserSession.cleanUserSession();
+
         
         Parent root = FXMLLoader.load(getClass().getResource("/login/Main.fxml")); 
                  Scene scene = new Scene(root);

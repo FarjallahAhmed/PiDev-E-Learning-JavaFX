@@ -213,16 +213,16 @@ if (result.get() == ButtonType.OK){
 }
 public ObservableList<reclamation> search(String input) {
       ObservableList<reclamation>reclamations=FXCollections.observableArrayList();
- 
+      
         try {
              Statement  stm;
              stm= cnx.createStatement();
              String query="SELECT reclamation.id_reclamation, reclamation.id_user,"
                      + " reclamation.objet, reclamation.id_message "
                      + "FROM reclamation LEFT JOIN utilisateurs ON reclamation.id_user = utilisateurs.id"
-                     + " where utilisateurs.id = '"+idUser+"' AND utilisateurs.prenom like '%"+input+"%' "
+                     + " where reclamation.id_user = '"+idUser+"' AND ( utilisateurs.prenom like '%"+input+"%' "
                      + "or utilisateurs.nom like '%"+input+"%' "
-                     + "or reclamation.objet like '%"+input+"%'";
+                     + "or reclamation.objet like '%"+input+"%' )";
              if(TypeUser.equals("Admin")) {
              query="SELECT reclamation.id_reclamation, reclamation.id_user,"
                      + " reclamation.objet, reclamation.id_message "
@@ -231,6 +231,7 @@ public ObservableList<reclamation> search(String input) {
                      + "or utilisateurs.nom like '%"+input+"%' "
                      + "or reclamation.objet like '%"+input+"%'";
         }
+             System.out.println(""+query);
              ResultSet rst=stm.executeQuery(query);
              while (rst.next()){
                  reclamation r=new reclamation();

@@ -15,9 +15,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.ReclamationController">
    <children>
-      <TabPane layoutX="10.0" layoutY="10.0">
+      <TabPane fx:id="tp" layoutX="10.0" layoutY="10.0">
          <tabs>
-            <Tab text="Reclamation">
+            <Tab fx:id="tabR" text="Reclamation">
                <content>
                   <AnchorPane id="AnchorPane" prefHeight="714.0" prefWidth="839.0">
                      <children>
@@ -58,15 +58,16 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Button layoutX="132.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#statClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Statistique" textFill="WHITE" />
+                        <Button fx:id="btnStat" layoutX="132.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#statClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Statistique" textFill="WHITE" />
                         <Button layoutX="341.0" layoutY="608.0" mnemonicParsing="false" onMouseClicked="#archiveClicked" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Archive" textFill="WHITE" />
+                        <Button layoutX="228.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnAfficherAction" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #0598ff;" text="Afficher" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Categorie">
+            <Tab fx:id="tabC" text="Categorie">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="714.0" prefWidth="1000.0">
                      <children>
                         <TextField fx:id="nomC" layoutX="47.0" layoutY="208.0" promptText="Nom" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
                         <TextField fx:id="typeC" layoutX="47.0" layoutY="291.0" promptText="Type" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
@@ -78,7 +79,7 @@
                         <TextField fx:id="searchC" layoutX="632.0" layoutY="208.0" onKeyReleased="#searchCCkey" prefHeight="26.0" prefWidth="252.0" promptText="search" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
                         <Button fx:id="triiiiccc" layoutX="390.0" layoutY="209.0" mnemonicParsing="false" onMouseClicked="#triCCCCCC" style="-fx-background-color: #0598ff;" text="Orader by Nom" textFill="WHITE" />
                         <FontAwesomeIconView fill="#ac8f8f" glyphName="SEARCH" layoutX="758.0" layoutY="45.0" />
-                        <TableView fx:id="tableC" layoutX="357.0" layoutY="267.0" prefHeight="301.0" prefWidth="508.0">
+                        <TableView fx:id="tableC" layoutX="357.0" layoutY="267.0" onMouseClicked="#selectionnerC" prefHeight="301.0" prefWidth="508.0">
                            <columns>
                               <TableColumn fx:id="tabnom" prefWidth="94.39993286132812" style="-fx-background-color: #0598ff;" text="Nom" />
                               <TableColumn fx:id="tabtype" prefWidth="164.79998779296875" style="-fx-background-color: #0598ff;" text="Type" />
@@ -107,6 +108,7 @@
                               </Label>
                            </children>
                         </Pane>
+                        <Button layoutX="131.0" layoutY="477.0" mnemonicParsing="false" onMouseClicked="#afficherCategorie" style="-fx-background-color: #0598ff;" text="Afficher" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>

@@ -25,6 +25,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -73,6 +75,12 @@ public class ReclamationController implements Initializable {
     private TextField descC;
     @FXML
     private Button addC;
+    
+    @FXML
+    private Tab tabR;
+    @FXML
+    private Tab tabC;
+    
     @FXML
     private Button modifC;
     @FXML
@@ -89,6 +97,8 @@ public class ReclamationController implements Initializable {
     @FXML
     private TextField idsupp;
     private TextField search;
+    @FXML
+    private TabPane tp;
     
      @FXML
     private Button btnAjouter;
@@ -97,6 +107,8 @@ public class ReclamationController implements Initializable {
     private Button btnSupprimer;
     
     private int id_message;
+    @FXML
+    private Button btnStat;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -105,6 +117,9 @@ public class ReclamationController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        btnStat.visibleProperty().set(false);
+        idsup.visibleProperty().set(false);
+        idsupp.visibleProperty().set(false);
           this.afficher_reclamation(event);
           this.afficher_categorie(event);        
           Servicereclamation sr= new Servicereclamation();
@@ -115,8 +130,21 @@ public class ReclamationController implements Initializable {
             tfmessage.disableProperty().set(true);
             btnAjouter.disableProperty().set(true);
             btnSupprimer.disableProperty().set(true);
+            btnStat.visibleProperty().set(true);
+            tfobjet.visibleProperty().set(false);
+            tfmessage.visibleProperty().set(false);
+            btnAjouter.visibleProperty().set(false);
+            btnSupprimer.visibleProperty().set(false);
         }
     }    
+    
+    public void closeCategorie() {
+        tp.getTabs().remove(tabC);
+    }
+    
+    public void closeReclamation() {
+        tp.getTabs().remove(tabR);
+    }
 
     @FXML
     private void ajouter_reclamation(ActionEvent event) {
@@ -267,6 +295,7 @@ sr.ajouter_categorie(c);
         this.afficher_reclamation(event);
     }
 
+    @FXML
     private void selectionnerC(MouseEvent event) {
          categorie c =tableC.getSelectionModel().getSelectedItem();
         idsupp.setText(String.valueOf(c.getId_categorie()));        
@@ -367,15 +396,17 @@ sr.ajouter_categorie(c);
     
     @FXML
     void archiveClicked(MouseEvent event) {
-        Servicereclamation sr= new Servicereclamation();
-        ObservableList<reclamation> reclamations;
-        
-            reclamations =sr.archiiiiiiive();
-      
-          idrect.setCellValueFactory(new PropertyValueFactory<reclamation,Integer>("id_reclamation"));
-          idut.setCellValueFactory(new PropertyValueFactory<reclamation,Utilisateurs>("id_user"));
-          obt.setCellValueFactory(new PropertyValueFactory<reclamation,String>("objet"));
-          msgt.setCellValueFactory(new PropertyValueFactory<reclamation,Message>("message"));
-          table.setItems(reclamations);
+        loadStage("/Front/archiveRec.fxml");
+    }
+    
+    @FXML
+    void btnAfficherAction(ActionEvent event) {
+        loadStage("/Front/afficherRec.fxml");
+    }
+
+    @FXML
+    private void afficherCategorie(MouseEvent event) {
+        loadStage("/Front/afficherCat.fxml");
+
     }
 }

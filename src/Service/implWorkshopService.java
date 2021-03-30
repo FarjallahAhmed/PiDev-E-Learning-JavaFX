@@ -224,6 +224,32 @@ public class implWorkshopService implements workshopService<Workshop>{
     return workshops;
 
     }
+    public ObservableList<Workshop> readType(String type1) throws SQLException {
+        
+        ObservableList<Workshop> workshops = FXCollections.observableArrayList();
+        //List<Workshop> workshops = new ArrayList<>();
+        Statement ste=con.createStatement();
+    ResultSet rs = ste.executeQuery("select * from workshop where `type` = '"+type1+"'");
+     while (rs.next()) {                
+               int id = rs.getInt(1);
+               String nom = rs.getString(3);
+               Date dateDebut = rs.getDate(4);
+               Date dateFin = rs.getDate(5);
+               Time hdebut = rs.getTime(6);
+               Time hfin = rs.getTime(7);
+               String lieu = rs.getString(8);
+               int nbParticipant = rs.getInt(9);
+               String type = rs.getString(10);
+               String description = rs.getString(11);
+               float prix =  rs.getFloat(12);
+               
+               
+               Workshop w = new Workshop(id, nom, dateDebut, dateFin, hdebut, hfin, lieu, nbParticipant, type, description, prix);
+              workshops.add(w);
+     }
+    return workshops;
+
+    }
     
     public boolean sendMail(Workshop t) throws WriterException, IOException {
         

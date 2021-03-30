@@ -133,6 +133,7 @@ public class AddCalendarController implements Initializable {
                     mainController.enableCheckBoxes();
                     
                     this.cancel(event);
+                    this.exit(event);
 
                     //Enable the buttons that work with rules
                     //mainController.enableButtons();

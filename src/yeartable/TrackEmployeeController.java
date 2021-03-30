@@ -42,7 +42,7 @@ public class TrackEmployeeController implements Initializable {
     @FXML
     public TabPane eTabpane;
     //PASS YEARS TO BE DISPLAYED ON COMBOBOX
-    private final ObservableList<String> yearArray = FXCollections.observableArrayList("2019", "2020", "2021");
+    private final ObservableList<String> yearArray = FXCollections.observableArrayList("Team building", "Conference", "Seminaire","Soft Skills");
     //PASS DATES(*DAY ONLY) TO BE DISPLAYED ON TABLECELL
     private final ObservableList<String> datesArray = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30");
     //PASS CORRESPONDING MONTH
@@ -105,7 +105,7 @@ public class TrackEmployeeController implements Initializable {
         yearCombo.setItems(yearArray);
         try {
             //ON YEAR CHANGE
-            buildYearTable(Integer.parseInt("2020"));
+            buildYearTable(Integer.parseInt("2020"),"");
         } catch (SQLException ex) {
             Logger.getLogger(TrackEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -116,7 +116,7 @@ public class TrackEmployeeController implements Initializable {
                 try {
                     attributeTable.getItems().clear();
                     attributeTable.getColumns().clear();                    
-                    buildYearTable(Integer.parseInt(t1));
+                    buildYearTable(Integer.parseInt("2020"),t1);
                 } catch (SQLException ex) {
                     Logger.getLogger(TrackEmployeeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -126,7 +126,7 @@ public class TrackEmployeeController implements Initializable {
         });
     }
     //A TABLE ALONGWITH DATES AND ATTENDANCE STATUS WILL BE DISPLAYED 
-    private void buildYearTable(int year) throws SQLException {
+    private void buildYearTable(int year,String filtre) throws SQLException {
         dayarray.clear();
         attributeTable.setEditable(true);
 
@@ -163,7 +163,10 @@ public class TrackEmployeeController implements Initializable {
                                 //CHECK ATTENDANCE STATUS
                                 implWorkshopService wService = new implWorkshopService();
                                     try {
-                                        statusArray = wService.readAll();
+                                        if(filtre.equals(""))
+                                            statusArray = wService.readAll();
+                                        else
+                                            statusArray = wService.readType(filtre);
                                         
                                         for(int i =0;i< statusArray.size();i++ ){
                                         

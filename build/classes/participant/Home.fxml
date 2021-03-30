@@ -69,9 +69,9 @@
                   <FontAwesomeIconView fill="#2d75e8" glyphName="EXCHANGE" size="50" />
                </graphic>
             </Button>
-            <Button fx:id="btnClasses" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" GridPane.rowIndex="1">
+            <Button fx:id="btnPro" contentDisplay="TOP" mnemonicParsing="false" onAction="#showPromotions" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="Promotions" GridPane.rowIndex="1">
                <graphic>
-                  <FontAwesomeIconView fill="#2d75e8" glyphName="INDENT" size="50" />
+                  <FontAwesomeIconView fill="#2d75e8" glyphName="PERCENT" size="50" text="" />
                </graphic>
             </Button>
          </children>

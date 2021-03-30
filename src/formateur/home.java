@@ -10,10 +10,13 @@ import Entities.Participants;
 import Service.ServiceFormateur;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+import home.fxml.PromotionsController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +44,8 @@ public class home implements Initializable {
     private Button btn_Timetable;
     @FXML
     private Button btnClasses;
+    @FXML
+    private Button btnPromo;
 
     /**
      * Initializes the controller class.
@@ -114,6 +119,22 @@ public class home implements Initializable {
         
         
         
+    }
+
+    @FXML
+    private void showPromotion(ActionEvent event) {
+        PromotionsController p = new PromotionsController();
+            
+            
+                 //Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/formulaireform.fxml")); 
+                 Scene scene;
+        try {
+            scene = new Scene(p.page());
+            pidevfinal.PidevFinal.parentWindow.setScene(scene);
+        } catch (SQLException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                 
     }
     
 }

@@ -9,7 +9,11 @@ import Entities.Participants;
 import Front.ListeFormationsController;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+<<<<<<< HEAD
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+=======
+import home.fxml.PromotionsController;
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -45,14 +49,17 @@ public class home implements Initializable {
     @FXML
     private Button btnUpdate;
     @FXML
-    private Button btnClasses;
-    @FXML
     private Label name;
     @FXML
     private Label type;
     @FXML
+<<<<<<< HEAD
     private FontAwesomeIconView btnjeu;
     private static Stage primaryStageObj;
+=======
+    private Button btnPro;
+
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
     /**
      * Initializes the controller class.
      */
@@ -125,6 +132,7 @@ public class home implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void gotogame(ActionEvent event) throws IOException {
                    
                ;
@@ -138,5 +146,20 @@ public class home implements Initializable {
         stage.show();
     }
  
+=======
+    private void showPromotions(ActionEvent event) {
+          PromotionsController p = new PromotionsController();
+            
+            
+                 //Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/formulaireform.fxml")); 
+                 Scene scene;
+        try {
+            scene = new Scene(p.page());
+            pidevfinal.PidevFinal.parentWindow.setScene(scene);
+        } catch (SQLException ex) {
+            Logger.getLogger(formateur.home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
     
 }

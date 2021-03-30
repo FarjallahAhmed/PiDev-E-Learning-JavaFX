@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXColorPicker?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
@@ -125,6 +123,14 @@
                                           <Insets left="20.0" right="20.0" top="20.0" />
                                        </VBox.margin>
                                     </JFXButton>
+                                    <JFXButton id="menuButton" fx:id="GlobalCalendar" onAction="#showCalendarGlobal" onMouseClicked="#manageCalendars" prefHeight="37.0" prefWidth="265.0" text="Global Calendar">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="20.0" right="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
                                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="307.0" text="Export Options:">
                                        <font>
                                           <Font size="12.0" />
@@ -155,229 +161,12 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Colors">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../style/menuStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="42.0" prefWidth="308.0" text="Color Manager:" />
-                                    <VBox fx:id="colorRootPane" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="304.0" VBox.vgrow="NEVER">
-                                       <children>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="52.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="Fall SEM:">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="fallSemCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="Pick Color" />
-                                                <JFXCheckBox fx:id="fallSemCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="Spring SEM: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="springSemCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="Pick Color" />
-                                                <JFXCheckBox fx:id="springSemCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="73.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="Summer SEM: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="summerSemCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="Pick Color" />
-                                                <JFXCheckBox fx:id="summerSemCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="All QTR: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="allQtrCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="a" />
-                                                <JFXCheckBox fx:id="allQtrCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="85.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="All MBA: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="allMbaCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="a" />
-                                                <JFXCheckBox fx:id="allMbaCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="128.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="All Half: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="allHalfCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="a" />
-                                                <JFXCheckBox fx:id="allHalfCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="171.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="All Campus: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="allCampusCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="a" />
-                                                <JFXCheckBox fx:id="allCampusCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="214.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="All Holiday: ">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="allHolidayCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="a" />
-                                                <JFXCheckBox fx:id="allHolidayCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                          </HBox>
-                                          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="391.0" prefHeight="43.0" prefWidth="304.0" spacing="20.0">
-                                             <children>
-                                                <Label text="All TRA/TRB:">
-                                                   <HBox.margin>
-                                                      <Insets right="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <JFXColorPicker fx:id="traTrbCP" accessibleRole="BUTTON" editable="true" prefHeight="24.0" prefWidth="50.0" promptText="a" />
-                                                <JFXCheckBox fx:id="allTraTrbCheckBox" checkedColor="#777777" onAction="#handleCheckBoxAction" selected="true" text=" visible?" />
-                                             </children>
-                                             <padding>
-                                                <Insets right="30.0" />
-                                             </padding>
-                                             <VBox.margin>
-                                                <Insets top="10.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                    <JFXCheckBox fx:id="selectAllCheckBox" alignment="CENTER" checkedColor="#777777" contentDisplay="CENTER" onAction="#selectAllCheckBoxes" prefHeight="31.0" prefWidth="320.0" text="Select/Unselect all">
-                                       <font>
-                                          <Font size="13.0" />
-                                       </font>
-                                    </JFXCheckBox>
-                                    <HBox alignment="CENTER" prefHeight="42.0" prefWidth="304.0">
-                                       <children>
-                                          <JFXButton id="menuButton" onMouseClicked="#updateColors" prefHeight="39.0" prefWidth="180.0" text="Update Colors" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="15.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </Tab>
                   <Tab text="Tools">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="235.0">
                            <children>
                               <VBox fx:id="toolsRootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="304.0" stylesheets="@../style/menuStyle.css">
                                  <children>
-                                    <Label alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="304.0" text="Rule Options:">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <JFXButton id="menuButton" onMouseClicked="#newRule" prefHeight="44.0" prefWidth="329.0" text="Create New Rule">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="20.0" right="20.0" top="10.0" />
-                                       </VBox.margin>
-                                    </JFXButton>
-                                    <JFXButton id="menuButton" onMouseClicked="#manageRules" prefHeight="44.0" prefWidth="329.0" text="Manage Rules">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="20.0" right="20.0" top="10.0" />
-                                       </VBox.margin>
-                                    </JFXButton>
-                                    <Label alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="304.0" text="Term Options:">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <JFXButton id="menuButton" layoutX="30.0" layoutY="60.0" onMouseClicked="#manageTermDates" prefHeight="44.0" prefWidth="329.0" text="Manage Term Dates">
-                                       <font>
-                                          <Font size="12.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets left="20.0" right="20.0" top="10.0" />
-                                       </VBox.margin>
-                                    </JFXButton>
                                     <Label alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="158.0" prefHeight="40.0" prefWidth="304.0" text="Event Options:">
                                        <font>
                                           <Font size="12.0" />

@@ -146,6 +146,7 @@ public class SigInController implements Initializable {
             {
                     if ((email.getText().equals("Admin"))&&(password.getText().equals("Admin")))
                     {
+                        UserSession.getInstace("Admin",0,"Admin");
                         System.out.println("Admin");
                         Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml")); 
                         Scene scene = new Scene(root);

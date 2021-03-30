@@ -9,9 +9,21 @@ import Entities.Formations;
 import Entities.categorie;
 import Service.Servicecategorie;
 import Service.ServiceFormations;
+import UserSession.UserSession;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Customer;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
@@ -37,6 +49,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+import com.teknikindustries.bulksms.SMS;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Card;
+import com.stripe.model.Charge;
+import com.stripe.model.Customer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * FXML Controller class
@@ -44,11 +70,12 @@ import javafx.stage.FileChooser;
  * @author AMINE N
  */
 public class FormulaireformController implements Initializable {
-
+    String path2="";
+    String Fullpath="";
     @FXML
     private TextField txtobjet;
     @FXML
-    private TextField txttype;
+    public TextField txttype;
     @FXML
     private TextField txtobjectif;
     @FXML
@@ -158,11 +185,20 @@ public class FormulaireformController implements Initializable {
             f.setNb_participants(Integer.parseInt(txtparticipants.getText()));
             f.setCout_hj(Float.parseFloat(txtcout.getText()));
             f.setDate_reelle(Date.valueOf(pickerdate.getValue()));
+            f.setId_formateur(UserSession.getInstace("", 0, "").getId());
             
             f.setDate_prevu(Date.valueOf(pickerdateprevu.getValue()));
             f.setCategorie(cate);
             //System.out.println("aaasba");
             sv.Ajouter_Formation(f);
+            uploadtp(path2, Fullpath);
+            
+            //System.out.println(a.getSources().r);
+            
+            
+             
+            
+            
              
            
             
@@ -177,7 +213,11 @@ public class FormulaireformController implements Initializable {
             {
                 for(int i=0;i<selectedFiles.size();i++)
                 {
-                    listupload.getItems().add(selectedFiles.get(i).getAbsolutePath());
+                    listupload.getItems().add(selectedFiles.get(i).getName());
+                    Fullpath=selectedFiles.get(i).getAbsolutePath();
+                    path2=selectedFiles.get(i).getName();
+                    System.out.println(path2);
+                    System.out.println(Fullpath);
                     
                 }
             }
@@ -231,7 +271,26 @@ public class FormulaireformController implements Initializable {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
     }
-
+     public void set_alllabes(Formations form)
+     {
+         //Formations form= tabform.getSelectionModel().getSelectedItem();
+      idsupp.setText(String.valueOf(form.getId()));
+     // Formations form= tabform.getSelectionModel().getSelectedItem();
+        //form2=form;
+        txtobjet.setText(form.getObjet());
+        txttype.setText(form.getType());
+        txtobjectif.setText(form.getObjectif());
+        txtparticipants.setText(String.valueOf(form.getNb_participants()));
+        txtcout.setText(String.valueOf(form.getCout_hj()));
+        txtnbjours.setText(String.valueOf(form.getNb_jour()));
+        txtcoutfin.setText(String.valueOf(form.getCout_fin()));
+         java.sql.Date datejdida=convertUtilToSql(form.getDate_reelle());
+         java.sql.Date datejdida2=convertUtilToSql(form.getDate_prevu());
+        pickerdate.setValue(datejdida.toLocalDate());
+        pickerdateprevu.setValue(datejdida2.toLocalDate());
+       ObservableList<String> sList = FXCollections.<String>observableArrayList(form.getPath());
+       listupload.setItems(sList);
+     }
     @FXML
     private void Supprimer_btn(ActionEvent event) {
         ServiceFormations sv=new ServiceFormations();
@@ -277,6 +336,83 @@ public class FormulaireformController implements Initializable {
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
     }
-
     
-}
+     public void  uploadtp(String path,String fullpath)
+    {
+        String server = "127.0.0.1";
+        int port = 21;
+        String user = "amine";
+        String pass = "admin";
+ 
+        FTPClient ftpClient = new FTPClient();
+        try {
+ 
+            ftpClient.connect(server, port);
+            ftpClient.login(user, pass);
+            ftpClient.enterLocalPassiveMode();
+ 
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+ 
+            // APPROACH #1: uploads first file using an InputStream
+            File firstLocalFile = new File(fullpath);
+ 
+            String firstRemoteFile = path;
+            InputStream inputStream = new FileInputStream(firstLocalFile);
+ 
+            System.out.println("Start uploading first file");
+            boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+            inputStream.close();
+            if (done) {
+                System.out.println("The first file is uploaded successfully.");
+            }
+ 
+            // APPROACH #2: uploads second file using an OutputStream
+            
+ 
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+     public String send_sms()
+     {
+         try {
+			// Construct data
+			String apiKey = "apikey=" + "N2NmYTAzMWRmNjdhYjU4MjA2YzA3YThjNTk5MjkxZDc=";
+			String message = "&message=" + "test";
+			String sender = "&sender=" + "highrises";
+			String numbers = "&numbers=" + "+21627055806";
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				stringBuffer.append(line);
+			}
+			rd.close();
+			
+			return stringBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Error SMS "+e);
+			return "Error "+e;
+		}
+     }
+     
+     }
+    

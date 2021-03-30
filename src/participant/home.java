@@ -6,8 +6,10 @@
 package participant;
 
 import Entities.Participants;
+import Front.ListeFormationsController;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,8 +24,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -46,7 +50,9 @@ public class home implements Initializable {
     private Label name;
     @FXML
     private Label type;
-
+    @FXML
+    private FontAwesomeIconView btnjeu;
+    private static Stage primaryStageObj;
     /**
      * Initializes the controller class.
      */
@@ -102,6 +108,10 @@ public class home implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/Front/ListeFormations.fxml")); 
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
+                 
+                
+        
+       
          
         
     }
@@ -113,5 +123,20 @@ public class home implements Initializable {
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
     }
+
+    @FXML
+    private void gotogame(ActionEvent event) throws IOException {
+                   
+               ;
+                    Stage stage =new Stage();
+   Parent root = FXMLLoader.load(getClass().getResource("/Style/MainView.fxml")); 
+    Scene scene = new Scene(root);
+         stage.initStyle(StageStyle.UNDECORATED);
+			stage.setResizable(false);
+			
+        stage.setScene(scene);
+        stage.show();
+    }
+ 
     
 }

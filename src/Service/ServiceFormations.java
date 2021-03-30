@@ -53,7 +53,7 @@ public ServiceFormations()
         
         //String Query="INSERT INTO formation(Objet,Type,Objectif,nb_participants,cout_hj,nb_jour,cout_fin,date_reelle,date_prevu,path) VALUES ('"+f.getObjet()+"','"+f.getType()+"','"+f.getObjectif()+"','"+f.getNb_participants()+"','"+f.getCout_hj()+"','"+f.getNb_jour()+"','"+f.getCout_fin()+"','"+f.getDate_reelle()+"','"+f.getDate_prevu()+"','"+f.getPath()+"')";
         //stm.executeUpdate(Query);
-        ps=cnx.prepareStatement("INSERT INTO formation (Objet,Type,Objectif,nb_participants,cout_hj,nb_jour,cout_fin,date_reelle,date_prevu,path,categorie)VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        ps=cnx.prepareStatement("INSERT INTO formation (Objet,Type,Objectif,nb_participants,cout_hj,nb_jour,cout_fin,date_reelle,date_prevu,path,categorie,id_formateur)VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, f.getObjet());
         ps.setString(2, f.getType());
         ps.setString(3, f.getObjectif());
@@ -65,8 +65,9 @@ public ServiceFormations()
          ps.setDate(9, (Date) f.getDate_prevu());
         ps.setString(10, f.getPath());
         ps.setString(11, f.getCategorie());
+        ps.setInt(12, f.getId_formateur());
         ps.executeUpdate();
-        sendmail(f);
+        //sendmail(f);
        Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Ajout");
             alert.setHeaderText("Formation Ajouté");
@@ -174,7 +175,7 @@ alert.showAndWait();
         Formations form;
         while(rs.next())
         {
-            form=new Formations(rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getInt("nb_participants"),rs.getFloat("cout_hj"),rs.getInt("nb_jour"),rs.getFloat("cout_fin"),rs.getDate("date_reelle"),rs.getDate("date_prevu"),rs.getString("path"));
+            form=new Formations(rs.getInt("Id"),rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getInt("nb_participants"),rs.getFloat("cout_hj"),rs.getInt("nb_jour"),rs.getFloat("cout_fin"),rs.getDate("date_reelle"),rs.getDate("date_prevu"),rs.getString("path"));
             formationstab.add(form);
         }
         
@@ -277,6 +278,57 @@ alert.showAndWait();
           return comformations;
          
      }
+      public ObservableList<Formations> Get_Formationsperformateur(int id_formateur)
+    {
+        ObservableList<Formations> formationstab=FXCollections.observableArrayList();
+    try {
+        Statement stm=cnx.createStatement();
+        String Query="select *from formation where id_formateur="+id_formateur;
+        ResultSet rs=stm.executeQuery(Query);
+        Formations form;
+        while(rs.next())
+        {
+            form=new Formations(rs.getInt("Id"),rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getInt("nb_participants"),rs.getFloat("cout_hj"),rs.getInt("nb_jour"),rs.getFloat("cout_fin"),rs.getDate("date_reelle"),rs.getDate("date_prevu"),rs.getString("path"),rs.getString("categorie"));
+            formationstab.add(form);
+        }
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(ServiceFormations.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return formationstab;
+        
+        
+    }
+       public float Get_Reputationformateur(int id_formateur)
+    {
+        ObservableList<formeval> formationstab=FXCollections.observableArrayList();
+        float reputation=0;
+        float somme=0;
+        int compteur=0;
+    try {
+        
+        Statement stm=cnx.createStatement();
+        String Query="SELECT u.Objet, u.Type, u.Objectif, u.nb_participants,u.cout_hj,u.nb_jour,u.cout_fin,u.path,u.Id, AVG(p.Note) as moy ,p.Rapport " +
+"  FROM formation u " +
+"  INNER JOIN evaluation p ON u.Id = p.id_formation where u.id_formateur="+id_formateur+
+                " GROUP BY p.id_formation";
+
+        ResultSet rs=stm.executeQuery(Query);
+        formeval form;
+        while(rs.next())
+        {
+            compteur++;
+            somme=somme+rs.getFloat("moy");
+        }
+        reputation=somme/compteur;
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(ServiceFormations.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return reputation;
+        
+        
+    }
     
     
 }

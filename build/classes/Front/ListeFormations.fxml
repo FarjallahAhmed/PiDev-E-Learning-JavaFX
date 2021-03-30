@@ -9,17 +9,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="655.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.ListeFormationsController">
+<AnchorPane id="AnchorPane" prefHeight="770.0" prefWidth="1205.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.ListeFormationsController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="766.0" prefWidth="1192.0">
          <children>
-            <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1102.0">
+            <AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="1182.0">
                <children>
+                  <VBox fx:id="vboxaffichage" layoutX="3.0" layoutY="16.0" prefHeight="727.0" prefWidth="1182.0" />
                   <Pane prefHeight="139.0" prefWidth="1102.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="73.0" layoutY="30.0" text="Students" textFill="WHITE">
+                        <Label layoutX="73.0" layoutY="30.0" text="Formations" textFill="WHITE">
                            <font>
                               <Font size="48.0" />
                            </font>
@@ -31,7 +33,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TableView fx:id="tabform" layoutX="20.0" layoutY="192.0" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../home/css/fullpackstyling.css" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="192.0">
+                  <TableView fx:id="tabform" layoutX="20.0" layoutY="192.0" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../home/css/fullpackstyling.css" visible="false" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="192.0">
                      <columns>
                         <TableColumn fx:id="coid" prefWidth="75.0" text="Id" visible="false" />
                         <TableColumn fx:id="coobject" prefWidth="75.0" text="Objet" />
@@ -56,7 +58,7 @@
                         <FontAwesomeIconView fill="#2d75e8" glyphName="SEARCH" layoutX="302.0" layoutY="18.0" />
                      </children>
                   </Pane>
-                  <ComboBox fx:id="filtrercombo" layoutX="927.0" layoutY="152.0" onAction="#onfiltrer" prefWidth="150.0" promptText="Filtrer Par" />
+                  <ComboBox fx:id="filtrercombo" layoutX="1008.0" layoutY="163.0" onAction="#onfiltrer" prefWidth="150.0" promptText="Filtrer Par" />
                   <JFXButton layoutX="8.0" layoutY="8.0" onAction="#backDashboard" prefHeight="31.0" prefWidth="98.0" text="Back" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />

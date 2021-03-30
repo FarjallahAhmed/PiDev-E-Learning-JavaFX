@@ -64,7 +64,7 @@ alert.showAndWait();
         ObservableList<formeval> formationstab=FXCollections.observableArrayList();
     try {
         Statement stm=cnx.createStatement();
-        String Query="SELECT u.Objet, u.Type, u.Objectif, u.nb_participants,u.cout_hj,u.nb_jour,u.cout_fin, AVG(p.Note) as moy ,p.Rapport " +
+        String Query="SELECT u.Objet, u.Type, u.Objectif, u.nb_participants,u.cout_hj,u.nb_jour,u.cout_fin,u.path,u.Id, AVG(p.Note) as moy ,p.Rapport " +
 "  FROM formation u " +
 "  INNER JOIN evaluation p ON u.Id = p.id_formation "+
                 "GROUP BY p.id_formation";
@@ -77,7 +77,7 @@ alert.showAndWait();
             System.out.println(rs.getString("Type"));
             System.out.println(rs.getString("Objet"));
             System.out.println(rs.getString("Moy"));
-            form=new formeval(rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getInt("nb_participants"),rs.getFloat("cout_hj"),rs.getInt("nb_jour"),rs.getFloat("cout_fin"),rs.getFloat("Moy"),rs.getString("Rapport"));
+            form=new formeval(rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getInt("nb_participants"),rs.getFloat("cout_hj"),rs.getInt("nb_jour"),rs.getFloat("cout_fin"),rs.getFloat("Moy"),rs.getString("Rapport"),rs.getString("path"),rs.getInt("Id"));
             //form.setObjet(rs.getString("Objet"));
             formationstab.add(form); //public formeval(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, int note, String rapport)
         }
@@ -89,5 +89,18 @@ alert.showAndWait();
         
         
     }
+          public  float AffecterRatetogui(Formations f)
+     {
+         ObservableList<formeval> listeval=Get_Evaluation();
+         for(formeval a:listeval)
+         {
+             if(f.getId()==a.getId_formation())
+                 return a.getNote();
+             
+         }
+        return -1;
+        
+     }
+          
     
 }

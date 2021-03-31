@@ -5,7 +5,6 @@ package academiccalendar.ui.addevent;
 
 import Entities.Workshop;
 import academiccalendar.data.model.Model;
-import academiccalendar.database.DBHandler;
 import academiccalendar.ui.main.FXMLDocumentController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -15,7 +14,10 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import Service.implWorkshopService;
+import Service.threadMail;
 import Utils.Mask;
+import com.google.zxing.WriterException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -48,7 +50,6 @@ public class AddEventController implements Initializable {
      
     //--------------------------------------------------------------------
     //---------Database Object -------------------------------------------
-    DBHandler databaseHandler;
     //--------------------------------------------------------------------
     @FXML
     private HBox header;
@@ -115,7 +116,7 @@ public class AddEventController implements Initializable {
     
     //Function that inserts a new event in the database
      @FXML
-    void save(MouseEvent event) {
+    void save(MouseEvent event) throws WriterException, IOException {
         
         // Get the calendar name
         String calendarName = Model.getInstance().calendar_name;
@@ -167,7 +168,10 @@ public class AddEventController implements Initializable {
         
          try {
              wService.ajouter(w);
-             wService.sendMail(w);
+             //wService.sendMail(w);
+             threadMail mail = new threadMail(w);
+             //mail.sendMail(w);
+             mail.start();
              Alert alertMessage = new Alert(Alert.AlertType.INFORMATION);
             alertMessage.setHeaderText(null);
             alertMessage.setContentText("Event was added successfully");
@@ -215,7 +219,6 @@ public class AddEventController implements Initializable {
         Mask.noLetters(prix);
         
         //*** Instantiate DBHandler object *******************
-        databaseHandler = new DBHandler();
         //****************************************************
         
         

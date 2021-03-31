@@ -15,12 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="838.0" prefWidth="1123.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.fxml.FormulaireformController">
+<AnchorPane id="AnchorPane" prefHeight="810.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.fxml.FormulaireformController">
    <children>
-      <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="838.0" prefWidth="1168.0">
+      <AnchorPane layoutX="2.0" layoutY="1.0" prefHeight="809.0" prefWidth="658.0">
          <children>
-            <Button fx:id="btnsupp" layoutX="219.0" layoutY="718.0" mnemonicParsing="false" onAction="#Supprimer_btn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Delete" textFill="#fcf2f2" />
-            <FontAwesomeIconView fill="#0598ff" glyphName="CLOSE" layoutX="1081.0" layoutY="43.0" size="25" />
+            <Button fx:id="btnsupp" layoutX="219.0" layoutY="718.0" mnemonicParsing="false" onAction="#Supprimer_btn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Delete" textFill="#fcf2f2" visible="false" />
             <VBox layoutX="185.0" layoutY="136.0" prefHeight="506.0" prefWidth="205.0" spacing="22.0">
                <children>
                   <TextField fx:id="txtobjet" promptText="Objet" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" />
@@ -51,7 +50,7 @@
                   <Label layoutX="10.0" layoutY="458.0" text="File Path" />
                </children>
             </VBox>
-            <TableView fx:id="tabform" layoutX="399.0" layoutY="112.0" onMouseClicked="#SupprimerFormation" prefHeight="349.0" prefWidth="739.0" stylesheets="@../css/fullpackstyling.css">
+            <TableView fx:id="tabform" layoutX="399.0" layoutY="112.0" onMouseClicked="#SupprimerFormation" prefHeight="349.0" prefWidth="12.0" stylesheets="@../css/fullpackstyling.css" visible="false">
                <columns>
                   <TableColumn fx:id="coid" prefWidth="75.0" text="Id" visible="false" />
                   <TableColumn fx:id="coobject" prefWidth="75.0" text="Objet" />
@@ -70,12 +69,12 @@
                </columnResizePolicy>
             </TableView>
             <TextField fx:id="idsupp" layoutX="534.0" layoutY="714.0" visible="false" />
-            <Button fx:id="btnupdate" layoutX="983.0" layoutY="486.0" mnemonicParsing="false" onAction="#onmodifier" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #0598ff;" text="Modifier" textFill="#fcf2f2" />
+            <Button fx:id="btnupdate" layoutX="560.0" layoutY="695.0" mnemonicParsing="false" onAction="#onmodifier" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #0598ff;" text="Modifier" textFill="#fcf2f2" />
             <ComboBox fx:id="categoriebox" layoutX="410.0" layoutY="485.0" prefWidth="150.0" promptText="Categorie" />
             <TextField fx:id="txtcategorie" layoutX="594.0" layoutY="548.0" promptText="Categorie" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0598ff;" visible="false" />
          </children>
       </AnchorPane>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="86.0" prefWidth="1160.0" style="-fx-background-color: #2D75E8;">
+      <Pane prefHeight="96.0" prefWidth="747.0" style="-fx-background-color: #2D75E8;">
          <children>
             <Label layoutX="58.0" layoutY="14.0" prefHeight="70.0" prefWidth="437.0" text="Ajouter Formation" textFill="WHITE">
                <font>
@@ -87,6 +86,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
+            <FontAwesomeIconView fill="#0598ff" glyphName="CLOSE" layoutX="713.0" layoutY="35.0" size="25" />
          </children>
       </Pane>
    </children>

@@ -11,6 +11,8 @@ import Service.ServiceEvaluation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import static org.omg.CORBA.IDLTypeHelper.id;
 
 /**
@@ -39,8 +42,7 @@ import static org.omg.CORBA.IDLTypeHelper.id;
  */
 public class EvaluerController implements Initializable {
 
-    @FXML
-    private ComboBox<Integer> comboeval;
+    //private ComboBox<Integer> comboeval;
     @FXML
     private TextArea txtcommentaire;
     @FXML
@@ -69,7 +71,10 @@ public class EvaluerController implements Initializable {
     private TableColumn<formeval, Integer> conote;
     @FXML
     private Button passerreclamation;
-
+    @FXML
+    private Rating rating;
+    private float ratingvalue;
+    private int ratingvalue2;
     /**
      * Initializes the controller class.
      */
@@ -79,9 +84,25 @@ public class EvaluerController implements Initializable {
         
       
         
-        
+        rating.ratingProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number t1, Number t2) {
+                ratingvalue=Float.parseFloat(t2.toString());
+                //ratingvalue2=Integer.parseInt()
+                System.out.println(ratingvalue);
+                if((int)ratingvalue<3)
+        {
+            passerreclamation.setVisible(true);
+            
+        }
+        else 
+        {
+            passerreclamation.setVisible(false);
+        }
+            }
+        });
          passerreclamation.setVisible(false);
-        comboeval.getItems().addAll(0,1,2,3,4,5);
+        //comboeval.getItems().addAll(0,1,2,3,4,5);
         Afficher_Evaluations();
     }    
 
@@ -90,7 +111,7 @@ public class EvaluerController implements Initializable {
           ServiceEvaluation sv=new ServiceEvaluation();
         Evaluation ev=new Evaluation();
         ev.setRapport(txtcommentaire.getText());
-        ev.setNote(comboeval.getValue());
+        ev.setNote((int)ratingvalue);
         ev.setId_formation(Integer.parseInt(txtidform.getText()));
           sv.Ajouter_Evaluation(ev);
     }
@@ -138,23 +159,13 @@ public class EvaluerController implements Initializable {
         }
     }
 
-    @FXML
-    private void afficherbtnreclamation(ActionEvent event) {
-        if(comboeval.getValue()<3)
-        {
-            passerreclamation.setVisible(true);
-            
-        }
-        else 
-        {
-            passerreclamation.setVisible(false);
-        }
-    }
+    
 
     @FXML
     private void backToListeFormation(ActionEvent event) throws IOException {
         
                  ((Node)(event.getSource())).getScene().getWindow().hide();
     }
+
     
 }

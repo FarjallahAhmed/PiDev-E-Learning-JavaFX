@@ -64,7 +64,7 @@
                   <FontAwesomeIconView fill="#2d75e8" glyphName="SLIDERS" size="50" />
                </graphic>
             </Button>
-            <Button fx:id="btnUpdate" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btnUpdate" contentDisplay="TOP" mnemonicParsing="false" onAction="#updateButtonClicks" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#2d75e8" glyphName="EXCHANGE" size="50" />
                </graphic>

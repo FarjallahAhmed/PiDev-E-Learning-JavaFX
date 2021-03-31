@@ -26,8 +26,9 @@ public class formeval {
      private float note;
     private String rapport;
     private int id_formation;
+    private int id_formateur;
 
-    public formeval(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, float note, String rapport) {
+    public formeval(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, float note, String rapport,String path,int id_formation) {
         this.Objet = Objet;
         this.Type = Type;
         this.Objectif = Objectif;
@@ -38,10 +39,29 @@ public class formeval {
         //this.path = path;
         this.note = note;
         this.rapport = rapport;
+        this.path=path;
+        this.id_formation=id_formation;
         
        // this.id_formation = id_formation;
     }
 
+    public formeval(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, Date date_reelle, Date date_prevu, String path, float note, String rapport, int id_formation, int id_formateur) {
+        this.Objet = Objet;
+        this.Type = Type;
+        this.Objectif = Objectif;
+        this.nb_participants = nb_participants;
+        this.cout_hj = cout_hj;
+        this.nb_jour = nb_jour;
+        this.cout_fin = cout_fin;
+        this.date_reelle = date_reelle;
+        this.date_prevu = date_prevu;
+        this.path = path;
+        this.note = note;
+        this.rapport = rapport;
+        this.id_formation = id_formation;
+        this.id_formateur = id_formateur;
+    }
+    
     public String getObjet() {
         return Objet;
     }

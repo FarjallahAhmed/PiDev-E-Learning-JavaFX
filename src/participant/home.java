@@ -6,9 +6,14 @@
 package participant;
 
 import Entities.Participants;
+import Front.ListeFormationsController;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+<<<<<<< HEAD
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+=======
 import home.fxml.PromotionsController;
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -23,8 +28,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -46,8 +53,13 @@ public class home implements Initializable {
     @FXML
     private Label type;
     @FXML
+<<<<<<< HEAD
+    private FontAwesomeIconView btnjeu;
+    private static Stage primaryStageObj;
+=======
     private Button btnPro;
 
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
     /**
      * Initializes the controller class.
      */
@@ -103,6 +115,10 @@ public class home implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/Front/ListeFormations.fxml")); 
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
+                 
+                
+        
+       
          
         
     }
@@ -116,6 +132,21 @@ public class home implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
+    private void gotogame(ActionEvent event) throws IOException {
+                   
+               ;
+                    Stage stage =new Stage();
+   Parent root = FXMLLoader.load(getClass().getResource("/Style/MainView.fxml")); 
+    Scene scene = new Scene(root);
+         stage.initStyle(StageStyle.UNDECORATED);
+			stage.setResizable(false);
+			
+        stage.setScene(scene);
+        stage.show();
+    }
+ 
+=======
     private void showPromotions(ActionEvent event) {
           PromotionsController p = new PromotionsController();
             
@@ -129,5 +160,6 @@ public class home implements Initializable {
             Logger.getLogger(formateur.home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
     
 }

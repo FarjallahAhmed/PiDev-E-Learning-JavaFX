@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -62,6 +63,20 @@ public class home implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Utilisateurs.fxml")); 
                  Scene scene = new Scene(root,1250,700);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
+    }
+    
+    @FXML
+    private void updateButtonClicks(ActionEvent event) throws IOException {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Front/reclamation.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+          //  stage.getIcons().add(new Image("/home/icons/icon.png"));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

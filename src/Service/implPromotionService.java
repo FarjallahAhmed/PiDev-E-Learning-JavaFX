@@ -227,6 +227,31 @@ public class implPromotionService implements workshopService<Promotion>{
      }
             return p;
     }
+    
+    public ObservableList<Promotion> filrePromotionPourcentage(int pour) throws SQLException {
+                 ObservableList< Promotion> promotions = FXCollections.observableArrayList();
+                 String sql="select f.objet , f.type, f.cout_fin, p.prix, p.dateDebut, p.dateFin  "
+                         + "FROM formation f INNER JOIN promotion p ON p.id = f.id "
+                         + "where p.prix = "+pour;
+       
+        Statement ste=con.createStatement();
+        ResultSet rs = ste.executeQuery(sql);
+        while (rs.next()) {                
+            
+            String objet = rs.getString(1);
+            String type = rs.getString(2);
+            Date dateDebut = rs.getDate(5);
+            Date dateFin = rs.getDate(6);
+            float cout_f =  rs.getFloat(3);
+            float prourcentage  =  rs.getFloat(4); 
+
+
+            Promotion p = new Promotion(dateDebut, dateFin, prourcentage, objet, type, cout_f);
+            promotions.add(p);
+        }
+    
+        return promotions;
+    }
 
         
 }

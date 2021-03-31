@@ -29,6 +29,7 @@ public class Formations {
     private String Rapport;
     private int Note;
     private String categorie;
+    private int id_formateur;
 
     public Formations(int Id, String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, Date date_reelle, Date date_prevu) {
         this.Id = Id;
@@ -42,6 +43,29 @@ public class Formations {
         this.date_reelle = date_reelle;
         this.date_prevu = date_prevu;
     }
+
+    public Formations(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, Date date_reelle, Date date_prevu, String path, int id_formateur) {
+        this.Objet = Objet;
+        this.Type = Type;
+        this.Objectif = Objectif;
+        this.nb_participants = nb_participants;
+        this.cout_hj = cout_hj;
+        this.nb_jour = nb_jour;
+        this.cout_fin = cout_fin;
+        this.date_reelle = date_reelle;
+        this.date_prevu = date_prevu;
+        this.path = path;
+        this.id_formateur = id_formateur;
+    }
+
+    public int getId_formateur() {
+        return id_formateur;
+    }
+
+    public void setId_formateur(int id_formateur) {
+        this.id_formateur = id_formateur;
+    }
+    
 
     public Formations(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, String Rapport, int Note) {
         this.Objet = Objet;

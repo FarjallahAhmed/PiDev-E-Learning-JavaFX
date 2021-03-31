@@ -22,6 +22,17 @@ public class Utilisateurs {
     protected String login;
     protected String password;
     protected String num;
+    protected String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    
 
     public Utilisateurs(int id, String nom, String prenom, String cin, String email, String login, String password, String num) {
         this.id = id;

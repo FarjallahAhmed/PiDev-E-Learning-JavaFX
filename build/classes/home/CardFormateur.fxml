@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<HBox fx:id="hbox" prefHeight="251.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.CardFormateurController">
+   <children>
+      <AnchorPane fx:id="anachorCard" prefHeight="237.0" prefWidth="440.0" style="-fx-background-radius: 3; -fx-border-radius: 3; -fx-border-color: #c3c3c3;">
+         <children>
+            <Label fx:id="nom" layoutX="34.0" layoutY="52.0" prefHeight="30.0" prefWidth="246.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Daudi Kabaka" />
+            <Label fx:id="prenom" layoutX="34.0" layoutY="82.0" prefHeight="30.0" prefWidth="246.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="About: webdesigner/UX/" />
+            <Label fx:id="email" layoutX="34.0" layoutY="155.0" prefHeight="30.0" prefWidth="246.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Contact #">
+               <graphic>
+                  <MaterialDesignIconView fill="#73879c" glyphName="PHONE" size="16.0" wrappingWidth="21.0" />
+               </graphic>
+            </Label>
+            <Label fx:id="type" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="246.0" style="-fx-text-fill: #73879C;" text="Formateur">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="bdate" layoutX="34.0" layoutY="125.0" prefHeight="30.0" prefWidth="246.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Address">
+               <graphic>
+                  <FontAwesomeIconView fill="#73879c" glyphName="HOME" size="16.0" wrappingWidth="22.0" />
+               </graphic>
+            </Label>
+            <Pane layoutX="5.0" layoutY="187.0" prefHeight="50.0" prefWidth="444.0" style="-fx-border-radius: 0 0 3 3; -fx-background-color: #E5E8EB; -fx-border-color: #C3C3C3; -fx-border-width: 1 0 0 0;">
+               <children>
+                  <Rating fx:id="rating" layoutX="14.0" layoutY="9.0" prefHeight="20.0" prefWidth="207.0" rating="3.0" />
+                  <JFXButton fx:id="contacter" layoutX="263.0" layoutY="9.0" onAction="#contacter" prefHeight="32.0" prefWidth="105.0" style="-fx-background-color: #337AB7; -fx-text-fill: white; -fx-font-size: 14;" text="Contacter">
+                     <graphic>
+                        <FontAwesomeIconView fill="#fffdfd" glyphName="USER" size="14" wrappingWidth="18.0" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="view" layoutX="374.0" layoutY="10.0" onAction="#viewFile" prefHeight="30.0" prefWidth="10.0" style="-fx-background-color: #26B99A; -fx-text-fill: white; -fx-font-size: 14;" text=" ">
+                     <graphic>
+                        <HBox alignment="CENTER" spacing="3.0">
+                           <children>
+                              <FontAwesomeIconView fill="#fffdfd" glyphName="USER" size="14" wrappingWidth="18.0" />
+                              <MaterialDesignIconView fill="WHITE" glyphName="EYE" size="16.0" />
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </JFXButton>
+                  <Button fx:id="supprimer" layoutX="211.0" layoutY="9.0" mnemonicParsing="false" onAction="#supprimerFormateur" prefHeight="31.0" prefWidth="45.0" style="-fx-background-color: #FA8072;" textFill="#fcf2f2">
+                     <graphic>
+                        <FontAwesomeIconView fill="#fffdfd" glyphName="REMOVE" size="14" textAlignment="CENTER" wrappingWidth="18.0" />
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Circle fx:id="circle" fill="#e5e8eb" layoutX="376.0" layoutY="97.0" radius="64.0" stroke="#c3c3c3" strokeType="INSIDE" />
+            <ImageView fitHeight="95.0" fitWidth="108.0" layoutX="327.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/material-dashboard-fx-master/material-dashboard-fx-master/src/icons/avatar.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="activer" contentDisplay="CENTER" layoutX="157.0" layoutY="18.0" onAction="#activerCompte" prefHeight="30.0" prefWidth="9.0" style="-fx-background-color: #26B99A; -fx-text-fill: white; -fx-font-size: 14;" text=" " textAlignment="CENTER">
+               <graphic>
+                  <HBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <MaterialDesignIconView fill="WHITE" glyphName="CHECK" size="16.0" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </graphic>
+            </JFXButton>
+            <Button fx:id="desactiver" contentDisplay="CENTER" layoutX="156.0" layoutY="18.0" mnemonicParsing="false" onAction="#desactiver" prefHeight="31.0" prefWidth="18.0" style="-fx-background-color: #FA8072;" textFill="#fcf2f2">
+               <graphic>
+                  <FontAwesomeIconView fill="#fffdfd" glyphName="REMOVE" size="14" textAlignment="CENTER" wrappingWidth="18.0" />
+               </graphic>
+            </Button>
+         </children>
+         <HBox.margin>
+            <Insets bottom="1.0" left="1.0" top="1.0" />
+         </HBox.margin>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets right="5.0" />
+   </padding>
+</HBox>

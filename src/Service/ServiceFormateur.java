@@ -136,11 +136,11 @@ public class ServiceFormateur implements IServiceUtilisateurs {
                 p.setLogin(rst.getString(7));
                 p.setPassword(rst.getString(8));
                 p.setNum(rst.getString(9));
+                p.setImage(rst.getString(10));
                 
-                
-                p.setSpecialite(rst.getString(11));
-                p.setJustificatif(rst.getString(12));
-                p.setEtat(rst.getBoolean(13));
+                p.setSpecialite(rst.getString(12));
+                p.setJustificatif(rst.getString(13));
+                p.setEtat(rst.getBoolean(14));
                
                 
                 
@@ -347,6 +347,11 @@ public class ServiceFormateur implements IServiceUtilisateurs {
                 p.setSpecialite(rst.getString(2));
                 p.setJustificatif(rst.getString(3));
                 
+                
+                p.setImage(rst.getString(14));
+                
+                
+                
                
                 
             }
@@ -388,6 +393,18 @@ public class ServiceFormateur implements IServiceUtilisateurs {
                        Statement stm;
                     stm = cnx.createStatement();
                     stm.executeUpdate("UPDATE `formateurs` SET etat = true WHERE id ="+id);
+                    
+            }  
+        
+         public void DesactiverFormateurAccount(int id) throws SQLException
+            {
+
+
+                       int total = 0;
+
+                       Statement stm;
+                    stm = cnx.createStatement();
+                    stm.executeUpdate("UPDATE `formateurs` SET etat = false WHERE id ="+id);
 
                     
 
@@ -425,7 +442,67 @@ public class ServiceFormateur implements IServiceUtilisateurs {
         return p;  
         
         
-     } 
+     }
+        
+        
+        
+         public Utilisateurs getFormateursUtilisateurs(int id) throws SQLException
+    {
+        
+         Statement stm;
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select * from formateurs Inner Join utilisateurs ON utilisateurs.id=formateurs.id WHERE utilisateurs.id ="+id);
+            Utilisateurs p = new Utilisateurs();
+            
+            
+             while (rst.next())
+            {
+                
+                
+                
+                p.setId(rst.getInt(1));
+                p.setNom(rst.getString(6));
+                p.setPrenom(rst.getString(7));
+                p.setDateNaissance(rst.getDate(8));
+                p.setCin(rst.getString(9));
+                p.setEmail(rst.getString(10));
+                p.setLogin(rst.getString(11));
+                p.setPassword(rst.getString(12));
+                p.setNum(rst.getString(13));
+             
+                
+              
+                
+                
+               
+            }
+     
+                     
+        return p;    
+        
+    }
+         
+         
+         
+          public void setImageUser(String image , int id) throws SQLException
+    {
+        
+                
+            String queryU = "UPDATE `utilisateurs` SET `image`= ? WHERE id = '"+id+"'";
+            PreparedStatement ps = cnx.prepareStatement(queryU);
+            
+            
+            ps.setString(1,image);
+            
+           
+            
+           ps.executeUpdate();
+    }
+          
+      
+          
+          
+    
         
         
 }

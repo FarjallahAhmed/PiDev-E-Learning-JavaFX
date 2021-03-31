@@ -28,6 +28,15 @@ public class comformation {
         this.id_formation = id_formation;
     }
 
+     public comformation(String Objet, String Type, String Objectif, float prix, String etat, int id_formation, int id) {
+        this.Objet = Objet;
+        this.Type = Type;
+        this.Objectif = Objectif;
+        this.prix = prix;
+        this.etat = etat;
+       this.id = id;
+        this.id_formation = id_formation;
+    }
     public int getId() {
         return id;
     }

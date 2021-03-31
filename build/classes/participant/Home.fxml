@@ -4,33 +4,57 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="943.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="participant.home">
    <children>
       <Pane prefHeight="173.0" prefWidth="980.0" style="-fx-background-color: #2D75E8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="name" layoutX="130.0" layoutY="44.0" text="KeepToo" textFill="WHITE">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Label>
-            <Label fx:id="type" layoutX="136.0" layoutY="105.0" text="School Mangement " textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <FontAwesomeIconView fill="WHITE" glyphName="GG" layoutX="53.0" layoutY="103.0" size="60" />
             <JFXButton layoutX="843.0" layoutY="14.0" onAction="#logOut" prefHeight="27.0" prefWidth="88.0" text="Log Out" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
+            <Pane layoutX="21.0" layoutY="21.0" prefHeight="131.0" prefWidth="271.0" style="-fx-background-color: #6F096A;">
+               <children>
+                  <Circle fx:id="circle" layoutX="55.0" layoutY="64.0" radius="41.0" stroke="#a49f9f" strokeType="INSIDE">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#8a765a" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
+                  <ImageView fx:id="avatar" fitHeight="60.0" fitWidth="60.0" layoutX="25.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Downloads/material-dashboard-fx-master/material-dashboard-fx-master/src/icons/profile1.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="name" layoutX="120.0" layoutY="31.0" prefHeight="30.0" prefWidth="143.0" text="Dan Mlayah" textFill="#fffefe">
+                     <font>
+                        <Font name="Roboto Medium" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="type" layoutX="120.0" layoutY="66.0" prefHeight="25.0" prefWidth="124.0" text="Lead developer" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <GridPane alignment="CENTER" hgap="10.0" layoutX="165.0" layoutY="228.0" prefHeight="320.0" prefWidth="650.0" vgap="10.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="165.0">
@@ -59,9 +83,13 @@
                   <FontAwesomeIconView fill="#2d75e8" glyphName="MONEY" size="50" />
                </graphic>
             </Button>
-            <Button fx:id="btnSettings" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
+<<<<<<< HEAD
+            <Button fx:id="btnSettings" contentDisplay="TOP" mnemonicParsing="false" onAction="#chatbot" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="ChatBot" GridPane.columnIndex="2" GridPane.rowIndex="1">
+=======
+            <Button fx:id="btnSettings" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotogame" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="Espace Enfant" GridPane.columnIndex="2" GridPane.rowIndex="1">
+>>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
                <graphic>
-                  <FontAwesomeIconView fill="#2d75e8" glyphName="SLIDERS" size="50" />
+                  <FontAwesomeIconView fx:id="btnjeu" fill="#2d75e8" glyphName="GAMEPAD" size="50" text="" />
                </graphic>
             </Button>
             <Button fx:id="btnUpdate" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -76,6 +104,7 @@
             </Button>
          </children>
       </GridPane>
+      <HBox fx:id="tst" layoutX="778.0" layoutY="439.0" prefHeight="173.0" prefWidth="166.0" />
    </children>
    
 </AnchorPane>

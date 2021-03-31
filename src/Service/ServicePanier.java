@@ -43,7 +43,7 @@ public class ServicePanier {
         ps.executeUpdate();
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ajout");
-            alert.setHeaderText("Panier creer");
+            alert.setHeaderText("Panier cree");
             alert.setContentText("Panier a été Ajouter avec success");
             alert.showAndWait();
     } catch (SQLException ex) {

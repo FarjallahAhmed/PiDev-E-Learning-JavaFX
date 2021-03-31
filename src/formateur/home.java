@@ -10,6 +10,7 @@ import Entities.Participants;
 import Service.ServiceFormateur;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,7 +23,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 /**
  * FXML Controller class
@@ -41,6 +45,8 @@ public class home implements Initializable {
     private Button btn_Timetable;
     @FXML
     private Button btnClasses;
+    @FXML
+    private Circle circle;
 
     /**
      * Initializes the controller class.
@@ -62,14 +68,31 @@ public class home implements Initializable {
         }
         System.out.println(p);
         name.setText(p.getNom()+" "+p.getPrenom());
-        type.setText("Formateurs");
+        type.setText("Formateur");
         System.out.println(UserSession.getInstace("", 0, "").toString());
+        
+        if (p.getImage()==null)
+              {
+                  Image imProfile = new Image(getClass().getResourceAsStream("/media/avatar.png"));
+                  circle.setFill(new ImagePattern(imProfile));
+              }
+      else 
+      {
+          File f = new File("C:\\Users\\Mehdi\\Desktop\\uploadProjet\\"+p.getImage());
+           Image imProfile = new Image(f.toURI().toString());
+           
+           circle.setFill(new ImagePattern(imProfile));
+           
+         
+      }
+        
+        
     }    
 
     @FXML
     private void handleButtonClicks(ActionEvent event) throws IOException {
         
-                  Parent root = FXMLLoader.load(getClass().getResource("/formateur/profile.fxml")); 
+                  Parent root = FXMLLoader.load(getClass().getResource("/formateur/ProfileNew.fxml")); 
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
     }

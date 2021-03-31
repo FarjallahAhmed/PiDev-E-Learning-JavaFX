@@ -24,7 +24,7 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="email" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="email" promptText="Email" style="-fx-text-fill: white;" styleClass="tf_box" HBox.hgrow="ALWAYS" />
             <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
          </children>
          <VBox.margin>
@@ -33,7 +33,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <JFXPasswordField fx:id="password" prefHeight="31.0" prefWidth="452.0" promptText="Password" />
+            <JFXPasswordField fx:id="password" prefHeight="31.0" prefWidth="452.0" promptText="Password" style="-fx-text-fill: white;" />
             <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="1.3em" />
          </children>
          <VBox.margin>
@@ -42,7 +42,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="254.0" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <JFXComboBox fx:id="cbType" prefHeight="31.0" prefWidth="480.0" />
+            <JFXComboBox fx:id="cbType" prefHeight="31.0" prefWidth="480.0" style="-fx-text-fill: white;" />
          </children>
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="20.0" />

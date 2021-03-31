@@ -10,6 +10,13 @@ import Entities.Utilisateurs;
 import Services.IServiceUtilisateurs;
 import Utils.Connexion;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,6 +37,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
@@ -144,10 +153,11 @@ public class ServiceParticipant implements IServiceUtilisateurs {
                 p.setLogin(rst.getString(7));
                 p.setPassword(rst.getString(8));
                 p.setNum(rst.getString(9));
-                p.setNiveauEtude(rst.getString(11));
-                p.setCertificatsObtenus(rst.getInt(12));
-                p.setInterssePar(rst.getString(13));
-                p.setNombreDeFormation(rst.getInt(14));
+                p.setImage(rst.getString(10));
+                p.setNiveauEtude(rst.getString(12));
+                p.setCertificatsObtenus(rst.getInt(13));
+                p.setInterssePar(rst.getString(14));
+                p.setNombreDeFormation(rst.getInt(15));
                 
                 oblist.add(p);
                 utilisateurs.add(p);
@@ -309,6 +319,7 @@ public class ServiceParticipant implements IServiceUtilisateurs {
                 p.setCertificatsObtenus(rst.getInt(3));
                 p.setInterssePar(rst.getString(4));
                 p.setNombreDeFormation(rst.getInt(5));
+                p.setImage(rst.getString(15));
                 
               
                 
@@ -538,6 +549,160 @@ public class ServiceParticipant implements IServiceUtilisateurs {
                      
         return comformations;    
         
+    }
+      
+      
+      
+      
+      
+    public Utilisateurs getParticipantsUtilisateurs(int id) throws SQLException
+    {
+        
+         Statement stm;
+            stm = cnx.createStatement();
+            ResultSet rst = stm.executeQuery("Select * from participants Inner Join utilisateurs ON utilisateurs.id=participants.id WHERE utilisateurs.id ="+id);
+            Utilisateurs p = new Utilisateurs();
+            
+            
+             while (rst.next())
+            {
+                
+                
+                
+                p.setId(rst.getInt(1));
+                p.setNom(rst.getString(7));
+                p.setPrenom(rst.getString(8));
+                p.setDateNaissance(rst.getDate(9));
+                p.setCin(rst.getString(10));
+                p.setEmail(rst.getString(11));
+                p.setLogin(rst.getString(12));
+                p.setPassword(rst.getString(13));
+                p.setNum(rst.getString(14));
+             
+                
+              
+                
+                
+               
+            }
+     
+                     
+        return p;    
+        
+    }
+    
+    public void setImageUser(String image , int id) throws SQLException
+    {
+        
+                
+            String queryU = "UPDATE `utilisateurs` SET `image`= ? WHERE id = '"+id+"'";
+            PreparedStatement ps = cnx.prepareStatement(queryU);
+            
+            
+            ps.setString(1,image);
+            
+           
+            
+           ps.executeUpdate();
+    }
+    
+    
+    public void  uploadtp(String path,String fullpath)
+    {
+        String server = "127.0.0.1";
+        int port = 21;
+        String user = "mehdi";
+        String pass = "123456789";
+ 
+        FTPClient ftpClient = new FTPClient();
+        try {
+ 
+            ftpClient.connect(server, port);
+            ftpClient.login(user, pass);
+            ftpClient.enterLocalPassiveMode();
+ 
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+ 
+            // APPROACH #1: uploads first file using an InputStream
+            File firstLocalFile = new File(fullpath);
+ 
+            String firstRemoteFile = path;
+            InputStream inputStream = new FileInputStream(firstLocalFile);
+ 
+            System.out.println("Start uploading first file");
+            boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+            inputStream.close();
+            if (done) {
+                System.out.println("The first file is uploaded successfully.");
+            }
+ 
+            // APPROACH #2: uploads second file using an OutputStream
+            
+ 
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    
+    
+    
+      public static void donwload_ftp(String path)
+    {
+         String server = "127.0.0.1";
+        int port = 21;
+        String user = "mehdi";
+        String pass = "123456789";
+ 
+        FTPClient ftpClient = new FTPClient();
+        try {
+ 
+            ftpClient.connect(server, port);
+            ftpClient.login(user, pass);
+            ftpClient.enterLocalPassiveMode();
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+ 
+            // APPROACH #1: using retrieveFile(String, OutputStream)
+            String remoteFile1 = "/"+path;
+            File downloadFile1 = new File("C:\\Users\\mehdi\\Downloads\\"+path);
+            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+            boolean success = ftpClient.retrieveFile(remoteFile1, outputStream1);
+                               
+               
+            
+            outputStream1.close();
+ 
+            if (success) {
+                System.out.println("File #1 has been downloaded successfully.");
+            }
+ 
+            // APPROACH #2: using InputStream retrieveFileStream(String)
+            
+          
+ 
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
         
      

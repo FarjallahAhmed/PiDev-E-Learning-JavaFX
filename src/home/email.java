@@ -7,6 +7,7 @@ package home;
 
 import Service.ServiceParticipant;
 import com.jfoenix.controls.JFXTextArea;
+import static home.CardController.p;
 import static home.utilisateurs.emailD;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +46,11 @@ public class email implements Initializable {
         // TODO
         System.out.println("++++++++"+emailD);
         
-        email.setText(emailD.getEmail());
+        
+            email.setText(p.getEmail());
+        
+        
+        
        // email.setEditable(false);
         
     }    

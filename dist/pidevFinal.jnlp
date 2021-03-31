@@ -15,8 +15,11 @@
     <jar href="lib\GNDecorator-2.1.2-alpha.jar" size="2869249" download="eager" />
     <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
     <jar href="lib\commons-collections4-4.4.jar" size="751914" download="eager" />
+    <jar href="lib\commons-net-3.8.0.jar" size="307305" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\controlsfx-8.40.12.jar" size="996389" download="eager" />
     <jar href="lib\derby.jar" size="3230946" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="lib\fontawesomefx-commons-9.1.2-jpms.jar" size="24435" download="eager" />
     <jar href="lib\fontawesomefx-fontawesome-4.7.0-9.1.2-jpms.jar" size="137046" download="eager" />
     <jar href="lib\javax.mail-1.6.1.jar" size="654100" download="eager" />
@@ -25,9 +28,10 @@
     <jar href="lib\poi-3.15.jar" size="2579580" download="eager" />
     <jar href="lib\poi-ooxml-3.15.jar" size="1338241" download="eager" />
     <jar href="lib\poi-ooxml-schemas-3.15.jar" size="5859007" download="eager" />
+    <jar href="lib\tilesfx-1.5.2.jar" size="1472287" download="eager" />
     <jar href="lib\view-8.6.1.jar" size="762277" download="eager" />
     <jar href="lib\xmlbeans-2.6.0.jar" size="2730866" download="eager" />
-    <jar href="pidevFinal.jar" size="775817" download="eager" />
+    <jar href="pidevFinal.jar" size="515265" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="pidevfinal.PidevFinal"  name="pidevFinal" />
   <update check="always"/>

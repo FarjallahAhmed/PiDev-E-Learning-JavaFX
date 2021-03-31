@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="680.0" prefWidth="980.0" styleClass="parent" stylesheets="@styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="login.MainController">
+<AnchorPane id="AnchorPane" prefHeight="680.0" prefWidth="980.0" styleClass="parent" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.MainController">
    <children>
       <Pane layoutX="2.0" layoutY="140.0" prefHeight="400.0" prefWidth="980.0" styleClass="pane">
          <children>
@@ -16,7 +16,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="21.0" layoutY="134.0" prefHeight="64.0" prefWidth="222.0" text="Lorem ipsum is a dummy text for websites." textFill="WHITE" wrapText="true">
+            <Label layoutX="21.0" layoutY="134.0" prefHeight="64.0" prefWidth="222.0" text="Start your courses now." textFill="WHITE" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -27,7 +27,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="759.0" layoutY="83.0" prefHeight="64.0" prefWidth="222.0" text="Lorem ipsum is a dummy text for websites." textFill="WHITE" wrapText="true">
+            <Label layoutX="759.0" layoutY="83.0" prefHeight="64.0" prefWidth="222.0" text="You can login from here." textFill="WHITE" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>

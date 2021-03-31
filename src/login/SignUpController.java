@@ -9,6 +9,7 @@ import Entities.Formateurs;
 import Entities.Participants;
 import Service.ServiceFormateur;
 import Service.ServiceParticipant;
+import UserSession.UserSession;
 import Utils.Alerts;
 import Utils.Mask;
 import static Utils.validate_code_source.isAddressValid;
@@ -23,6 +24,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import Utils.Alerts;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -33,7 +38,10 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import static participant.ProfileNewController.imageAbsolute;
 
 /**
  * FXML Controller class
@@ -73,12 +81,18 @@ public class SignUpController implements Initializable {
     @FXML
     private Label path;
     
+    
+    public static String pathAbsolute = null;
+    
+    public static boolean confirmationCodeParticipant = false;
+    
    private Alert alert = new Alert(AlertType.WARNING);
    private Alert alertI = new Alert(AlertType.INFORMATION);
 
     /**
      * Initializes the controller class.
      */
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -106,7 +120,7 @@ public class SignUpController implements Initializable {
     }    
 
     @FXML
-    private void add(ActionEvent event) {
+    private void add(ActionEvent event) throws IOException {
         
         Participants p = new Participants();
         Formateurs f = new Formateurs();
@@ -146,19 +160,30 @@ public class SignUpController implements Initializable {
                         p.setPassword(password.getText());
                         p.setNum(number.getText());       
                         p.setNiveauEtude(niveau.getValue());
-
                         p.setCertificatsObtenus(0);
                         p.setInterssePar(interesse.getText());
                         p.setNombreDeFormation(0);
                         
+                        Parent root = FXMLLoader.load(getClass().getResource("/login/confirmationCode.fxml"));
+                        Scene scene = new Scene(root);
+                        Stage code = new Stage();
+                        code.setScene(scene);
+                        code.initStyle(StageStyle.TRANSPARENT);
+                        code.setScene(scene);
+                        code.showAndWait();
+                        
+                          System.out.println(confirmationCodeParticipant);
+                        
+                        if (confirmationCodeParticipant==true)
+                        {
                              sp.AjouterUtilisateur(p);
-                             
-                             
-                                alertI.setTitle("Information Dialog");
-                                alertI.setHeaderText(null);
-                                alertI.setContentText("Prticipant Added!");
-
-                                alertI.showAndWait();
+                             alertI.setTitle("Information Dialog");
+                             alertI.setHeaderText(null);
+                             alertI.setContentText("Prticipant Added!");
+                             alertI.showAndWait();
+                        }
+                            
+                        
                       }
                       else 
                       {
@@ -299,16 +324,20 @@ public class SignUpController implements Initializable {
     @FXML
     private void getPath(ActionEvent event) {
         
-        
+        ServiceParticipant sp = new ServiceParticipant();
         FileChooser fil_chooser = new FileChooser();
         
         File file = fil_chooser.showOpenDialog(null); 
   
                 if (file != null) { 
-                      
-                   
-                    path.setText(file.getAbsolutePath());
-                    System.out.println(path.getText());
+                                     
+                    path.setText(file.getName());
+
+                    pathAbsolute = file.getAbsolutePath();
+                    
+                    sp.uploadtp(path.getText(),pathAbsolute);
+                    
+                    
                                          
                 } 
     }

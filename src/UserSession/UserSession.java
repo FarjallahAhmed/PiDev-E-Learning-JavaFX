@@ -13,7 +13,7 @@ import java.util.Set;
     private static UserSession instance;
     private String userName;
     private int id;
-    private String type;
+    private static String type;
    
 
     private UserSession(String userName, int id,String type) {
@@ -35,7 +35,7 @@ import java.util.Set;
         return id;
     }
 
-    public String getType() {
+    public static String getType() {
         return type;
     }
 

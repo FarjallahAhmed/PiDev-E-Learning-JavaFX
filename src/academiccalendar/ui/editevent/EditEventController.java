@@ -5,7 +5,6 @@ package academiccalendar.ui.editevent;
 
 import Entities.Workshop;
 import academiccalendar.data.model.Model;
-import academiccalendar.database.DBHandler;
 import academiccalendar.ui.addevent.AddEventController;
 import academiccalendar.ui.main.FXMLDocumentController;
 import com.jfoenix.controls.JFXButton;
@@ -52,7 +51,6 @@ public class EditEventController implements Initializable {
     
     //--------------------------------------------------------------------
     //---------Database Object -------------------------------------------
-    DBHandler databaseHandler;
     //--------------------------------------------------------------------
     @FXML
     private Label topLabel;
@@ -108,24 +106,7 @@ public class EditEventController implements Initializable {
         int termID = Model.getInstance().event_term_id;
         String descript = Model.getInstance().event_subject;
        
-        //Query to get ID for the selected Term
-        String getIDQuery = "SELECT TermName From TERMS "
-                + "WHERE TERMS.TermID= " + termID + " ";
-        
-        //Varialbe that holds the name of the current event's term based on a given term ID
-        String chosenTermName = "";
 
-        //Store the results from executing the Query
-        ResultSet result = databaseHandler.executeQuery(getIDQuery);
-        //Try-catch statements that will get the ID if a result was actually gotten back from the database
-        try {
-             while(result.next()){
-                 //store ID into the corresponding variable
-                 chosenTermName = result.getString("TermName");
-             }
-        } catch (SQLException ex) {
-             Logger.getLogger(AddEventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
        
         
         Workshop w = new Workshop();
@@ -137,7 +118,7 @@ public class EditEventController implements Initializable {
             w = wService.find(termID);
             System.out.println(w);
             dateED.setValue(LocalDate.of(year, month, day));
-            dateEF.setValue(LocalDate.of(year, month, day));
+            dateEF.setValue(w.getDateFin().toLocalDate());
             title.setText(w.getNomEvent());
             type.setValue(w.getType());
             timeED.setValue(w.gethDebut().toLocalTime());
@@ -164,9 +145,7 @@ public class EditEventController implements Initializable {
         // TODO
         
         
-        //*** Instantiate DBHandler object *******************
-        databaseHandler = new DBHandler();
-        //****************************************************
+
         
         //Fill the date picker
         autofillDatePicker();
@@ -343,7 +322,6 @@ public class EditEventController implements Initializable {
         
         
         //Get the ID of the new term selected by the user when editing the event's information
-        int newTerm = databaseHandler.getTermID(term);
         
         //Query to will update the selected event with the new information
        /* String updateEventQuery = "UPDATE EVENTS"
@@ -408,33 +386,21 @@ public class EditEventController implements Initializable {
     private void save(MouseEvent event) {
         
         DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
-       /* if(title.getText().isEmpty()|| type.getSelectionModel().isEmpty()
+       
+        
+        //If all data is inputted correctly and validated, then add the event:
+        if(title.getText().isEmpty()|| type.getSelectionModel().isEmpty()
                 ||dateED.getValue() == null ||dateEF.getValue() == null
                 ||timeEF.getValue() == null ||timeED.getValue() == null
                 ||prix.getText().isEmpty()||desc.getText().isEmpty()
-                ){
+                ||dateED.getValue().isAfter(dateEF.getValue())){
             Alert alertMessage = new Alert(Alert.AlertType.ERROR);
             alertMessage.setHeaderText(null);
             alertMessage.setContentText("Please fill out all fields");
             alertMessage.showAndWait();
             return;
-        }
-        */
-        //Check if the event descritption contains the character ~ because it cannot contain it due to database and filtering issues
-       /* if (title.getText().contains("~"))
-        {
-            //Show message indicating that the event description cannot contain the character ~
-            Alert alertMessage = new Alert(Alert.AlertType.WARNING);
-            alertMessage.setHeaderText(null);
-            alertMessage.setContentText("Event Description cannot contain the character ~");
-            alertMessage.showAndWait();
-            return;
-        }*/
-        
-        //If all data is inputted correctly and validated, then add the event:
-        
-
-        String dateD = dateED.getValue().format(myFormat);
+        }else{
+            String dateD = dateED.getValue().format(myFormat);
         String dateF = dateEF.getValue().format(myFormat);
         String titleE = title.getText();
         String typeE = type.getValue();       
@@ -443,7 +409,7 @@ public class EditEventController implements Initializable {
         float prix = Float.parseFloat(this.prix.getText());
         String description = desc.getText();
         int nbparticipant  = 50;
-
+        
         implWorkshopService wService = new implWorkshopService();
         Workshop w = new Workshop(0, titleE,java.sql.Date.valueOf(dateD),java.sql.Date.valueOf(dateF), timeD, timeF, typeE, nbparticipant, typeE, description, prix);
 
@@ -452,12 +418,15 @@ public class EditEventController implements Initializable {
         try {
             wService.update(w);
             mainController.repaintView();
-            System.out.println("sex sex sex");
         } catch (SQLException ex) {
             Logger.getLogger(EditEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.close();
+            
+        }
+
+        
     }
 
     @FXML

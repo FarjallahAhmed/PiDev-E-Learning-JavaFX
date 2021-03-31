@@ -8,14 +8,11 @@ package academiccalendar.ui.main;
 
 import Entities.Workshop;
 import academiccalendar.data.model.Model;
-import academiccalendar.database.DBHandler;
 import academiccalendar.ui.addcalendar.AddCalendarController;
 import academiccalendar.ui.addevent.AddEventController;
-import academiccalendar.ui.addrule.AddRuleController;
 import academiccalendar.ui.editevent.EditEventController;
 import academiccalendar.ui.listcalendars.ListCalendarsController;
-import academiccalendar.ui.listrules.ListRulesController;
-import academiccalendar.ui.listterms.ListTermsController;
+
 
 import com.jfoenix.controls.*;
 import com.jfoenix.effects.JFXDepthManager;
@@ -27,9 +24,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -79,6 +75,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import yeartable.TrackEmployeeController;
 
 
 public class FXMLDocumentController implements Initializable {
@@ -99,51 +96,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private JFXListView<String> monthSelect;   
     
-    //--------- Database Handler -----------------------------------------
-    DBHandler databaseHandler;
-    //--------------------------------------------------------------------
-    
-    // Color pickers
-    @FXML
-    private JFXColorPicker fallSemCP;
-    @FXML
-    private JFXColorPicker springSemCP;
-    @FXML
-    private JFXColorPicker summerSemCP;
-    @FXML
-    private JFXColorPicker allQtrCP;
-    @FXML
-    private JFXColorPicker allMbaCP;
-    @FXML
-    private JFXColorPicker allHalfCP;
-    @FXML
-    private JFXColorPicker allCampusCP;
-    @FXML
-    private JFXColorPicker allHolidayCP;
-    @FXML
-    private JFXColorPicker traTrbCP;
+
     
     
     // Check Boxes for filtering
-    @FXML
     private JFXCheckBox fallSemCheckBox;
-    @FXML
     private JFXCheckBox springSemCheckBox;
-    @FXML
     private JFXCheckBox summerSemCheckBox;
-    @FXML
     private JFXCheckBox allQtrCheckBox;
-    @FXML
     private JFXCheckBox allMbaCheckBox;
-    @FXML
     private JFXCheckBox allHalfCheckBox;
-    @FXML
     private JFXCheckBox allCampusCheckBox;
-    @FXML
     private JFXCheckBox allHolidayCheckBox;
-    @FXML
     private JFXCheckBox allTraTrbCheckBox;  
-    @FXML
     private JFXCheckBox selectAllCheckBox; 
     
     // Other global variables for the class
@@ -153,13 +118,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private VBox colorRootPane;
-    @FXML
     private VBox toolsRootPane;
     @FXML
     private VBox centerArea;
     @FXML
     private Label calendarNameLbl;
+    @FXML
+    private JFXButton GlobalCalendar;
     
     //**************************************************************************
     //**************************************************************************
@@ -289,75 +254,7 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    private void manageTermsEvent() {
-        // Manage Terms view
-         try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/academiccalendar/ui/listterms/list_terms.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.initModality(Modality.APPLICATION_MODAL); 
 
-            // Pass main controller reference to view
-            ListTermsController listController = loader.getController();
-            listController.setMainController(this);
-            
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            stage.setScene(scene);
-            stage.show();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void listRulesEvent() {
-        // List Rules view
-         try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/academiccalendar/ui/listrules/list_rules.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.initModality(Modality.APPLICATION_MODAL); 
-
-            // Pass main controller reference to view
-            ListRulesController listController = loader.getController();
-            listController.setMainController(this);
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            stage.setScene(scene);
-            stage.show();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void newRuleEvent() {
-        // New Rule view
-         try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/academiccalendar/ui/addrule/add_rule.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.initModality(Modality.APPLICATION_MODAL); 
-
-            // Pass main controller reference to view
-            AddRuleController ruleController = loader.getController();
-            ruleController.setMainController(this);
-            
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
     private void initializeMonthSelector(){
         
@@ -599,11 +496,9 @@ public class FXMLDocumentController implements Initializable {
                         
                     });
                     
-                    // Get term color from term's table
-                    String eventRGB = databaseHandler.getTermColor(termID);
                     
-                    // Parse for rgb values
-                    String[] colors = eventRGB.split("-");
+                    
+                    
                     /*String red = colors[0];
                     String green = colors[1];
                     String blue = colors[2];*/
@@ -838,17 +733,13 @@ public class FXMLDocumentController implements Initializable {
         cell = row.createCell(5);
         cell.setCellValue("Heure Fin");
         cell = row.createCell(6);
-        cell.setCellValue("Lieu");
+        cell.setCellValue("nombre participant");
         cell = row.createCell(7);
         cell.setCellValue("Type");
         cell = row.createCell(8);
         cell.setCellValue("Prix");
         
-        // Query to get ALL Events from the selected calendar!!
-        //String getMonthEventsQuery = "SELECT * From EVENTS WHERE CalendarName='" + calendarName + "' ORDER BY EventDate ";   
-        
-        // Store the results here
-       // ResultSet result = databaseHandler.executeQuery(getMonthEventsQuery);
+       
         
          try {
              int counter=2;
@@ -858,22 +749,21 @@ public class FXMLDocumentController implements Initializable {
                 for(int i=0;i<data.size();i++ ){
                     row = sheet.createRow(counter);
                     cell = row.createCell(1);
-                cell.setCellValue(data.get(i).getNomEvent());
-                cell = row.createCell(2);
-                cell.setCellValue(data.get(i).getDateDebut());
-                cell = row.createCell(3);
-                cell.setCellValue(data.get(i).getDateFin());
-                 cell = row.createCell(4);
-                cell.setCellValue(data.get(i).gethDebut());
-                cell = row.createCell(5);
-                cell.setCellValue(data.get(i).gethFin());
-                cell = row.createCell(6);
-                cell.setCellValue(data.get(i).getLieu());
-                 cell = row.createCell(7);
-                cell.setCellValue(data.get(i).getNbParticipant());
-                cell = row.createCell(8);
-                cell.setCellValue(data.get(i).getPrix());
-                
+                    cell.setCellValue(data.get(i).getNomEvent());
+                    cell = row.createCell(2);
+                    cell.setCellValue(data.get(i).getDateDebut().toString());
+                    cell = row.createCell(3);
+                    cell.setCellValue(data.get(i).getDateFin().toString());
+                    cell = row.createCell(4);
+                    cell.setCellValue(data.get(i).gethDebut().toString());
+                    cell = row.createCell(5);
+                    cell.setCellValue(data.get(i).gethFin().toString());
+                    cell = row.createCell(6);
+                    cell.setCellValue(data.get(i).getNbParticipant());
+                    cell = row.createCell(7);
+                    cell.setCellValue(data.get(i).getType());
+                    cell = row.createCell(8);
+                    cell.setCellValue(data.get(i).getPrix());
                     counter++;
                 }
                 
@@ -896,7 +786,7 @@ public class FXMLDocumentController implements Initializable {
          catch(Exception e) {
             e.printStackTrace();
          }  
-       }
+    }
    
     private String getRGB(Color c){
         
@@ -907,117 +797,8 @@ public class FXMLDocumentController implements Initializable {
         return rgb;       
     }
     
-    private void changeColors(){
-        
-        // Purpose - Take all chosen colors in the Colors menu and
-        // update each term's color in the database
-        
-        Color fallSemColor = fallSemCP.getValue();
-        String fallSemRGB = getRGB(fallSemColor);
-        databaseHandler.setTermColor("FA SEM", fallSemRGB);
-        
-        Color springSemColor = springSemCP.getValue();
-        String springSemRGB = getRGB(springSemColor);
-        databaseHandler.setTermColor("SP SEM", springSemRGB);
-        
-        Color summerSemColor = summerSemCP.getValue();
-        String summerSemRGB = getRGB(summerSemColor);
-        databaseHandler.setTermColor("SU SEM", summerSemRGB);
-        
-        Color allQtrColor = allQtrCP.getValue();
-        String allQtrRGB = getRGB(allQtrColor);
-        databaseHandler.setTermColor("QTR", allQtrRGB);
-        
-        Color allMbaColor = allMbaCP.getValue();
-        String allMbaRGB = getRGB(allMbaColor);
-        databaseHandler.setTermColor("MBA", allMbaRGB);
-        
-        Color allHalfColor = allHalfCP.getValue();
-        String allHalfRGB = getRGB(allHalfColor);
-        databaseHandler.setTermColor("Half", allHalfRGB);
-        
-        Color allCampusColor = allCampusCP.getValue();
-        String allCampusRGB = getRGB(allCampusColor);
-        databaseHandler.setTermColor("Campus", allCampusRGB);
-        
-        Color allHolidayColor = allHolidayCP.getValue();
-        String allHolidayRGB = getRGB(allHolidayColor);
-        databaseHandler.setTermColor("Holiday", allHolidayRGB);
-        
-        Color allTraTrbColor = traTrbCP.getValue();
-        String allTraTrbRGB = getRGB(allTraTrbColor);
-        databaseHandler.setTermColor("TRA", allTraTrbRGB);
-        databaseHandler.setTermColor("TRB", allTraTrbRGB);
-        
-    }
-    
-    private void initalizeColorPicker(){
-        
-        String fallSemRGB = databaseHandler.getTermColor(databaseHandler.getTermID("FA SEM"));
-        String springSemRGB = databaseHandler.getTermColor(databaseHandler.getTermID("SP SEM"));
-        String summerSemRGB = databaseHandler.getTermColor(databaseHandler.getTermID("SU SEM"));
-        String mbaRGB = databaseHandler.getTermColor(databaseHandler.getTermID("FA I MBA"));
-        String qtrRGB = databaseHandler.getTermColor(databaseHandler.getTermID("FA QTR"));
-        String halfRGB = databaseHandler.getTermColor(databaseHandler.getTermID("FA 1st Half"));
-        String campusRGB = databaseHandler.getTermColor(databaseHandler.getTermID("Campus General"));        
-        String holidayRGB = databaseHandler.getTermColor(databaseHandler.getTermID("Holiday"));
-        String traTrbRGB = databaseHandler.getTermColor(databaseHandler.getTermID("FA TRA"));
-        
-        // Parse for rgb values for fall sem
-        String[] colors = fallSemRGB.split("-");
-        String red = colors[0]; String green = colors[1]; String blue = colors[2];
-        Color c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        fallSemCP.setValue(c);
-        
-        // Parse for rgb values for spring sem
-        colors = summerSemRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        summerSemCP.setValue(c);
-        
-        // Parse for rgb values for summer sem
-        colors = springSemRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        springSemCP.setValue(c);
-        
-        // Parse for rgb values for MBA
-        colors = mbaRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        allMbaCP.setValue(c);
-        
-        // Parse for rgb values for QTR
-        colors = qtrRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        allQtrCP.setValue(c);
-        
-        // Parse for rgb values for Half
-        colors = halfRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        allHalfCP.setValue(c);
-        
-        // Parse for rgb values for Campus
-        colors = campusRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        allCampusCP.setValue(c);
-        
-        // Parse for rgb values for Holiday
-        colors = holidayRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        allHolidayCP.setValue(c);
-        
-        // Parse for rgb values for TRA/TRB
-        colors = traTrbRGB.split("-");
-        red = colors[0]; green = colors[1]; blue = colors[2];
-        c = Color.rgb(Integer.parseInt(red),Integer.parseInt(green) ,Integer.parseInt(blue));
-        traTrbCP.setValue(c);
-        
-    }
+ 
+  
    
     public void initializeCalendarGrid(){
         
@@ -1093,15 +874,12 @@ public class FXMLDocumentController implements Initializable {
         // Set Depths
         JFXDepthManager.setDepth(scrollPane, 1);
 
-        //*** Instantiate DBHandler object *******************
-        databaseHandler = new DBHandler();
-        //****************************************************
+       
 
         //Initialize all Color Pickers. Show saved colors for specific terms
-        initalizeColorPicker();
+      
      
         //If the user is not working on any new or existing calendar, disable the filtering check boxes and rules buttons
-        disableCheckBoxes();
         // I am still working on this function and issue
         //disableButtons();  
         
@@ -1122,15 +900,6 @@ public class FXMLDocumentController implements Initializable {
         listCalendarsEvent();
     }
     
-    @FXML
-    private void manageRules(MouseEvent event) {
-        listRulesEvent();
-    }
-    
-    @FXML
-    private void newRule(MouseEvent event) {
-        newRuleEvent();
-    }
 
     @FXML
     private void pdfBtn(MouseEvent event) {
@@ -1142,18 +911,8 @@ public class FXMLDocumentController implements Initializable {
         exportCalendarExcel();
     }
 
-    @FXML
-    private void updateColors(MouseEvent event) {
-        changeColors();
-        
-        if (Model.getInstance().calendar_name != null)
-            repaintView();
-    }
 
-    @FXML
-    private void manageTermDates(MouseEvent event) {
-        manageTermsEvent();
-    }
+
 
     //******************************************************************************************
     //******************************************************************************************
@@ -1170,23 +929,7 @@ public class FXMLDocumentController implements Initializable {
         
         manageRulesButton.setDisable(false);
     }
-    */
-    
-    public void disableCheckBoxes(){
-        
-        //Disable all check boxes for filtering events
-        fallSemCheckBox.setDisable(true);
-        springSemCheckBox.setDisable(true);
-        summerSemCheckBox.setDisable(true);
-        allQtrCheckBox.setDisable(true);
-        allMbaCheckBox.setDisable(true);
-        allHalfCheckBox.setDisable(true);
-        allCampusCheckBox.setDisable(true);
-        allHolidayCheckBox.setDisable(true);
-        fallSemCheckBox.setDisable(true);
-        allTraTrbCheckBox.setDisable(true);
-        selectAllCheckBox.setDisable(true);
-    }
+*/
     
     public void enableCheckBoxes(){
         
@@ -1241,7 +984,6 @@ public class FXMLDocumentController implements Initializable {
     //******************************************************************************************
     
     //Function filters all events. Make them all show up or disappear from the calendar
-    @FXML
     private void selectAllCheckBoxes(ActionEvent e)
     {
         if (selectAllCheckBox.isSelected())
@@ -1261,7 +1003,6 @@ public class FXMLDocumentController implements Initializable {
     //This function is constantly checking if any of the checkboxes is selected or deselected
     //and therefore, populate the calendar with the events of the terms that are selected
     
-    @FXML
     private void handleCheckBoxAction(ActionEvent e)
     {
         System.out.println("have check boxes been cliked: " + checkBoxesHaveBeenClicked);
@@ -1446,14 +1187,7 @@ public class FXMLDocumentController implements Initializable {
         }
         else
         {
-            System.out.println("Call the appropiate function to populate the month with the filtered events");
-            //Get List of Filtered Events and store all events in an ArrayList variable
-            ArrayList<String> filteredEventsList = databaseHandler.getFilteredEvents(termsToFilter, calName);
-            
-            System.out.println("List of Filtered events is: " + filteredEventsList);
-        
-            //Repaint or reload the events based on the selected terms
-            showFilteredEventsInMonth(filteredEventsList);
+           
         }
         
     
@@ -1594,6 +1328,31 @@ public class FXMLDocumentController implements Initializable {
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
         
+    }
+
+    @FXML
+    private void showCalendarGlobal(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+               loader.setLocation(getClass().getResource("/yeartable/TrackEmployeeFX.fxml"));
+               VBox rootLayout;
+        try {
+            rootLayout = (VBox) loader.load();
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+               stage.initModality(Modality.APPLICATION_MODAL); 
+
+               // Pass main controller reference to view
+               TrackEmployeeController eventController = loader.getController();
+               eventController.setMainController(this);
+               
+               // Show the scene containing the root layout.
+               Scene scene = new Scene(rootLayout);
+               stage.setScene(scene);
+               stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
+    
     }
     
     

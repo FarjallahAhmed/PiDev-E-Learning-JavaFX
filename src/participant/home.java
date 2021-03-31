@@ -6,9 +6,18 @@
 package participant;
 
 import Entities.Participants;
+import Front.ListeFormationsController;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
+<<<<<<< HEAD
 import java.io.File;
+=======
+<<<<<<< HEAD
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+=======
+import home.fxml.PromotionsController;
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
+>>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,13 +33,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+<<<<<<< HEAD
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+=======
+import javafx.scene.layout.VBox;
+>>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -48,18 +62,25 @@ public class home implements Initializable {
     @FXML
     private Button btnUpdate;
     @FXML
-    private Button btnClasses;
-    @FXML
     private Label name;
     @FXML
     private Label type;
     @FXML
+<<<<<<< HEAD
     private ImageView avatar;
     @FXML
     private Circle circle;
     @FXML
     private HBox tst;
+=======
+<<<<<<< HEAD
+    private FontAwesomeIconView btnjeu;
+    private static Stage primaryStageObj;
+=======
+    private Button btnPro;
+>>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
     /**
      * Initializes the controller class.
      */
@@ -126,6 +147,10 @@ public class home implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/Front/ListeFormations.fxml")); 
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
+                 
+                
+        
+       
          
         
     }
@@ -139,11 +164,43 @@ public class home implements Initializable {
     }
 
     @FXML
+<<<<<<< HEAD
     private void chatbot(ActionEvent event) {
         
         Chatbot c = new Chatbot();
         Stage s = new Stage();
         c.start(s);
     }
+=======
+<<<<<<< HEAD
+    private void gotogame(ActionEvent event) throws IOException {
+                   
+               ;
+                    Stage stage =new Stage();
+   Parent root = FXMLLoader.load(getClass().getResource("/Style/MainView.fxml")); 
+    Scene scene = new Scene(root);
+         stage.initStyle(StageStyle.UNDECORATED);
+			stage.setResizable(false);
+			
+        stage.setScene(scene);
+        stage.show();
+    }
+ 
+=======
+    private void showPromotions(ActionEvent event) {
+          PromotionsController p = new PromotionsController();
+            
+            
+                 //Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/formulaireform.fxml")); 
+                 Scene scene;
+        try {
+            scene = new Scene(p.page());
+            pidevfinal.PidevFinal.parentWindow.setScene(scene);
+        } catch (SQLException ex) {
+            Logger.getLogger(formateur.home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
+>>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
     
 }

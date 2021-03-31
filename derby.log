@@ -1,11 +1,28 @@
 ----------------------------------------------------------------
+<<<<<<< HEAD
 Thu Mar 11 11:24:45 WAT 2021:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0178-20d1-340d-0000051df598 
 on database directory C:\Users\Mehdi\Desktop\3éme_année_ESPRIT_2éme_Semestre\PiDev\pidevFinal\calendarDatabase with class loader sun.misc.Launcher$AppClassLoader@55f96302 
 Loaded from file:/C:/Users/Mehdi/Desktop/3%c3%a9me_ann%c3%a9e_ESPRIT_2%c3%a9me_Semestre/PiDev/pidevFinal/dist/run1079659393/lib/derby.jar
+=======
+<<<<<<< HEAD
+Thu Mar 18 05:58:50 WEST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0178-43b3-56f4-00000683af08 
+on database directory C:\Users\AMINE N\Desktop\ProjetIntegra\pidev-e-learning\calendarDatabase with class loader sun.misc.Launcher$AppClassLoader@55f96302 
+Loaded from file:/C:/Users/AMINE%20N/Desktop/ProjetIntegra/pidev-e-learning/dist/run1743448923/lib/derby.jar
+>>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_261-b12
-user.dir=C:\Users\Mehdi\Desktop\3éme_année_ESPRIT_2éme_Semestre\PiDev\pidevFinal
+user.dir=C:\Users\AMINE N\Desktop\ProjetIntegra\pidev-e-learning
+=======
+Thu Mar 25 17:12:22 WAT 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0178-6a28-81e6-0000058d9b88 
+on database directory C:\Users\dell\Desktop\PIDevFinal\pidev-e-learning\calendarDatabase with class loader sun.misc.Launcher$AppClassLoader@55f96302 
+Loaded from file:/C:/Users/dell/Desktop/PIDevFinal/pidev-e-learning/dist/run1414399506/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_261-b12
+user.dir=C:\Users\dell\Desktop\PIDevFinal\pidev-e-learning
+>>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0

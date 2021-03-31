@@ -94,21 +94,10 @@ public class ServiceCommande implements IServiceCommande{
          try {
             Statement stm=cnx.createStatement();
        
-        String query=" Delete FROM commande where id_formation='"+id+"'";
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-alert.setTitle("Confirmation Dialog");
-alert.setHeaderText("Confirmation ");
-alert.setContentText("Etes vous sur de vouloir supprimer cette commande?");
-
-Optional<ButtonType> result = alert.showAndWait();
-if (result.get() == ButtonType.OK){
+        String query=" Delete FROM commande where id='"+id+"'";
+        
     stm.executeUpdate(query);
-    Alert alert2 = new Alert(AlertType.INFORMATION);
-            alert2.setTitle("Suppression");
-            alert2.setHeaderText("commande Supprimé");
-            alert2.setContentText("La commande a été supprimer avec success!");
-            alert2.showAndWait();
-}
+   
 
          } catch (SQLException ex) {
             Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
@@ -149,7 +138,7 @@ alert.showAndWait();
         ObservableList<comformation> formationstab=FXCollections.observableArrayList();
     try {
         Statement stm=cnx.createStatement();
-        String Query="SELECT u.Objet, u.Type, u.Objectif, p.etat,p.prix,p.id_formation,p.id_client " +
+        String Query="SELECT u.Objet, u.Type, u.Objectif, p.etat,p.prix,p.id_formation,p.id_client,p.id " +
 "  FROM formation u " +
 "  INNER JOIN commande p ON u.Id = p.id_formation where p.id_client="+id_client+" AND p.etat='"+etat+"'";
 
@@ -167,7 +156,7 @@ alert.showAndWait();
             
            // form=new formeval(rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getInt("nb_participants"),rs.getFloat("cout_hj"),rs.getInt("nb_jour"),rs.getFloat("cout_fin"),rs.getInt("Note"),rs.getString("Rapport"));
             //form.setObjet(rs.getString("Objet"));
-            form= new comformation(rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getFloat("prix"),rs.getString("etat"),rs.getInt("id_formation"));
+            form= new comformation(rs.getString("Objet"),rs.getString("Type"),rs.getString("Objectif"),rs.getFloat("prix"),rs.getString("etat"),rs.getInt("id_formation"),rs.getInt("id"));
             formationstab.add(form); //public formeval(String Objet, String Type, String Objectif, int nb_participants, float cout_hj, int nb_jour, float cout_fin, int note, String rapport)
         }
         
@@ -180,13 +169,13 @@ alert.showAndWait();
     }
     public ObservableList<comformation> search(String input,int id_client){
          ObservableList<comformation>comformations = FXCollections.observableArrayList();
-        
+        String etat="non valider";
         try {
              Statement stm;
             stm= cnx.createStatement();
             String query="SELECT u.Objet, u.Type, u.Objectif, p.etat,p.prix,p.id_formation,p.id_client " +
 "  FROM formation u " +
-"  INNER JOIN commande p ON u.Id = p.id_formation where u.objet like '%"+input+"%' and p.id_client="+id_client;
+"  INNER JOIN commande p ON u.Id = p.id_formation where u.objet like '%"+input+"%' AND p.etat='"+etat+"' and p.id_client="+id_client;
            ResultSet rs=stm.executeQuery(query); 
            comformation form;
            while(rs.next())
@@ -209,11 +198,13 @@ alert.showAndWait();
      }
      public ObservableList<comformation> triasc(int id_client){
          ObservableList<comformation> formationstab=FXCollections.observableArrayList();
+         String etat="non valider";
         try {
+            
             Statement stm=cnx.createStatement();
             String query="SELECT u.Objet, u.Type, u.Objectif, p.etat,p.prix,p.id_formation,p.id_client " +
 "  FROM formation u " +
-"  INNER JOIN commande p ON u.Id = p.id_formation where id_client='"+id_client+"' ORDER by u.objet ASC";
+"  INNER JOIN commande p ON u.Id = p.id_formation where id_client='"+id_client+"'AND p.etat='"+etat+"' ORDER by u.objet ASC";
             ResultSet rs=stm.executeQuery(query); 
            comformation form;
            while(rs.next())
@@ -234,12 +225,13 @@ alert.showAndWait();
        return formationstab;  
      } 
        public ObservableList<comformation> tridsc(int id_client){
+           String etat="non valider";
          ObservableList<comformation> formationstab=FXCollections.observableArrayList();
         try {
             Statement stm=cnx.createStatement();
             String query="SELECT u.Objet, u.Type, u.Objectif, p.etat,p.prix,p.id_formation,p.id_client " +
 "  FROM formation u " +
-"  INNER JOIN commande p ON u.Id = p.id_formation where id_client='"+id_client+"' ORDER by u.objet DESC";
+"  INNER JOIN commande p ON u.Id = p.id_formation where id_client='"+id_client+"' AND p.etat='"+etat+"'  ORDER by u.objet DESC";
             ResultSet rs=stm.executeQuery(query); 
            comformation form;
            while(rs.next())
@@ -298,7 +290,25 @@ alert.showAndWait();
     }
        }
        
+          public void ViderCommande(int id_client) {
+        try {
+
+        PreparedStatement ps;
+        String etat="non valider";
+        ps=cnx.prepareStatement("DELETE from  commande where id_client="+id_client+" AND etat='"+etat+"'");
        
+      
+        
+        ps.executeUpdate();
+      
+
+
+    } catch (SQLException ex) {
+        Logger.getLogger(ServiceCommande.class.getName()).log(Level.SEVERE, null, ex);
+      
+    }
+        
+    }
     
     
 }

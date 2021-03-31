@@ -1,0 +1,31 @@
+#round1{
+
+    -fx-background-color: linear-gradient(#ff5400,#be1d00);
+    -fx-background-radius: 50;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+
+}
+
+#roundtwo{
+
+    -fx-background-color: linear-gradient(#ff5400,#be1d00);
+    -fx-background-radius: 50;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+
+}
+
+#anPane
+{
+	 -fx-background-image: url("backgr.jpg");
+	 -fx-background-size: cover;
+    
+}
+#bg
+{
+     -fx-background-image: url("quizbg.jpg");
+	 -fx-background-size: cover;
+}
+
+

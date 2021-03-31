@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.sql.Date;
+
 /**
  *
  * @author rania
@@ -14,6 +16,7 @@ public class reclamation {
    private Utilisateurs user;
    private String objet;
    private Message message;
+   private Date date;
 
     public reclamation() {
     }
@@ -61,6 +64,24 @@ public class reclamation {
     public String toString() {
         return "reclamation{" + "id_reclamation=" + id_reclamation + ", user=" + user + ", objet=" + objet + ", message=" + message + '}';
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public reclamation(int id_reclamation, Utilisateurs user, String objet, Message message, Date date) {
+        this.id_reclamation = id_reclamation;
+        this.user = user;
+        this.objet = objet;
+        this.message = message;
+        this.date = date;
+    }
+
+    
    
    
    

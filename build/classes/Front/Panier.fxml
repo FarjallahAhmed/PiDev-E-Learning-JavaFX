@@ -8,20 +8,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="670.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Front.PanierController">
    <children>
-      <Pane layoutX="20.0" layoutY="20.0" prefHeight="86.0" prefWidth="1160.0" style="-fx-background-color: #2D75E8;">
-         <children>
-            <Label layoutX="58.0" layoutY="14.0" prefHeight="70.0" prefWidth="437.0" text="Mes Commandes" textFill="WHITE">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <TableView fx:id="tabcommande" layoutX="57.0" layoutY="187.0" onMouseClicked="#presupp" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../home/css/fullpackstyling.css">
+      <VBox fx:id="boxaff" layoutX="-1.0" layoutY="-1.0" prefHeight="555.0" prefWidth="1180.0" />
+      <TableView fx:id="tabcommande" layoutX="57.0" layoutY="187.0" onMouseClicked="#presupp" prefHeight="349.0" prefWidth="1066.0" stylesheets="@../home/css/fullpackstyling.css" visible="false">
          <columns>
             <TableColumn fx:id="coetat" prefWidth="75.0" text="Etat" />
             <TableColumn fx:id="coidform" prefWidth="75.0" text="id_formation" />
@@ -34,11 +27,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="962.0" layoutY="557.0" text="Prix total:" />
-      <TextField fx:id="txtprix" layoutX="1047.0" layoutY="552.0" prefHeight="25.0" prefWidth="60.0" />
-      <Label layoutX="967.0" layoutY="598.0" text="Articles:" />
-      <TextField fx:id="txtnbarticles" layoutX="1047.0" layoutY="593.0" prefHeight="25.0" prefWidth="60.0" />
-      <Button fx:id="btnsupp" layoutX="124.0" layoutY="570.0" mnemonicParsing="false" onAction="#Supprimer_btn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Delete" textFill="#fcf2f2" />
+      <Label layoutX="962.0" layoutY="557.0" text="Prix total:" visible="false" />
+      <TextField fx:id="txtprix" layoutX="1047.0" layoutY="552.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+      <Label layoutX="967.0" layoutY="598.0" text="Articles:" visible="false" />
+      <TextField fx:id="txtnbarticles" layoutX="1047.0" layoutY="593.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+      <Button fx:id="btnsupp" layoutX="124.0" layoutY="570.0" mnemonicParsing="false" onAction="#Supprimer_btn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Delete" textFill="#fcf2f2" visible="false" />
       <TextField fx:id="suppanier" layoutX="440.0" layoutY="536.0" visible="false" />
       <TextField fx:id="tfsearch" layoutX="874.0" layoutY="135.0" onKeyReleased="#SearchKey" promptText="Recherche" />
       <Button layoutX="56.0" layoutY="132.0" mnemonicParsing="false" onMouseClicked="#tribtn" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #0598FF;" text="Trier" textFill="#fcf2f2" />
@@ -48,5 +41,49 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
+      <Button fx:id="btnvider" layoutX="347.0" layoutY="570.0" mnemonicParsing="false" onAction="#viderpanier" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="vider panier" textFill="#fcf2f2" />
+      <Button fx:id="btndelete" layoutX="112.0" layoutY="570.0" mnemonicParsing="false" onAction="#delete" prefHeight="38.0" prefWidth="137.0" style="-fx-background-color: #FA8072;" text="Delete" textFill="#fcf2f2" />
+      <Pane prefHeight="121.0" prefWidth="1180.0" style="-fx-background-color: #2D75E8;">
+         <children>
+            <Label layoutX="73.0" layoutY="30.0" text="Mes commandes" textFill="WHITE">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+            <Pane layoutX="738.0" layoutY="18.0" prefHeight="103.0" prefWidth="200.0" style="-fx-background-color: #3A84C3; -fx-background-radius: 1em;">
+               <children>
+                  <Label alignment="CENTER" layoutX="79.0" layoutY="67.0" text="Articles" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nbarticleeeee" alignment="CENTER" layoutX="95.0" layoutY="14.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="966.0" layoutY="18.0" prefHeight="103.0" prefWidth="200.0" style="-fx-background-color: #5CB55B; -fx-background-radius: 1em;">
+               <children>
+                  <Label layoutX="76.0" layoutY="67.0" text="Prix Total" textFill="WHITE">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalprixx" layoutX="76.0" layoutY="14.0" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton layoutX="2.0" layoutY="3.0" onAction="#backToDashboard" prefHeight="31.0" prefWidth="98.0" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

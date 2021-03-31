@@ -181,7 +181,7 @@ if (result.get() == ButtonType.OK){
     
 
     @Override
-    public ObservableList<reclamation> Afficher_reclamation() {
+        public ObservableList<reclamation> Afficher_reclamation() {
       ObservableList<reclamation>reclamations=FXCollections.observableArrayList();
  
         try {

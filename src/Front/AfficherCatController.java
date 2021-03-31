@@ -12,6 +12,7 @@ import Entities.reclamation;
 import Service.Servicecategorie;
 import Service.Servicereclamation;
 import UserSession.UserSession;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -22,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -151,7 +153,7 @@ public class AfficherCatController implements Initializable {
             Pane footer = new Pane();
 //            JFXButton buy = new JFXButton("BUY");
 //            JFXButton download = new JFXButton("Evaluer");
-//            JFXButton download2 = new JFXButton("Download");
+              JFXButton supprimer = new JFXButton("supprimer");
 //            Rating rating = new Rating(5);
               JFXCheckBox check =new JFXCheckBox();
 
@@ -166,7 +168,7 @@ public class AfficherCatController implements Initializable {
             GlyphsDude.setIcon(l3, FontAwesomeIcon.CALENDAR_ALT);
 //            buy.setStyle(styleButton);
 //            download.setStyle(styleButton);
-//            download2.setStyle(styleButton);
+              supprimer.setStyle(styleButton);
               check.setStyle(
     "-fx-border-color: lightblue; "
     + "-fx-font-size: 20;"
@@ -190,7 +192,14 @@ public class AfficherCatController implements Initializable {
             card.setPrefSize(504, 250);
             card.setLayoutX(30+xcard);
             card.setLayoutY(40);        
-       
+            supprimer.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+Servicecategorie sv= new Servicecategorie();
+                sv.supprimer_categorie(j.getId_categorie());
+                 
+                }
+            });
                
                 try {
                  //InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(j.getPrix())+".png");
@@ -226,7 +235,14 @@ public class AfficherCatController implements Initializable {
          
          //   l6.setText(" "+b.getPrix()+" ");
                     //rootf.getChildren().addAll(l6,l7);
-                
+                            supprimer.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+Servicecategorie sv= new Servicecategorie();
+                sv.supprimer_categorie(b.getId_categorie());
+                 
+                }
+            });
                 try {
                  //InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(b.getPrix())+".png");
                  //Image image = new Image(stream);
@@ -247,7 +263,7 @@ public class AfficherCatController implements Initializable {
 
 //            test.getChildren().addAll(rating,buy,download,download2);
                
-             // test.getChildren().addAll(check);
+              test.getChildren().addAll(supprimer);
            
             footer.getChildren().add(test);
             test.setLayoutY(7);
@@ -358,7 +374,7 @@ public class AfficherCatController implements Initializable {
             Pane footer = new Pane();
 //            JFXButton buy = new JFXButton("BUY");
 //            JFXButton download = new JFXButton("Evaluer");
-//            JFXButton download2 = new JFXButton("Download");
+              JFXButton supprimer = new JFXButton("supprimer");
 //            Rating rating = new Rating(5);
               JFXCheckBox check =new JFXCheckBox();
 
@@ -375,7 +391,7 @@ public class AfficherCatController implements Initializable {
            
 //            buy.setStyle(styleButton);
 //            download.setStyle(styleButton);
-//            download2.setStyle(styleButton);
+              supprimer.setStyle(styleButton);
  check.setStyle(
     "-fx-border-color: lightblue; "
     + "-fx-font-size: 20;"
@@ -399,7 +415,14 @@ public class AfficherCatController implements Initializable {
             card.setPrefSize(504, 250);
             card.setLayoutX(30+xcard);
             card.setLayoutY(40);        
-       
+                   supprimer.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+Servicecategorie sv= new Servicecategorie();
+                sv.supprimer_categorie(j.getId_categorie());
+                 
+                }
+            });
                
                 try {
                  //InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(j.getPrix())+".png");
@@ -420,7 +443,7 @@ public class AfficherCatController implements Initializable {
            
 
 //            test.getChildren().addAll(rating,buy,download,download2);
-             // test.getChildren().addAll(check);
+              test.getChildren().addAll(supprimer);
            
             footer.getChildren().add(test);
             test.setLayoutY(7);

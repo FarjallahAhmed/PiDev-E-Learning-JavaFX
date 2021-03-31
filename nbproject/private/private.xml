@@ -5,20 +5,26 @@
         <group>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Front/StatRec.fxml</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/academiccalendar/ui/addrule/RuleLoader.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/archiveRec.fxml</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/UserSession/UserSession.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/formateur/home.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Service/ServiceFormateur.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/Utilisateurs.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Service/ServiceParticipant.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/nbproject/build-impl.xml</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/ArchiveRecController.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/pidevfinal/FXMLDocumentController.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Front/afficherRec.fxml</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Service/Servicereclamation.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/Message.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/Commande.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Utils/Connexion.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Utils/validate_code_source.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Front/EvaluerController.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/home/Home.fxml</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/home/home.java</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/afficherCat.fxml</file>
+            <file>file:/C:/projetGit3/pidev-e-learning/src/Front/AfficherCatController.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Entities/reclamation.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/Service/Servicecategorie.java</file>
             <file>file:/C:/projetGit3/pidev-e-learning/src/pidevfinal/PidevFinal.java</file>

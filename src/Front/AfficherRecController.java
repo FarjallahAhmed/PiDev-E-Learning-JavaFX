@@ -10,6 +10,7 @@ import Entities.Utilisateurs;
 import Entities.reclamation;
 import Service.Servicereclamation;
 import UserSession.UserSession;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -151,7 +153,7 @@ public class AfficherRecController implements Initializable {
             Pane footer = new Pane();
 //            JFXButton buy = new JFXButton("BUY");
 //            JFXButton download = new JFXButton("Evaluer");
-//            JFXButton download2 = new JFXButton("Download");
+         JFXButton supprimer = new JFXButton("Supprimer");
 //            Rating rating = new Rating(5);
               JFXCheckBox check =new JFXCheckBox();
 
@@ -164,9 +166,10 @@ public class AfficherRecController implements Initializable {
             l5.setStyle(styleLabel);
             GlyphsDude.setIcon(l4, FontAwesomeIcon.CALENDAR_ALT);
             GlyphsDude.setIcon(l3, FontAwesomeIcon.CALENDAR_ALT);
+            GlyphsDude.setIcon(supprimer,FontAwesomeIcon.TRASH);
 //            buy.setStyle(styleButton);
 //            download.setStyle(styleButton);
-//            download2.setStyle(styleButton);
+             supprimer.setStyle(styleButton);
               check.setStyle(
     "-fx-border-color: lightblue; "
     + "-fx-font-size: 20;"
@@ -190,7 +193,15 @@ public class AfficherRecController implements Initializable {
             card.setPrefSize(504, 250);
             card.setLayoutX(30+xcard);
             card.setLayoutY(40);        
-       
+             supprimer.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                 Servicereclamation sv= new Servicereclamation();
+                 sv.archiveRec(j.getId_reclamation());
+                 sv.supprimer_reclamation(j.getId_reclamation());
+                 
+                }
+            });
                
                 try {
                  //InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(j.getPrix())+".png");
@@ -228,7 +239,15 @@ public class AfficherRecController implements Initializable {
          
          //   l6.setText(" "+b.getPrix()+" ");
                     //rootf.getChildren().addAll(l6,l7);
-                
+                supprimer.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                 Servicereclamation sv= new Servicereclamation();
+                 sv.archiveRec(b.getId_reclamation());
+                 sv.supprimer_reclamation(b.getId_reclamation());
+                 
+                }
+            });
                 try {
                  //InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(b.getPrix())+".png");
                  //Image image = new Image(stream);
@@ -248,8 +267,9 @@ public class AfficherRecController implements Initializable {
            
 
 //            test.getChildren().addAll(rating,buy,download,download2);
-               
-             // test.getChildren().addAll(check);
+               if (UserSession.getInstace("", 0, "").getType().equals("Admin"))
+                       supprimer.setVisible(false);
+              test.getChildren().addAll(supprimer);
            
             footer.getChildren().add(test);
             test.setLayoutY(7);
@@ -282,7 +302,7 @@ public class AfficherRecController implements Initializable {
     }
 
     public static AnchorPane createPromotion2(reclamation j) {
-       
+          
        
         AnchorPane card2 = new AnchorPane();
        
@@ -360,7 +380,7 @@ public class AfficherRecController implements Initializable {
             Pane footer = new Pane();
 //            JFXButton buy = new JFXButton("BUY");
 //            JFXButton download = new JFXButton("Evaluer");
-//            JFXButton download2 = new JFXButton("Download");
+             JFXButton supprimer = new JFXButton("Supprimer");
 //            Rating rating = new Rating(5);
               JFXCheckBox check =new JFXCheckBox();
 
@@ -374,10 +394,11 @@ public class AfficherRecController implements Initializable {
          
             GlyphsDude.setIcon(l4, FontAwesomeIcon.CALENDAR_ALT);
             GlyphsDude.setIcon(l3, FontAwesomeIcon.CALENDAR_ALT);
+            GlyphsDude.setIcon(supprimer,FontAwesomeIcon.TRASH);
            
 //            buy.setStyle(styleButton);
 //            download.setStyle(styleButton);
-//            download2.setStyle(styleButton);
+            supprimer.setStyle(styleButton);
  check.setStyle(
     "-fx-border-color: lightblue; "
     + "-fx-font-size: 20;"
@@ -401,7 +422,14 @@ public class AfficherRecController implements Initializable {
             card.setPrefSize(504, 250);
             card.setLayoutX(30+xcard);
             card.setLayoutY(40);        
-       
+       supprimer.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                 Servicereclamation sv= new Servicereclamation();
+                 sv.archiveRec(j.getId_reclamation());
+                 sv.supprimer_reclamation(j.getId_reclamation());
+                }
+            });
                
                 try {
                  //InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(j.getPrix())+".png");
@@ -422,8 +450,10 @@ public class AfficherRecController implements Initializable {
 
            
 
-//            test.getChildren().addAll(rating,buy,download,download2);
-             // test.getChildren().addAll(check);
+//            test.getChildren().addAll(rating,buy,download,download2); 
+            if (UserSession.getInstace("", 0, "").getType().equals("Admin"))
+             supprimer.setVisible(false);
+             test.getChildren().addAll(supprimer);
            
             footer.getChildren().add(test);
             test.setLayoutY(7);

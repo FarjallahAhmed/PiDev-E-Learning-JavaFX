@@ -97,7 +97,7 @@ public class FinalisercommandeController implements Initializable {
      */
     @Override
    public void initialize(URL url, ResourceBundle rb) {
-       coboxpayment.getItems().add("Carte Bancaire");
+       //coboxpayment.getItems().add("Carte Bancaire");
        coboxpayment.getItems().add("Visa");
      //  txtnbarticles.setText(String.valueOf(tabcommande.getItems().size()));
        Afficher_Commandes();

@@ -106,7 +106,7 @@ public class threadMail extends Thread {
             +" So your are welcome to join us.  "+"</br> you find below a qr code for your participation ";
             
             messageBodyPart1.setContent(messageSend,"text/html");  
-            String filename = "C:\\Users\\dell\\Desktop\\Game\\"+t.getNomEvent()+".png";  
+            String filename = "C:\\Users\\Mehdi\\Desktop\\rania\\pidev-e-learning\\"+t.getNomEvent()+".png";  
             DataSource source = new FileDataSource(filename);    
             messageBodyPart2.setDataHandler(new DataHandler(source)); 
             messageBodyPart2.setFileName(filename); 

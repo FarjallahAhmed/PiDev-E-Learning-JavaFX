@@ -81,6 +81,8 @@ public class SignUpController implements Initializable {
     @FXML
     private Label path;
     
+    public static String emailGlobal = null;
+    
     
     public static String pathAbsolute = null;
     
@@ -163,7 +165,7 @@ public class SignUpController implements Initializable {
                         p.setCertificatsObtenus(0);
                         p.setInterssePar(interesse.getText());
                         p.setNombreDeFormation(0);
-                        
+                        emailGlobal = email.getText();
                         Parent root = FXMLLoader.load(getClass().getResource("/login/confirmationCode.fxml"));
                         Scene scene = new Scene(root);
                         Stage code = new Stage();

@@ -143,7 +143,7 @@ public class FormulaireformController implements Initializable {
         for(categorie c:list)
         categoriebox.getItems().add(c.getNom());
         categoriebox.getItems().add("autres");
-        categoriebox.valueProperty().addListener((e) -> {
+        categoriebox.valueProperty().addListener((e) -> { 
             if(categoriebox.getValue().equals("autres"))
                 {
                   txtcategorie.setVisible(true);
@@ -341,8 +341,8 @@ public class FormulaireformController implements Initializable {
     {
         String server = "127.0.0.1";
         int port = 21;
-        String user = "amine";
-        String pass = "admin";
+        String user = "mehdi";
+        String pass = "123456789";
  
         FTPClient ftpClient = new FTPClient();
         try {

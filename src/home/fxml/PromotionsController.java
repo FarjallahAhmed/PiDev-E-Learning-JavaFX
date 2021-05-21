@@ -186,7 +186,7 @@ public class PromotionsController implements Initializable {
        
                 
                 try {
-                 InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(j.getPrix())+".png");
+                 InputStream stream = new FileInputStream("C:\\Users\\Mehdi\\Desktop\\pourcentage\\"+Math.round(j.getPrix())+".png");
                  Image image = new Image(stream);
                  pour.setImage(image);
             } catch (FileNotFoundException ex) {
@@ -223,7 +223,7 @@ public class PromotionsController implements Initializable {
                     //rootf.getChildren().addAll(l6,l7);
                
                 try {
-                 InputStream stream = new FileInputStream("C:\\Users\\dell\\Desktop\\Game\\pourcentage\\"+Math.round(b.getPrix())+".png");
+                 InputStream stream = new FileInputStream("C:\\Users\\Mehdi\\Desktop\\pourcentage\\"+Math.round(b.getPrix())+".png");
                  Image image = new Image(stream);
                  pour.setImage(image);
             } catch (FileNotFoundException ex) {
@@ -314,6 +314,9 @@ public class PromotionsController implements Initializable {
         
         System.out.println("list: "+list);
         list = pService.readAllPromotion();
+        pagination.setPageCount(list.size());
+                        pagination.setCurrentPageIndex(0);
+                        pagination.setMaxPageIndicatorCount(3);
         filtrePourc.setOnAction(event);
         pagination.setPageFactory((pageIndex) -> {
 

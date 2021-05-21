@@ -10,11 +10,9 @@ import Entities.Participants;
 import Service.ServiceFormateur;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
-<<<<<<< HEAD
 import java.io.File;
-=======
+
 import home.fxml.PromotionsController;
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -52,11 +50,8 @@ public class home implements Initializable {
     @FXML
     private Button btnClasses;
     @FXML
-<<<<<<< HEAD
     private Circle circle;
-=======
     private Button btnPromo;
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 
     /**
      * Initializes the controller class.
@@ -141,7 +136,7 @@ public class home implements Initializable {
     private void showGestionProjet(ActionEvent event) throws IOException {
         
         
-                 Parent root = FXMLLoader.load(getClass().getResource("/projet/formulaireform.fxml")); 
+                 Parent root = FXMLLoader.load(getClass().getResource("/projet/Home.fxml")); 
                  Scene scene = new Scene(root);
                  pidevfinal.PidevFinal.parentWindow.setScene(scene);
         

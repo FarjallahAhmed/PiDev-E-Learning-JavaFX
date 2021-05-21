@@ -144,7 +144,7 @@ public class SigInController implements Initializable {
         
             else if (cbType.getValue()=="Admin")
             {
-                    if ((email.getText().equals("Admin"))&&(password.getText().equals("Admin")))
+                    if ((email.getText().equals("admin@admin.tn"))&&(password.getText().equals("12345678")))
                     {
                         UserSession.getInstace("Admin",0,"Admin");
                         System.out.println("Admin");

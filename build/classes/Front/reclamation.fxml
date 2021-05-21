@@ -33,17 +33,14 @@
                         <Button fx:id="trj" layoutX="330.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#triiiiiii" style="-fx-background-color: #0598ff;" text="Order by Objet" textFill="WHITE" visible="false" />
                         <TableView fx:id="table" layoutX="317.0" layoutY="278.0" onMouseClicked="#selectionner" prefHeight="301.0" prefWidth="508.0" visible="false">
                            <columns>
-<<<<<<< HEAD
                               <TableColumn fx:id="idut" prefWidth="75.0"  text="User" />
                               <TableColumn fx:id="obt" prefWidth="75.0"  text="Objet" />
                               <TableColumn fx:id="msgt" prefWidth="75.0" text="message" />
                               <TableColumn fx:id="idrect" prefWidth="75.0" text="id_reclamation" />
-=======
                               <TableColumn fx:id="idut" prefWidth="157.60003662109375" style="-fx-background-color: #0598ff;" text="User" />
                               <TableColumn fx:id="obt" prefWidth="157.5999755859375" style="-fx-background-color: #0598ff;" text="Objet" />
                               <TableColumn fx:id="msgt" prefWidth="194.39996337890625" style="-fx-background-color: #0598ff;" text="message" />
                               <TableColumn fx:id="idrect" minWidth="0.0" prefWidth="0.0" style="-fx-background-color: #0598ff;" text="id_reclamation" />
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
                            </columns>
                            <columnResizePolicy>
                              

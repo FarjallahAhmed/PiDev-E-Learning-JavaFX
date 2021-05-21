@@ -34,7 +34,7 @@
                </rowConstraints>
                <children>
                   <ComboBox fx:id="yearCombo" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <Label text="Choose Year" />
+                  <Label text="Choose Type" />
                </children>
             </GridPane>
          </children>

@@ -83,16 +83,15 @@
                   <FontAwesomeIconView fill="#2d75e8" glyphName="MONEY" size="50" />
                </graphic>
             </Button>
-<<<<<<< HEAD
             <Button fx:id="btnSettings" contentDisplay="TOP" mnemonicParsing="false" onAction="#chatbot" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="ChatBot" GridPane.columnIndex="2" GridPane.rowIndex="1">
-=======
+                        </Button>
+
             <Button fx:id="btnSettings" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotogame" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="Espace Enfant" GridPane.columnIndex="2" GridPane.rowIndex="1">
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
                <graphic>
                   <FontAwesomeIconView fx:id="btnjeu" fill="#2d75e8" glyphName="GAMEPAD" size="50" text="" />
                </graphic>
             </Button>
-            <Button fx:id="btnUpdate" contentDisplay="TOP" mnemonicParsing="false" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="btnUpdate" contentDisplay="TOP" mnemonicParsing="false" onAction="#gotToChatBot" prefHeight="181.0" prefWidth="242.0" stylesheets="@../css/fullpackstyling.css" text="ChatBot" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <FontAwesomeIconView fill="#2d75e8" glyphName="EXCHANGE" size="50" />
                </graphic>

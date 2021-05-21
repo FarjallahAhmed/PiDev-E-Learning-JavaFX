@@ -6,22 +6,18 @@
 package projet;
 
 import Entities.Activite;
-import Utils.Mask;
+import UserSession.UserSession;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import org.controlsfx.control.Notifications;
 
 /**
  *
  * @author NMEDIA
  */
-public class activiteController implements Initializable{
+public class activiteController {
 
     @FXML
     private TextField nom;
@@ -33,16 +29,9 @@ public class activiteController implements Initializable{
     private TextField resp;
     @FXML
     private TextField periode;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-       Mask.noSymbolsAndNumbers(resp);
-       Mask.noLetters(periode);
-       Mask.noSymbolsAndNumbers(nom);
-       
-        
-       
-    }
+    
+    
+  
 
     @FXML
     private void onajouterActivite(ActionEvent event) {
@@ -56,11 +45,6 @@ public class activiteController implements Initializable{
         a=a1;
         
         System.out.println(a+"activiter static");
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        
-         Notifications n =Notifications.create().title("SUCCESS").text("Activite Ajoutée!").position(Pos.TOP_CENTER).hideAfter(javafx.util.Duration.seconds(2));
-                                  n.darkStyle();
-                                  n.show();
         
         
         

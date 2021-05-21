@@ -135,7 +135,9 @@ public class ReclamationController implements Initializable {
             tfmessage.visibleProperty().set(false);
             btnAjouter.visibleProperty().set(false);
             btnSupprimer.visibleProperty().set(false);
+            
         }
+        btnSupprimer.setVisible(false);
     }    
     
     public void closeCategorie() {

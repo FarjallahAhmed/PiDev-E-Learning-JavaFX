@@ -351,7 +351,7 @@ public class implWorkshopService implements workshopService<Workshop>{
         String data =  w.getNomEvent();
  
         // The path where the image will get saved
-        String path = "C:\\Users\\dell\\Desktop\\Game\\"+data+".png";
+        String path = "C:\\Users\\Mehdi\\Desktop\\rania\\pidev-e-learning\\"+data+".png";
  
         // Encoding charset
         String charset = "UTF-8";

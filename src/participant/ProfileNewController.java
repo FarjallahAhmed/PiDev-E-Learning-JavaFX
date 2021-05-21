@@ -117,7 +117,7 @@ public class ProfileNewController implements Initializable {
           File f = new File("C:\\Users\\Mehdi\\Desktop\\uploadProjet\\"+p.getImage());
            Image imProfile = new Image(f.toURI().toString());
            
-      //     System.out.println();
+           System.out.println("zzzzzzzzzzzzz"+imProfile);
           avatar.setImage(imProfile);
       }
       
@@ -161,6 +161,7 @@ public class ProfileNewController implements Initializable {
         p.setNiveauEtude(cbNiveau.getValue());
         
         sp.ModifierUtilisateur(p);
+        
     }
 
     @FXML
@@ -172,7 +173,7 @@ public class ProfileNewController implements Initializable {
     }
 
     @FXML
-    private void upload(ActionEvent event) throws SQLException {
+    private void upload(ActionEvent event) throws SQLException, InterruptedException {
         
           FileChooser fil_chooser = new FileChooser();
         
@@ -184,15 +185,18 @@ public class ProfileNewController implements Initializable {
                     
                     sp.setImageUser(image.getText(),UserSession.getInstace("",0,"").getId());
                     imageAbsolute = file.getAbsolutePath();
-                    
                     sp.uploadtp(image.getText(),imageAbsolute);
 
-                    System.out.println(image.getText());
-                    
-                       File f = new File("C:\\Users\\Mehdi\\Desktop\\uploadProjet\\"+p.getImage());
+                 //   System.out.println(image.getText());
+                  
+                       File f = new File("C:\\Users\\Mehdi\\Desktop\\uploadProjet\\"+image.getText());
                       Image imProfile = new Image(f.toURI().toString());
            
-      //     System.out.println();
+                      
+                  //    Image imProfile5 = new Image(getClass().getResourceAsStream("/media/avatar.png"));
+                      System.out.println("xxxxxx"+imProfile);
+                   // avatar.setImage(null);
+                 //  Thread.sleep(1000);
                      avatar.setImage(imProfile);
                                          
                 } 

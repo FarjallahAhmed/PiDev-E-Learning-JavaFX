@@ -219,6 +219,37 @@ public class Chatbot extends Application {
                                       primaryStage.close();
                                         
                         }
+                         
+                         
+                         else if (utext.equals("Enter Formation")||utext.equals("enter formation"))
+                        {
+                                        try {
+                                            root = FXMLLoader.load(getClass().getResource("/Front/ListeFormations.fxml")); 
+                                
+                             } catch (IOException ex) {
+                                 Logger.getLogger(Chatbot.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+                                        Scene scene = new Scene(root);
+                                        pidevfinal.PidevFinal.parentWindow.setScene(scene);
+                                    //      ((Node)(event.getSource())).getScene().getWindow().hide();
+                                      primaryStage.close();
+                                        
+                        }
+                         
+                          else if (utext.equals("Enter Panier")||utext.equals("enter panier"))
+                        {
+                                        try {
+                                             root = FXMLLoader.load(getClass().getResource("/Front/Panier.fxml")); 
+                                
+                             } catch (IOException ex) {
+                                 Logger.getLogger(Chatbot.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+                                        Scene scene = new Scene(root);
+                                        pidevfinal.PidevFinal.parentWindow.setScene(scene);
+                                    //      ((Node)(event.getSource())).getScene().getWindow().hide();
+                                      primaryStage.close();
+                                        
+                        }
                         
                         else if(utext.contains("profile"))
                        {

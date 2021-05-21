@@ -383,8 +383,8 @@ FileChooser fileChooser=new FileChooser();
     {
          String server = "127.0.0.1";
         int port = 21;
-        String user = "amine";
-        String pass = "admin";
+        String user = "mehdi";
+        String pass = "123456789";
  
         FTPClient ftpClient = new FTPClient();
         try {
@@ -396,7 +396,7 @@ FileChooser fileChooser=new FileChooser();
  
             // APPROACH #1: using retrieveFile(String, OutputStream)
             String remoteFile1 = "/"+path;
-            File downloadFile1 = new File("C:\\Users\\AMINE N\\Downloads\\"+path);
+            File downloadFile1 = new File("C:\\Users\\mehdi\\Downloads\\"+path);
             OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
             boolean success = ftpClient.retrieveFile(remoteFile1, outputStream1);
             outputStream1.close();

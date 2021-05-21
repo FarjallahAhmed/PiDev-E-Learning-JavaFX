@@ -9,15 +9,11 @@ import Entities.Participants;
 import Front.ListeFormationsController;
 import Service.ServiceParticipant;
 import UserSession.UserSession;
-<<<<<<< HEAD
 import java.io.File;
-=======
-<<<<<<< HEAD
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-=======
 import home.fxml.PromotionsController;
->>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -33,13 +29,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-<<<<<<< HEAD
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-=======
 import javafx.scene.layout.VBox;
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -66,21 +59,18 @@ public class home implements Initializable {
     @FXML
     private Label type;
     @FXML
-<<<<<<< HEAD
     private ImageView avatar;
     @FXML
     private Circle circle;
     @FXML
     private HBox tst;
-=======
-<<<<<<< HEAD
+
+    @FXML
     private FontAwesomeIconView btnjeu;
     private static Stage primaryStageObj;
-=======
+    @FXML
     private Button btnPro;
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
 
->>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
     /**
      * Initializes the controller class.
      */
@@ -164,15 +154,14 @@ public class home implements Initializable {
     }
 
     @FXML
-<<<<<<< HEAD
     private void chatbot(ActionEvent event) {
         
         Chatbot c = new Chatbot();
         Stage s = new Stage();
         c.start(s);
     }
-=======
-<<<<<<< HEAD
+
+    @FXML
     private void gotogame(ActionEvent event) throws IOException {
                    
                ;
@@ -186,7 +175,7 @@ public class home implements Initializable {
         stage.show();
     }
  
-=======
+    @FXML
     private void showPromotions(ActionEvent event) {
           PromotionsController p = new PromotionsController();
             
@@ -200,7 +189,14 @@ public class home implements Initializable {
             Logger.getLogger(formateur.home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
->>>>>>> 5dbda202efa6d7fa28fa53ec0790d110804f8456
->>>>>>> 212350c038dd9459e4316f83d88f1179ef1a2dfa
+
+    @FXML
+    private void gotToChatBot(ActionEvent event) {
+        
+        Chatbot c = new Chatbot();
+        Stage s = new Stage();
+        c.start(s);
+    }
+
     
 }

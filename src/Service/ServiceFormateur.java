@@ -50,8 +50,8 @@ public class ServiceFormateur implements IServiceUtilisateurs {
             //Statement stm = cnx.createStatement();
             
             
-            String queryU = "INSERT INTO `utilisateurs`(`nom`, `prenom`, `dateNaissance`, `cin`, `email`, `login`, `pwd`, `num`)"
-                    + "VALUES (?,?,?,?,?,?,?,?)";
+            String queryU = "INSERT INTO `utilisateurs`(`nom`, `prenom`, `dateNaissance`, `cin`, `email`, `login`, `pwd`, `num`,`idp`)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(queryU,Statement.RETURN_GENERATED_KEYS);
             
             
@@ -62,7 +62,8 @@ public class ServiceFormateur implements IServiceUtilisateurs {
             ps.setString(5, u.getEmail());
             ps.setString(6, u.getLogin());
             ps.setString(7, u.getPassword());
-            ps.setString(8, u.getNum()); 
+            ps.setString(8, u.getNum());
+            ps.setString(9, "formateurs"); 
             
            ps.executeUpdate();
             
@@ -138,9 +139,9 @@ public class ServiceFormateur implements IServiceUtilisateurs {
                 p.setNum(rst.getString(9));
                 p.setImage(rst.getString(10));
                 
-                p.setSpecialite(rst.getString(12));
-                p.setJustificatif(rst.getString(13));
-                p.setEtat(rst.getBoolean(14));
+                p.setSpecialite(rst.getString(13));
+                p.setJustificatif(rst.getString(14));
+                p.setEtat(rst.getBoolean(15));
                
                 
                 

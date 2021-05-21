@@ -5,6 +5,8 @@
  */
 package login;
 
+import Service.ServicePanier;
+import Service.ServiceParticipant;
 import com.jfoenix.controls.JFXPasswordField;
 import java.net.URL;
 import java.util.Random;
@@ -38,6 +40,10 @@ public class confirmationCode implements Initializable {
         // TODO
         testCode = getRandomNumberString();
         System.out.println(testCode);
+        ServiceParticipant spp = new ServiceParticipant();
+        spp.sendMail( SignUpController.emailGlobal,"Confirmation Code",testCode);
+        
+        
         countDownTime count = new countDownTime();
         time.getChildren().add(count.setCountdown());
     }    
